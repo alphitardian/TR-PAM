@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.alphitardian.tr_pam.api.ApiList;
 import com.alphitardian.tr_pam.api.RetrofitClient;
 import com.alphitardian.tr_pam.fragment.HomeFragment;
-import com.alphitardian.tr_pam.fragment.NewsFragment;
+import com.alphitardian.tr_pam.fragment.TransactionFragment;
 import com.alphitardian.tr_pam.fragment.MarketFragment;
 import com.alphitardian.tr_pam.model.CryptoList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 Toast.makeText(this, "Profile VIew", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_news:
-                fragment = new NewsFragment();
+                fragment = new TransactionFragment();
                 Toast.makeText(this, "News View", Toast.LENGTH_SHORT).show();
                 break;
         }

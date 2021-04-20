@@ -12,27 +12,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alphitardian.tr_pam.MainActivity;
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.adapter.MarketListAdapter;
+import com.alphitardian.tr_pam.adapter.TransactionListAdapter;
 import com.alphitardian.tr_pam.api.ApiList;
 import com.alphitardian.tr_pam.api.RetrofitClient;
 import com.alphitardian.tr_pam.model.CryptoData;
 import com.alphitardian.tr_pam.model.CryptoList;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MarketFragment extends Fragment {
+public class TransactionFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<CryptoData> cryptoData = new ArrayList<>();
@@ -41,18 +38,17 @@ public class MarketFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_market, container, false);
+        return inflater.inflate(R.layout.fragment_transaction, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.market_list);
+        recyclerView = view.findViewById(R.id.transaction_list);
         recyclerView.setHasFixedSize(true);
 
         getAllCrypto();
-
     }
 
     private void getAllCrypto() {
@@ -87,8 +83,7 @@ public class MarketFragment extends Fragment {
 
     private void showRecyclerList(){
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        MarketListAdapter listAdapter = new MarketListAdapter(cryptoData);
+        TransactionListAdapter listAdapter = new TransactionListAdapter(cryptoData);
         recyclerView.setAdapter(listAdapter);
     }
-
 }
