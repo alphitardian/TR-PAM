@@ -48,6 +48,15 @@
             android:layout_marginBottom="10dp"/>
 
         <EditText
+            android:id="@+id/regisEditTextAddress"
+            android:padding="10dp"
+            android:background="@drawable/border_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/register_address"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
             android:id="@+id/regisEditTextPassword"
             android:padding="10dp"
             android:background="@drawable/border_edit_text"
@@ -57,12 +66,14 @@
             android:layout_marginBottom="10dp"/>
 
         <EditText
-            android:id="@+id/regisEditTextAddress"
+            android:id="@+id/regisEditTextConfirmPassword"
             android:padding="10dp"
             android:background="@drawable/border_edit_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/register_address"/>
+            android:hint="@string/confirm_password"
+            android:layout_marginBottom="10dp"/>
+
 
         <Button
             android:id="@+id/btnRegistration"
