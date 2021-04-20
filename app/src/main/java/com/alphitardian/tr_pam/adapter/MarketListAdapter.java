@@ -1,5 +1,6 @@
 package com.alphitardian.tr_pam.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alphitardian.tr_pam.CryptoDetailActivity;
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.model.CryptoData;
 
@@ -18,6 +20,10 @@ import java.util.ArrayList;
 public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.ListViewHolder> {
 
     private ArrayList<CryptoData> cryptoData;
+
+    public static final String EXTRA_NAME = "extra_name";
+    public static final String EXTRA_PRICE = "extra_price";
+    public static final String EXTRA_ICON = "extra_icon";
 
     public MarketListAdapter(ArrayList<CryptoData> cryptoData) {
         this.cryptoData = cryptoData;
@@ -44,6 +50,12 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), CryptoDetailActivity.class);
+                intent.putExtra(EXTRA_NAME, data.getName());
+                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getQuote().getUsd().getPrice()));
+                intent.putExtra(EXTRA_ICON, R.drawable.ic_launcher_foreground);
+                holder.itemView.getContext().startActivity(intent);
+
                 Toast.makeText(holder.itemView.getContext(), data.getName(), Toast.LENGTH_SHORT).show();
             }
         });
