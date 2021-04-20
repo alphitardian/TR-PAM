@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "97054562841",
+    "firebase_url": "https://warungkripto-default-rtdb.firebaseio.com",
+    "project_id": "warungkripto",
+    "storage_bucket": "warungkripto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97054562841:android:2b8ac8646c8e8bee856888",
+        "android_client_info": {
+          "package_name": "com.alphitardian.tr_pam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97054562841-9hloumgadkvm2orqc9oh350t1nfs6pos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ7vMahWCz0RJMP8jK4kE5KlETKcEW9Gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97054562841-9hloumgadkvm2orqc9oh350t1nfs6pos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

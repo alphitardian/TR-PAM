@@ -1,4 +1,4 @@
-package com.alphitardian.tr_pam.adapter;
+package com.alphitardian.tr_pam.adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alphitardian.tr_pam.CryptoDetailActivity;
 import com.alphitardian.tr_pam.R;
-import com.alphitardian.tr_pam.model.CryptoData;
+import com.alphitardian.tr_pam.models.CryptoData;
 
 import java.util.ArrayList;
 

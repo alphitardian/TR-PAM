@@ -1,4 +1,4 @@
-package com.alphitardian.tr_pam.api;
+package com.alphitardian.tr_pam.apis;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

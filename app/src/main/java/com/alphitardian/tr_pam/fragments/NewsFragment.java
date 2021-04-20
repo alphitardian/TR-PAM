@@ -1,4 +1,4 @@
-package com.alphitardian.tr_pam.fragment;
+package com.alphitardian.tr_pam.fragments;
 
 import android.os.Bundle;
 
@@ -13,23 +13,22 @@ import android.widget.TextView;
 
 import com.alphitardian.tr_pam.R;
 
-public class HomeFragment extends Fragment {
-
+public class NewsFragment extends Fragment {
     private TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_news, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textView = view.findViewById(R.id.home_textview);
+        textView = view.findViewById(R.id.news_textview);
 
-        textView.setText("Home Fragment");
+        textView.setText("News Fragment");
     }
 }

@@ -9,12 +9,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.alphitardian.tr_pam.api.ApiList;
-import com.alphitardian.tr_pam.api.RetrofitClient;
-import com.alphitardian.tr_pam.fragment.HomeFragment;
-import com.alphitardian.tr_pam.fragment.NewsFragment;
-import com.alphitardian.tr_pam.fragment.MarketFragment;
-import com.alphitardian.tr_pam.model.CryptoList;
+import com.alphitardian.tr_pam.apis.ApiList;
+import com.alphitardian.tr_pam.apis.RetrofitClient;
+import com.alphitardian.tr_pam.fragments.HomeFragment;
+import com.alphitardian.tr_pam.fragments.NewsFragment;
+import com.alphitardian.tr_pam.fragments.MarketFragment;
+import com.alphitardian.tr_pam.models.CryptoList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import retrofit2.Call;

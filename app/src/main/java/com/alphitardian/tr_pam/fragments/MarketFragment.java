@@ -1,4 +1,4 @@
-package com.alphitardian.tr_pam.fragment;
+package com.alphitardian.tr_pam.fragments;
 
 import android.os.Bundle;
 
@@ -12,21 +12,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alphitardian.tr_pam.MainActivity;
 import com.alphitardian.tr_pam.R;
-import com.alphitardian.tr_pam.adapter.MarketListAdapter;
-import com.alphitardian.tr_pam.api.ApiList;
-import com.alphitardian.tr_pam.api.RetrofitClient;
-import com.alphitardian.tr_pam.model.CryptoData;
-import com.alphitardian.tr_pam.model.CryptoList;
+import com.alphitardian.tr_pam.adapters.MarketListAdapter;
+import com.alphitardian.tr_pam.apis.ApiList;
+import com.alphitardian.tr_pam.apis.RetrofitClient;
+import com.alphitardian.tr_pam.models.CryptoData;
+import com.alphitardian.tr_pam.models.CryptoList;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

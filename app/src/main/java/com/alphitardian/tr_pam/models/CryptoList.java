@@ -1,9 +1,8 @@
-package com.alphitardian.tr_pam.model;
+package com.alphitardian.tr_pam.models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CryptoList {
     @SerializedName("data")

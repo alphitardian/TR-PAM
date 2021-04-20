@@ -1,4 +1,4 @@
-package com.alphitardian.tr_pam.model;
+package com.alphitardian.tr_pam.models;
 
 import com.google.gson.annotations.SerializedName;
 
