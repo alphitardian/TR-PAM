@@ -13,5 +13,6 @@
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="login_button">SIGN IN</string>
+    <string name="login_register">Register</string>
 
 </resources>
