@@ -1,16 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="20dp"
     android:layout_gravity="center">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/login_text"
+           android:textSize="50dp"/>
+
+       <EditText
+           android:id="@+id/editTextEmail"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="@string/login_email"
+           android:inputType="textEmailAddress"/>
+
+       <EditText
+           android:id="@+id/editTextPassword"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="@string/login_password"
+           android:inputType="textEmailAddress"/>
+
+       <Button
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/login_button"/>
+
+   </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"
-        android:paddingLeft="40dp"
-        android:textSize="50dp"/>
+        android:text="@string/login_forgot_pass"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_sign_method"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="google"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="facebook" />
 
 
-</RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

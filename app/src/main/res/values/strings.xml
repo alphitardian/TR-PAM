@@ -10,5 +10,8 @@
     <string name="login_forgot_pass">Did you forgot your password?</string>
     <string name="login_report">Tap here for report</string>
     <string name="login_sign_method">or sign in with</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">SIGN IN</string>
 
 </resources>
