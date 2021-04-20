@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alphitardian.tr_pam.adapter.MarketListAdapter;
+import com.alphitardian.tr_pam.model.CryptoPrice;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -18,9 +20,11 @@ import java.util.ArrayList;
 
 public class CryptoDetailActivity extends AppCompatActivity {
 
-    TextView cryptoNameTextView, currentPriceTextView;
-    ImageView cryptoImage;
-    LineChart chart;
+    private TextView cryptoNameTextView, currentPriceTextView;
+    private ImageView cryptoImage;
+    private LineChart chart;
+
+    private CryptoPrice priceHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +63,15 @@ public class CryptoDetailActivity extends AppCompatActivity {
         chart.getDescription().setEnabled(false);
         chart.animateXY(1000, 1000);
 
+        priceHistory = getIntent().getParcelableExtra(MarketListAdapter.EXTRA_HISTORY);
+
         ArrayList<Entry> values = new ArrayList<>();
-        values.add(new Entry(1, 50));
-        values.add(new Entry(2, 100));
-        values.add(new Entry(3, 70));
-        values.add(new Entry(4, 30));
-        values.add(new Entry(5, 120));
-        values.add(new Entry(6, 110));
-        values.add(new Entry(7, 20));
+        values.add(new Entry(1, (float) priceHistory.getIn90d()));
+        values.add(new Entry(2, (float) priceHistory.getIn60d()));
+        values.add(new Entry(3, (float) priceHistory.getIn30d()));
+        values.add(new Entry(4, (float) priceHistory.getIn7d()));
+        values.add(new Entry(5, (float) priceHistory.getIn24h()));
+        values.add(new Entry(6, (float) priceHistory.getIn1h()));
 
         LineDataSet set1;
         if (chart.getData() != null && chart.getData().getDataSetCount() > 0) {

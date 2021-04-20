@@ -1,6 +1,7 @@
 package com.alphitardian.tr_pam.adapter;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alphitardian.tr_pam.CryptoDetailActivity;
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.model.CryptoData;
+import com.alphitardian.tr_pam.model.CryptoPrice;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
     public static final String EXTRA_NAME = "extra_name";
     public static final String EXTRA_PRICE = "extra_price";
     public static final String EXTRA_ICON = "extra_icon";
+    public static final String EXTRA_HISTORY = "extra_history";
 
     public MarketListAdapter(ArrayList<CryptoData> cryptoData) {
         this.cryptoData = cryptoData;
@@ -54,9 +57,19 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
                 intent.putExtra(EXTRA_NAME, data.getName());
                 intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
                 intent.putExtra(EXTRA_ICON, R.drawable.ic_launcher_foreground);
-                holder.itemView.getContext().startActivity(intent);
 
-                Toast.makeText(holder.itemView.getContext(), data.getName(), Toast.LENGTH_SHORT).show();
+                CryptoPrice cryptoPrice = new CryptoPrice(
+                        data.getPrice().getCurrent(),
+                        data.getPrice().getIn1h(),
+                        data.getPrice().getIn24h(),
+                        data.getPrice().getIn7d(),
+                        data.getPrice().getIn30d(),
+                        data.getPrice().getIn60d(),
+                        data.getPrice().getIn90d()
+                );
+
+                intent.putExtra(EXTRA_HISTORY, cryptoPrice);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }

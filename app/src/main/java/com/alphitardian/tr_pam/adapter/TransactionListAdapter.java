@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alphitardian.tr_pam.CryptoDetailActivity;
 import com.alphitardian.tr_pam.R;
+import com.alphitardian.tr_pam.TransactionDetailActivity;
 import com.alphitardian.tr_pam.model.CryptoData;
 
 import java.util.ArrayList;
@@ -20,6 +21,12 @@ import java.util.ArrayList;
 public class TransactionListAdapter extends RecyclerView.Adapter<TransactionListAdapter.ListViewHolder> {
 
     private ArrayList<CryptoData> cryptoData;
+
+    public static final String EXTRA_NAME = "extra_name";
+    public static final String EXTRA_PRICE = "extra_price";
+    public static final String EXTRA_ICON = "extra_icon";
+    public static final String EXTRA_STATUS = "extra_status";
+    public static final String EXTRA_DATE = "extra_date";
 
     public TransactionListAdapter(ArrayList<CryptoData> cryptoData) {
         this.cryptoData = cryptoData;
@@ -46,7 +53,13 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(holder.itemView.getContext(), data.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(holder.itemView.getContext(), TransactionDetailActivity.class);
+                intent.putExtra(EXTRA_NAME, data.getName());
+                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
+                intent.putExtra(EXTRA_ICON, R.drawable.ic_launcher_foreground);
+                intent.putExtra(EXTRA_STATUS, "Transfer Successful");
+                intent.putExtra(EXTRA_DATE, data.getLastUpdate());
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }

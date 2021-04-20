@@ -1,8 +1,11 @@
 package com.alphitardian.tr_pam.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class CryptoPrice {
+public class CryptoPrice implements Parcelable {
 
     @SerializedName("current")
     private double current;
@@ -34,6 +37,28 @@ public class CryptoPrice {
         this.in60d = in60d;
         this.in90d = in90d;
     }
+
+    protected CryptoPrice(Parcel in) {
+        current = in.readDouble();
+        in1h = in.readDouble();
+        in24h = in.readDouble();
+        in7d = in.readDouble();
+        in30d = in.readDouble();
+        in60d = in.readDouble();
+        in90d = in.readDouble();
+    }
+
+    public static final Creator<CryptoPrice> CREATOR = new Creator<CryptoPrice>() {
+        @Override
+        public CryptoPrice createFromParcel(Parcel in) {
+            return new CryptoPrice(in);
+        }
+
+        @Override
+        public CryptoPrice[] newArray(int size) {
+            return new CryptoPrice[size];
+        }
+    };
 
     public double getCurrent() {
         return current;
@@ -89,5 +114,21 @@ public class CryptoPrice {
 
     public void setIn90d(double in90d) {
         this.in90d = in90d;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(current);
+        dest.writeDouble(in1h);
+        dest.writeDouble(in24h);
+        dest.writeDouble(in7d);
+        dest.writeDouble(in30d);
+        dest.writeDouble(in60d);
+        dest.writeDouble(in90d);
     }
 }
