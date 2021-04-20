@@ -11,7 +11,12 @@
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
 
     <item
-        android:id="@+id/action_news"
+        android:id="@+id/action_transaction"
         android:title="Transaction"
         android:icon="@drawable/ic_baseline_compare_arrows_24"/>
+
+    <item
+        android:id="@+id/action_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_person_24"/>
 </menu>

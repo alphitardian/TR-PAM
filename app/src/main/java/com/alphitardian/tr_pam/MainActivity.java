@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.alphitardian.tr_pam.api.ApiList;
 import com.alphitardian.tr_pam.api.RetrofitClient;
 import com.alphitardian.tr_pam.fragment.HomeFragment;
+import com.alphitardian.tr_pam.fragment.ProfileFragment;
 import com.alphitardian.tr_pam.fragment.TransactionFragment;
 import com.alphitardian.tr_pam.fragment.MarketFragment;
 import com.alphitardian.tr_pam.model.CryptoList;
@@ -60,8 +61,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.action_market:
                 fragment = new MarketFragment();
                 break;
-            case R.id.action_news:
+            case R.id.action_transaction:
                 fragment = new TransactionFragment();
+                break;
+            case R.id.action_profile:
+                fragment = new ProfileFragment();
                 break;
         }
         return loadFragment(fragment);
