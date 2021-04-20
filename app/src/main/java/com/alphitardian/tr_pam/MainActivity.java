@@ -13,12 +13,9 @@ import com.alphitardian.tr_pam.api.ApiList;
 import com.alphitardian.tr_pam.api.RetrofitClient;
 import com.alphitardian.tr_pam.fragment.HomeFragment;
 import com.alphitardian.tr_pam.fragment.NewsFragment;
-import com.alphitardian.tr_pam.fragment.ProfileFragment;
-import com.alphitardian.tr_pam.model.CryptoData;
+import com.alphitardian.tr_pam.fragment.MarketFragment;
 import com.alphitardian.tr_pam.model.CryptoList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new HomeFragment();
                 Toast.makeText(this, "Home View", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.action_profile:
-                fragment = new ProfileFragment();
+            case R.id.action_market:
+                fragment = new MarketFragment();
                 Toast.makeText(this, "Profile VIew", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_news:
