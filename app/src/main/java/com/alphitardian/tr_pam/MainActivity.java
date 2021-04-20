@@ -31,15 +31,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_screen);
+        setContentView(R.layout.activity_main);
 
-//        bottomNavigationView = findViewById(R.id.bottom_navbar);
-//
-//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-//
-//        loadFragment(new HomeFragment());
-//
-//        getAllCrypto();
+        bottomNavigationView = findViewById(R.id.bottom_navbar);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        loadFragment(new HomeFragment());
+
+        getAllCrypto();
     }
 
     // Replace Fragment in the Host Fragment
