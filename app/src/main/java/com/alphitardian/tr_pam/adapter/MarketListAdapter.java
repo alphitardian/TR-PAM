@@ -41,7 +41,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
         CryptoData data = cryptoData.get(position);
 
         holder.updatePercentageTextView.setText(data.getSymbol());
-        holder.currentPriceTextView.setText(String.format("%.3f", data.getQuote().getUsd().getPrice()));
+        holder.currentPriceTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
         holder.cryptoShortNameTextView.setText(data.getSymbol());
         holder.updatePercentageIcon.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
         holder.cryptoImage.setImageResource(R.drawable.ic_launcher_foreground);
@@ -52,7 +52,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), CryptoDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, data.getName());
-                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getQuote().getUsd().getPrice()));
+                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
                 intent.putExtra(EXTRA_ICON, R.drawable.ic_launcher_foreground);
                 holder.itemView.getContext().startActivity(intent);
 

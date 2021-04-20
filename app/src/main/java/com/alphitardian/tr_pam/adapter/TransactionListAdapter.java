@@ -37,9 +37,9 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         CryptoData data = cryptoData.get(position);
 
         holder.cryptoNameTextView.setText(data.getName());
-        holder.priceTextView.setText(String.format("%.3f", data.getQuote().getUsd().getPrice()));
+        holder.priceTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
         holder.transferConfirmationTextView.setText(data.getName());
-        holder.dateTextView.setText(data.getName());
+        holder.dateTextView.setText(data.getLastUpdate());
         holder.cryptoImage.setImageResource(R.drawable.ic_launcher_foreground);
 
         // On Click Event Per Item

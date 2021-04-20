@@ -64,7 +64,7 @@ public class TransactionFragment extends Fragment {
                     Log.d("TAG", "onResponse: " + data.getData().size());
 
                     for (int i = 0; i < data.getData().size(); i++) {
-                        CryptoData itemData = new CryptoData(data.getData().get(i).getId(), data.getData().get(i).getName(), data.getData().get(i).getSymbol(), data.getData().get(i).getQuote());
+                        CryptoData itemData = new CryptoData(data.getData().get(i).getName(), data.getData().get(i).getSymbol(), data.getData().get(i).getLastUpdate(), data.getData().get(i).getPrice());
                         cryptoData.add(itemData);
                     }
 

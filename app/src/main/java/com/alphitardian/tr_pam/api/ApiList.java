@@ -11,7 +11,6 @@ import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 public interface ApiList {
-    @Headers("X-CMC_PRO_API_KEY: 90a92416-bde3-4252-80f9-c8d72237863e")
-    @GET("/v1/cryptocurrency/listings/latest")
+    @GET("/coin/api/v1")
     Call<CryptoList> getAllList();
 }

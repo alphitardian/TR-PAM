@@ -3,31 +3,24 @@ package com.alphitardian.tr_pam.model;
 import com.google.gson.annotations.SerializedName;
 
 public class CryptoData {
-    @SerializedName("id")
-    private int id;
 
-    @SerializedName("name")
+    @SerializedName("coinName")
     private String name;
 
     @SerializedName("symbol")
     private String symbol;
 
-    @SerializedName("quote")
-    private CryptoQuote quote;
+    @SerializedName("lastUpdate")
+    private String lastUpdate;
 
-    public CryptoData(int id, String name, String symbol, CryptoQuote quote) {
-        this.id = id;
+    @SerializedName("price")
+    private CryptoPrice price;
+
+    public CryptoData(String name, String symbol, String lastUpdate, CryptoPrice price) {
         this.name = name;
         this.symbol = symbol;
-        this.quote = quote;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.lastUpdate = lastUpdate;
+        this.price = price;
     }
 
     public String getName() {
@@ -46,11 +39,19 @@ public class CryptoData {
         this.symbol = symbol;
     }
 
-    public CryptoQuote getQuote() {
-        return quote;
+    public String getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setQuote(CryptoQuote quote) {
-        this.quote = quote;
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public CryptoPrice getPrice() {
+        return price;
+    }
+
+    public void setPrice(CryptoPrice price) {
+        this.price = price;
     }
 }

@@ -9,8 +9,12 @@ public class CryptoList {
     @SerializedName("data")
     private ArrayList<CryptoData> data;
 
-    public CryptoList(ArrayList<CryptoData> data) {
+    @SerializedName("status")
+    private ArrayList<CryptoStatus> status;
+
+    public CryptoList(ArrayList<CryptoData> data, ArrayList<CryptoStatus> status) {
         this.data = data;
+        this.status = status;
     }
 
     public ArrayList<CryptoData> getData() {
@@ -19,5 +23,13 @@ public class CryptoList {
 
     public void setData(ArrayList<CryptoData> data) {
         this.data = data;
+    }
+
+    public ArrayList<CryptoStatus> getStatus() {
+        return status;
+    }
+
+    public void setStatus(ArrayList<CryptoStatus> status) {
+        this.status = status;
     }
 }
