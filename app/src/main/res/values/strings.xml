@@ -2,4 +2,18 @@
     <string name="app_name">TR_PAM</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Login String -->
+    <string name="login_text">Login</string>
+    <string name="login_username_edittext">Username</string>
+    <string name="login_password_edittext">Password</string>
+    <string name="login_forgot_pass">Did you forgot your password?</string>
+    <string name="login_report">Tap here for report</string>
+    <string name="login_sign_method">or sign in with</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">SIGN IN</string>
+    <string name="login_register">Register</string>
+
+
 </resources>
