@@ -57,7 +57,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
 
         holder.currentPriceTextView.setText("$" + String.format("%.3f", data.getPrice().getCurrent()));
         holder.cryptoShortNameTextView.setText(data.getSymbol());
-        holder.cryptoImage.setImageResource(R.drawable.ic_launcher_foreground);
+        holder.cryptoImage.setImageResource(getCryptoIcon(data.getSymbol()));
 
         // On Click Event Per Item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
                 Intent intent = new Intent(holder.itemView.getContext(), CryptoDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, data.getName());
                 intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
-                intent.putExtra(EXTRA_ICON, R.drawable.ic_launcher_foreground);
+                intent.putExtra(EXTRA_ICON, getCryptoIcon(data.getSymbol()));
 
                 CryptoPrice cryptoPrice = new CryptoPrice(
                         data.getPrice().getCurrent(),
@@ -103,4 +103,32 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
             cryptoImage = view.findViewById(R.id.crypto_image);
         }
     }
+
+    public static int getCryptoIcon(String name) {
+        switch (name) {
+            case "BTC":
+                return R.drawable.btc_icon;
+            case "ETH":
+                return R.drawable.eth_icon;
+            case "BNB":
+                return R.drawable.bnb_icon;
+            case "XRP":
+                return R.drawable.xrp_icon;
+            case "USDT":
+                return R.drawable.usdt_icon;
+            case "ADA":
+                return R.drawable.ada_icon;
+            case "DOGE":
+                return R.drawable.doge_icon;
+            case "DOT":
+                return R.drawable.dot_icon;
+            case "UNI":
+                return R.drawable.uni_icon;
+            case "LTC":
+                return R.drawable.ltc_icon;
+            default:
+                return R.drawable.btc_icon;
+        }
+    }
+
 }
