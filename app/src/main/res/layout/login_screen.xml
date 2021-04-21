@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="#18192F"
+    android:background="@color/primaryBackground"
     android:layout_gravity="center">
 
     <LinearLayout
@@ -65,10 +65,10 @@
            android:id="@+id/editTextEmail"
            android:padding="10dp"
            android:background="@drawable/auth_form"
-           android:layout_width="match_parent"
-           android:layout_height="50dp"
            android:textColor="@color/light"
            android:textColorHint="@color/light"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
            android:hint="@string/login_email"
            android:inputType="textEmailAddress"
            android:fontFamily="@font/montserrat"
