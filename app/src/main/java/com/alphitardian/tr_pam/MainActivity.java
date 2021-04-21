@@ -12,7 +12,8 @@ import android.widget.Toast;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.fragments.HomeFragment;
-import com.alphitardian.tr_pam.fragments.NewsFragment;
+import com.alphitardian.tr_pam.fragments.ProfileFragment;
+import com.alphitardian.tr_pam.fragments.TransactionFragment;
 import com.alphitardian.tr_pam.fragments.MarketFragment;
 import com.alphitardian.tr_pam.models.CryptoList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,8 +36,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         loadFragment(new HomeFragment());
-
-        getAllCrypto();
     }
 
     // Replace Fragment in the Host Fragment
@@ -51,28 +50,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return false;
     }
 
-    private void getAllCrypto() {
-        ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
-        Call<CryptoList> call = apiList.getAllList();
-
-        call.enqueue(new Callback<CryptoList>() {
-            @Override
-            public void onResponse(Call<CryptoList> call, Response<CryptoList> response) {
-                if (response.isSuccessful()) {
-                    CryptoList data = response.body();
-                    Log.d("TAG", "onResponse: " + data.getData().get(0).getName());
-                } else {
-                    Toast.makeText(MainActivity.this, "Responses failed!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CryptoList> call, Throwable t) {
-
-            }
-        });
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
@@ -80,15 +57,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (item.getItemId()) {
             case R.id.action_home:
                 fragment = new HomeFragment();
-                Toast.makeText(this, "Home View", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_market:
                 fragment = new MarketFragment();
-                Toast.makeText(this, "Profile VIew", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.action_news:
-                fragment = new NewsFragment();
-                Toast.makeText(this, "News View", Toast.LENGTH_SHORT).show();
+            case R.id.action_transaction:
+                fragment = new TransactionFragment();
+                break;
+            case R.id.action_profile:
+                fragment = new ProfileFragment();
                 break;
         }
         return loadFragment(fragment);

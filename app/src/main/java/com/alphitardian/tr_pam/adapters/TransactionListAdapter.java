@@ -1,7 +1,6 @@
 package com.alphitardian.tr_pam.adapters;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,28 +13,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alphitardian.tr_pam.CryptoDetailActivity;
 import com.alphitardian.tr_pam.R;
+import com.alphitardian.tr_pam.TransactionDetailActivity;
 import com.alphitardian.tr_pam.models.CryptoData;
-import com.alphitardian.tr_pam.models.CryptoPrice;
 
 import java.util.ArrayList;
 
-public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.ListViewHolder> {
+public class TransactionListAdapter extends RecyclerView.Adapter<TransactionListAdapter.ListViewHolder> {
 
     private ArrayList<CryptoData> cryptoData;
 
     public static final String EXTRA_NAME = "extra_name";
     public static final String EXTRA_PRICE = "extra_price";
     public static final String EXTRA_ICON = "extra_icon";
-    public static final String EXTRA_HISTORY = "extra_history";
+    public static final String EXTRA_STATUS = "extra_status";
+    public static final String EXTRA_DATE = "extra_date";
 
-    public MarketListAdapter(ArrayList<CryptoData> cryptoData) {
+    public TransactionListAdapter(ArrayList<CryptoData> cryptoData) {
         this.cryptoData = cryptoData;
     }
 
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.market_item_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.transaction_item_list, parent, false);
         return new ListViewHolder(view);
     }
 
@@ -43,32 +43,22 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         CryptoData data = cryptoData.get(position);
 
-        holder.updatePercentageTextView.setText(data.getSymbol());
-        holder.currentPriceTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
-        holder.cryptoShortNameTextView.setText(data.getSymbol());
-        holder.updatePercentageIcon.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
+        holder.cryptoNameTextView.setText(data.getName());
+        holder.priceTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
+        holder.transferConfirmationTextView.setText(data.getName());
+        holder.dateTextView.setText(data.getLastUpdate());
         holder.cryptoImage.setImageResource(R.drawable.ic_launcher_foreground);
 
         // On Click Event Per Item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), CryptoDetailActivity.class);
+                Intent intent = new Intent(holder.itemView.getContext(), TransactionDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, data.getName());
                 intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
                 intent.putExtra(EXTRA_ICON, R.drawable.ic_launcher_foreground);
-
-                CryptoPrice cryptoPrice = new CryptoPrice(
-                        data.getPrice().getCurrent(),
-                        data.getPrice().getIn1h(),
-                        data.getPrice().getIn24h(),
-                        data.getPrice().getIn7d(),
-                        data.getPrice().getIn30d(),
-                        data.getPrice().getIn60d(),
-                        data.getPrice().getIn90d()
-                );
-
-                intent.putExtra(EXTRA_HISTORY, cryptoPrice);
+                intent.putExtra(EXTRA_STATUS, "Transfer Successful");
+                intent.putExtra(EXTRA_DATE, data.getLastUpdate());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -81,15 +71,15 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView updatePercentageTextView, currentPriceTextView, cryptoShortNameTextView;
-        private ImageView updatePercentageIcon, cryptoImage;
+        private TextView cryptoNameTextView, transferConfirmationTextView, dateTextView, priceTextView;
+        private ImageView cryptoImage;
 
         public ListViewHolder(@NonNull View view) {
             super(view);
-            updatePercentageTextView = view.findViewById(R.id.update_percentage_textview);
-            currentPriceTextView = view.findViewById(R.id.current_price_textview);
-            cryptoShortNameTextView = view.findViewById(R.id.crypto_shortname_textview);
-            updatePercentageIcon = view.findViewById(R.id.update_percentage_icon);
+            cryptoNameTextView = view.findViewById(R.id.crypto_name_textview);
+            transferConfirmationTextView = view.findViewById(R.id.transfer_confirmation_textview);
+            dateTextView = view.findViewById(R.id.date_textview);
+            priceTextView = view.findViewById(R.id.price_textview);
             cryptoImage = view.findViewById(R.id.crypto_image);
         }
     }

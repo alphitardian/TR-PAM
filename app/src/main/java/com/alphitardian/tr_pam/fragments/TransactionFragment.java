@@ -12,14 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.adapters.MarketListAdapter;
+import com.alphitardian.tr_pam.adapters.TransactionListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.CryptoData;
@@ -31,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MarketFragment extends Fragment {
+public class TransactionFragment extends Fragment {
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -41,7 +40,7 @@ public class MarketFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_market, container, false);
+        return inflater.inflate(R.layout.fragment_transaction, container, false);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class MarketFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         progressBar = view.findViewById(R.id.progress_bar);
-        recyclerView = view.findViewById(R.id.market_list);
+        recyclerView = view.findViewById(R.id.transaction_list);
         recyclerView.setHasFixedSize(true);
 
         progressBar.setVisibility(View.VISIBLE);
@@ -77,7 +76,6 @@ public class MarketFragment extends Fragment {
                     showRecyclerList();
 
                     progressBar.setVisibility(View.INVISIBLE);
-
                 } else {
                     Toast.makeText(getContext(), "Responses failed!", Toast.LENGTH_SHORT).show();
                 }
@@ -92,8 +90,7 @@ public class MarketFragment extends Fragment {
 
     private void showRecyclerList(){
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        MarketListAdapter listAdapter = new MarketListAdapter(cryptoData);
+        TransactionListAdapter listAdapter = new TransactionListAdapter(cryptoData);
         recyclerView.setAdapter(listAdapter);
     }
-
 }

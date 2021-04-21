@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MarketFragment">
+    tools:context=".fragment.TransactionFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
@@ -14,9 +13,9 @@
         android:layout_gravity="center_vertical"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/market_list"
+        android:id="@+id/transaction_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/market_item_list"/>
+        tools:listitem="@layout/transaction_item_list"/>
 
 </FrameLayout>

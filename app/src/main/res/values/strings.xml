@@ -12,11 +12,12 @@
     <string name="login_sign_method">or sign in with</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="login_button">SIGN IN</string>
     <string name="login_register">Register</string>
 
     <string name="register_fullname">Fullname</string>
     <string name="register_address">Address</string>
-    
+
 
 </resources>
