@@ -1,0 +1,100 @@
+package com.alphitardian.tr_pam;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alphitardian.tr_pam.adapters.CryptoWalletGridAdapter;
+import com.alphitardian.tr_pam.adapters.MarketListAdapter;
+import com.alphitardian.tr_pam.apis.ApiList;
+import com.alphitardian.tr_pam.apis.RetrofitClient;
+import com.alphitardian.tr_pam.models.CryptoData;
+import com.alphitardian.tr_pam.models.CryptoList;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class WalletActivity extends AppCompatActivity {
+
+    TextView userBalanceTextView;
+    RecyclerView recyclerView;
+    ProgressBar progressBar;
+    ImageView topupButton;
+    private ArrayList<CryptoData> cryptoData = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_wallet);
+
+        userBalanceTextView = findViewById(R.id.user_balance_textview);
+        progressBar = findViewById(R.id.progress_bar);
+        topupButton = findViewById(R.id.topup_button);
+        recyclerView = findViewById(R.id.crypto_grid);
+        recyclerView.setHasFixedSize(true);
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        getAllCrypto();
+
+        topupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TopUpActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void getAllCrypto() {
+        ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
+        Call<CryptoList> call = apiList.getAllList();
+
+        call.enqueue(new Callback<CryptoList>() {
+            @Override
+            public void onResponse(Call<CryptoList> call, Response<CryptoList> response) {
+                if (response.isSuccessful()) {
+                    CryptoList data = response.body();
+
+                    Log.d("TAG", "onResponse: " + data.getData().size());
+
+                    for (int i = 0; i < data.getData().size(); i++) {
+                        CryptoData itemData = new CryptoData(data.getData().get(i).getName(), data.getData().get(i).getSymbol(), data.getData().get(i).getLastUpdate(), data.getData().get(i).getPrice());
+                        cryptoData.add(itemData);
+                    }
+
+                    showRecyclerList();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Responses failed!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CryptoList> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void showRecyclerList(){
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        CryptoWalletGridAdapter listAdapter = new CryptoWalletGridAdapter(cryptoData);
+        recyclerView.setAdapter(listAdapter);
+    }
+}
