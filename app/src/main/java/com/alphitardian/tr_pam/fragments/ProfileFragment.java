@@ -1,11 +1,13 @@
 package com.alphitardian.tr_pam.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,7 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alphitardian.tr_pam.EditProfileActivity;
 import com.alphitardian.tr_pam.R;
+import com.alphitardian.tr_pam.RegisterActivity;
 
 public class ProfileFragment extends Fragment {
 
@@ -53,8 +57,10 @@ public class ProfileFragment extends Fragment {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Edit Profile", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
             }
         });
     }
+
 }
