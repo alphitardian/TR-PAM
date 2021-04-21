@@ -3,6 +3,8 @@
     package="com.alphitardian.tr_pam">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TR_PAM">
-        <activity android:name=".TransactionDetailActivity"></activity>
+        <activity android:name=".TopUpActivity"></activity>
+        <activity android:name=".WalletActivity" />
+        <activity android:name=".TransactionDetailActivity" />
         <activity android:name=".CryptoDetailActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />

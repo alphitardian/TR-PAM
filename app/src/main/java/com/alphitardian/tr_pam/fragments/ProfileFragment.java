@@ -1,5 +1,6 @@
 package com.alphitardian.tr_pam.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alphitardian.tr_pam.R;
+import com.alphitardian.tr_pam.WalletActivity;
 
 public class ProfileFragment extends Fragment {
 
     private TextView fullNameTextView, usernameTextView, emailTextView, addressTextView;
-    private ImageView profileImage, editButton;
+    private ImageView profileImage, editButton, walletButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,11 +39,20 @@ public class ProfileFragment extends Fragment {
         addressTextView = view.findViewById(R.id.address_textview);
         profileImage = view.findViewById(R.id.profile_image);
         editButton = view.findViewById(R.id.edit_button);
+        walletButton = view.findViewById(R.id.wallet_button);
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Edit Profile", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        walletButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WalletActivity.class);
+                startActivity(intent);
             }
         });
     }
