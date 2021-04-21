@@ -2,10 +2,10 @@ package com.alphitardian.tr_pam;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alphitardian.tr_pam.adapters.CryptoWalletGridAdapter;
-import com.alphitardian.tr_pam.adapters.MarketListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
+import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.alphitardian.tr_pam.models.CryptoData;
 import com.alphitardian.tr_pam.models.CryptoList;
 
@@ -35,10 +35,14 @@ public class WalletActivity extends AppCompatActivity {
     ImageView topupButton;
     private ArrayList<CryptoData> cryptoData = new ArrayList<>();
 
+    SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
+
+        pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
 
         userBalanceTextView = findViewById(R.id.user_balance_textview);
         progressBar = findViewById(R.id.progress_bar);
@@ -48,13 +52,36 @@ public class WalletActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
+        getCurrentBalance();
         getAllCrypto();
 
         topupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(getApplicationContext(), TopUpActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void getCurrentBalance() {
+        ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
+        Call<CurrentBalance> call = apiList.getCurrentBalance(pref.getString("userId", ""));
+
+        call.enqueue(new Callback<CurrentBalance>() {
+            @Override
+            public void onResponse(Call<CurrentBalance> call, Response<CurrentBalance> response) {
+                if(response.isSuccessful()){
+                    CurrentBalance currentBalance = response.body();
+
+                    userBalanceTextView.setText(currentBalance.getCurrent());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CurrentBalance> call, Throwable t) {
+
             }
         });
     }
