@@ -6,6 +6,13 @@
     tools:context=".fragment.MarketFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/market_list"
         android:layout_width="match_parent"

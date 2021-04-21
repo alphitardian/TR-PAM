@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import retrofit2.Response;
 
 public class TransactionFragment extends Fragment {
 
+    private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private ArrayList<CryptoData> cryptoData = new ArrayList<>();
 
@@ -45,8 +47,11 @@ public class TransactionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        progressBar = view.findViewById(R.id.progress_bar);
         recyclerView = view.findViewById(R.id.transaction_list);
         recyclerView.setHasFixedSize(true);
+
+        progressBar.setVisibility(View.VISIBLE);
 
         getAllCrypto();
     }
@@ -69,6 +74,8 @@ public class TransactionFragment extends Fragment {
                     }
 
                     showRecyclerList();
+
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(getContext(), "Responses failed!", Toast.LENGTH_SHORT).show();
                 }
