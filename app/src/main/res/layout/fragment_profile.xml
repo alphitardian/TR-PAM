@@ -42,102 +42,134 @@
             android:layout_alignParentStart="true"
             android:src="@drawable/ic_baseline_account_balance_wallet_24" />
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:id="@+id/profile_image"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            android:layout_below="@id/profile_textview"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:src="@drawable/ic_launcher_foreground" />-->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:id="@+id/profile_image"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="120dp"
+            android:src="@drawable/hu_tao"
             android:layout_below="@id/profile_textview"
+            app:civ_border_width="5dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_launcher_foreground" />
+            app:civ_border_color="#FFFFFF"/>
 
-        <TextView
-            android:id="@+id/full_name_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/profile_image"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/white"
-            android:text="Full Name" />
-
-        <TextView
-            android:id="@+id/username_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/full_name_info"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/white"
-            android:text="Username" />
-
-        <TextView
-            android:id="@+id/email_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/username_info"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/white"
-            android:text="Email" />
-
-        <TextView
-            android:id="@+id/address_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/email_info"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/white"
-            android:text="Address" />
 
         <TextView
             android:id="@+id/full_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/profile_image"
-            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/white"
+            android:textSize="21dp"
             android:text="Full Name" />
+
+        <TextView
+            android:id="@+id/username_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/full_name_textview"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
+            android:text="Username" />
 
         <TextView
             android:id="@+id/username_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/full_name_textview"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="16dp"
+            android:layout_below="@id/username_info"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/white"
+            android:textSize="18dp"
             android:text="Username" />
+
+        <View
+            android:id="@+id/username_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/username_textview"
+            android:layout_marginBottom="16dp"
+            android:background="#696969"/>
+
+        <TextView
+            android:id="@+id/email_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username_line"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
+            android:text="Email" />
 
         <TextView
             android:id="@+id/email_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/username_textview"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="16dp"
+            android:layout_below="@id/email_info"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/white"
+            android:textSize="18dp"
             android:text="Email" />
+
+        <View
+            android:id="@+id/email_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/email_textview"
+            android:layout_marginBottom="16dp"
+            android:background="#696969"/>
+
+        <TextView
+            android:id="@+id/address_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email_line"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
+            android:text="Address" />
 
         <TextView
             android:id="@+id/address_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/email_textview"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="16dp"
+            android:layout_below="@id/address_info"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/white"
+            android:textSize="18dp"
             android:text="Address" />
+
+        <View
+            android:id="@+id/address_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/address_textview"
+            android:layout_marginBottom="16dp"
+            android:background="#696969"/>
 
     </RelativeLayout>
 
