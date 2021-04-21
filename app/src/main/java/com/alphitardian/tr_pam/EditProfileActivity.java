@@ -71,26 +71,8 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void saveProfile(String email, String password, String fullName, String userName, String address) {
-//        mAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//
-//                        UserDetail userDetail = new UserDetail(userName, fullName, address, "default");
-//
-//                        if (task.isSuccessful()) {
-//                            String uid = task.getResult().getUser().getUid();
-//                            db.collection("users").document(uid).set(userDetail);
-//
-//                            startActivity(new Intent(EditProfileActivity.this, MainActivity.class));
-//                        } else {
-//                            Toast.makeText(EditProfileActivity.this, "Change not save",
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
 
-        if (TextUtils.isEmpty(_confirmPassword)) {
+        if (!_confirmPassword.equals(password)) {
             Toast.makeText(EditProfileActivity.this, "Password is not equal", Toast.LENGTH_LONG);
         } else {
             user.updateEmail(email);
