@@ -10,10 +10,14 @@ import android.widget.TextView;
 
 import com.alphitardian.tr_pam.adapters.MarketListAdapter;
 import com.alphitardian.tr_pam.models.CryptoPrice;
+import com.alphitardian.tr_pam.utils.LabelFormatter;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
@@ -44,6 +48,15 @@ public class CryptoDetailActivity extends AppCompatActivity {
     }
 
     private void createGraph() {
+
+        final ArrayList<String> xAxisLabel = new ArrayList<>();
+        xAxisLabel.add("90d");
+        xAxisLabel.add("60d");
+        xAxisLabel.add("30d");
+        xAxisLabel.add("7d");
+        xAxisLabel.add("24h");
+        xAxisLabel.add("1h");
+
         chart.setTouchEnabled(true);
         chart.setPinchZoom(true);
         chart.setDrawGridBackground(false);
@@ -58,7 +71,9 @@ public class CryptoDetailActivity extends AppCompatActivity {
         chart.getAxisRight().setDrawLabels(false);
         chart.getXAxis().setDrawGridLines(false);
         chart.getXAxis().setDrawAxisLine(false);
-        chart.getXAxis().setDrawLabels(false);
+        chart.getXAxis().setDrawLabels(true);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        chart.getXAxis().setTextColor(Color.WHITE);
         chart.getLegend().setEnabled(false);
         chart.getDescription().setEnabled(false);
         chart.animateXY(1000, 1000);
@@ -79,6 +94,14 @@ public class CryptoDetailActivity extends AppCompatActivity {
             set1.setValues(values);
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
+
+            XAxis xAxis = chart.getXAxis();
+            xAxis.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, AxisBase axis) {
+                    return xAxisLabel.get((int) value);
+                }
+            });
         } else {
             set1 = new LineDataSet(values, "");
             set1.setDrawIcons(false);
