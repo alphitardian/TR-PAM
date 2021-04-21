@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        UserDetail userDetail = new UserDetail(fullName, userName, address, "default");
+                        UserDetail userDetail = new UserDetail(userName, fullName, address, "default");
 
                         if (task.isSuccessful()) {
                             String uid = task.getResult().getUser().getUid();
