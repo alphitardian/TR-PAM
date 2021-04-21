@@ -29,7 +29,7 @@
             android:layout_marginBottom="10dp"/>
 
         <EditText
-            android:id="@+id/regisEditTextUsernam"
+            android:id="@+id/regisEditTextUsername"
             android:padding="10dp"
             android:background="@drawable/border_edit_text"
             android:layout_width="match_parent"
