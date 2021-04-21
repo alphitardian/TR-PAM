@@ -45,7 +45,8 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/crypto_shortname_textview"

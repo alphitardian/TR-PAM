@@ -47,7 +47,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         holder.priceTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
         holder.transferConfirmationTextView.setText(data.getName());
         holder.dateTextView.setText(data.getLastUpdate());
-        holder.cryptoImage.setImageResource(R.drawable.ic_launcher_foreground);
+        holder.cryptoImage.setImageResource(MarketListAdapter.getCryptoIcon(data.getSymbol()));
 
         // On Click Event Per Item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +56,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
                 Intent intent = new Intent(holder.itemView.getContext(), TransactionDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, data.getName());
                 intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
-                intent.putExtra(EXTRA_ICON, R.drawable.ic_launcher_foreground);
+                intent.putExtra(EXTRA_ICON, MarketListAdapter.getCryptoIcon(data.getSymbol()));
                 intent.putExtra(EXTRA_STATUS, "Transfer Successful");
                 intent.putExtra(EXTRA_DATE, data.getLastUpdate());
                 holder.itemView.getContext().startActivity(intent);
