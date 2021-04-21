@@ -1,6 +1,7 @@
 package com.alphitardian.tr_pam.adapters;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,10 +44,19 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         CryptoData data = cryptoData.get(position);
 
-        holder.updatePercentageTextView.setText(data.getSymbol());
-        holder.currentPriceTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
+        Double currentMovement = (data.getPrice().getCurrent() - data.getPrice().getIn24h()) * 100/data.getPrice().getIn24h();
+        holder.updatePercentageTextView.setText(String.format("%.3f", currentMovement) + "%");
+
+        if(currentMovement < 0){
+            holder.updatePercentageTextView.setTextColor(Color.parseColor("#D32F2F"));
+            holder.updatePercentageIcon.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
+        }else{
+            holder.updatePercentageTextView.setTextColor(Color.parseColor("#388E3C"));
+            holder.updatePercentageIcon.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24);
+        }
+
+        holder.currentPriceTextView.setText("$" + String.format("%.3f", data.getPrice().getCurrent()));
         holder.cryptoShortNameTextView.setText(data.getSymbol());
-        holder.updatePercentageIcon.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
         holder.cryptoImage.setImageResource(R.drawable.ic_launcher_foreground);
 
         // On Click Event Per Item

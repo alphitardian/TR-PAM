@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CryptoDetailActivity">
+    tools:context=".CryptoDetailActivity"
+    android:background="@drawable/gradient_background">
 
     <TextView
         android:id="@+id/crypto_name_textview"
@@ -12,6 +13,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:padding="4dp"
         android:text="Bitcoin"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="24dp"
         android:layout_alignParentStart="true"
@@ -21,7 +23,7 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:layout_below="@id/crypto_name_textview"/>
 
     <LinearLayout
@@ -51,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Current Price"
+                android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"/>
 
             <TextView
@@ -59,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:text="0.00564"
                 android:textSize="30dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:fontFamily="@font/montserrat_bold"/>
 

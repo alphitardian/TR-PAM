@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gradientBackground"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/host_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navbar">
-
+        android:layout_height="match_parent">
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,9 +21,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         app:menu="@menu/bottom_nav_menu"
-        android:background=""
-        app:backgroundTint="@color/purple_500"
+        android:background="@drawable/navbar_background"
         app:itemIconTint="@color/bottom_navbar_state"
-        app:itemTextColor="@color/bottom_navbar_state"/>
+        app:itemTextColor="@color/bottom_navbar_state"
+        android:paddingHorizontal="5pt"
+        android:layout_marginHorizontal="5pt"
+        android:layout_marginBottom="5pt"/>
 
 </RelativeLayout>
