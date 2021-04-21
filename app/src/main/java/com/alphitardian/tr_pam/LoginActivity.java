@@ -1,6 +1,8 @@
 package com.alphitardian.tr_pam;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
@@ -13,10 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alphitardian.tr_pam.models.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextPassword);
 
         btnSignIn = findViewById(R.id.btnLogin);
+
+        sharedPreferences = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +76,36 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            String Uid = task.getResult().getUser().getUid();
+                            String email = task.getResult().getUser().getEmail();
+                            DocumentReference docRef = db.collection("users").document(Uid);
+                            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        DocumentSnapshot snapshot = task.getResult();
+                                        if(snapshot.exists()){
+                                            String fName, uName, address, photo_path;
+
+                                            fName = snapshot.getString("fullName");
+                                            uName = snapshot.getString("username");
+                                            address = snapshot.getString("address");
+                                            photo_path = snapshot.getString("photo_path");
+
+                                            editor.putString("userId", Uid);
+                                            editor.putString("email", email);
+                                            editor.putString("fullName", fName);
+                                            editor.putString("username", uName);
+                                            editor.putString("address", address);
+                                            editor.putString("photo_path", photo_path);
+                                            editor.apply();
+
+                                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        }
+                                    }
+                                }
+                            });
+
                         }else{
                             Toast.makeText(LoginActivity.this, "Wrong username or password",
                                     Toast.LENGTH_SHORT).show();

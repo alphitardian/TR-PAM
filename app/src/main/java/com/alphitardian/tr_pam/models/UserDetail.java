@@ -45,4 +45,6 @@ public class UserDetail {
         this.address = address;
         this.photo_path = photo_path;
     }
+
+    public UserDetail(){};
 }
