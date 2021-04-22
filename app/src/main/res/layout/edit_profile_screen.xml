@@ -7,125 +7,140 @@
     android:background="@color/primaryBackground"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="Edit Profile"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/newEditTextFullname"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/auth_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="New Fullname"
-            android:padding="10dp"
-            android:textColor="@color/light"
-            android:textColorHint="@color/textHint" />
-
-
-        <EditText
-            android:id="@+id/newEditTextUsername"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/auth_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="New Username"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/light"
-            android:textColorHint="@color/textHint" />
-
-        <EditText
-            android:id="@+id/newEditTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/auth_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="New Email"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/light"
-            android:textColorHint="@color/textHint" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Edit Profile"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="5dp" />
 
             <EditText
-                android:id="@+id/newEditTextAddress"
-                android:layout_width="0dp"
+                android:id="@+id/newEditTextFullname"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="5"
                 android:background="@drawable/auth_form"
                 android:fontFamily="@font/montserrat"
-                android:hint="New Address"
+                android:hint="New Fullname"
                 android:padding="10dp"
                 android:textColor="@color/light"
                 android:textColorHint="@color/textHint" />
 
-            <ImageView
-                android:id="@+id/location_button"
-                android:layout_width="0dp"
+
+            <EditText
+                android:id="@+id/newEditTextUsername"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/auth_form"
+                android:fontFamily="@font/montserrat"
+                android:hint="New Username"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColor="@color/light"
+                android:textColorHint="@color/textHint" />
+
+            <EditText
+                android:id="@+id/newEditTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/auth_form"
+                android:fontFamily="@font/montserrat"
+                android:hint="New Email"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColor="@color/light"
+                android:textColorHint="@color/textHint" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/newEditTextAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/auth_form"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="New Address"
+                    android:padding="10dp"
+                    android:textColor="@color/light"
+                    android:textColorHint="@color/textHint" />
+
+                <ImageView
+                    android:id="@+id/location_button"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_person_pin_circle_24"
+                    app:tint="@color/white" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/newEditTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/auth_form"
+                android:fontFamily="@font/montserrat"
+                android:hint="New Password"
+                android:padding="10dp"
+                android:textColor="@color/light"
+                android:textColorHint="@color/textHint" />
+
+            <EditText
+                android:id="@+id/newEditTextConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/auth_form"
+                android:fontFamily="@font/montserrat"
+                android:hint="New Confirm Password"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColor="@color/light"
+                android:textColorHint="@color/textHint" />
+
+
+            <Button
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_baseline_person_pin_circle_24"
-                app:tint="@color/white" />
+                android:background="@drawable/radius_button"
+                android:text="save"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/newEditTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/auth_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="New Password"
-            android:padding="10dp"
-            android:textColor="@color/light"
-            android:textColorHint="@color/textHint" />
-
-        <EditText
-            android:id="@+id/newEditTextConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/auth_form"
-            android:fontFamily="@font/montserrat"
-            android:hint="New Confirm Password"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/light"
-            android:textColorHint="@color/textHint" />
-
-
-        <Button
-            android:id="@+id/btnSaveProfile"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/radius_button"
-            android:text="save"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

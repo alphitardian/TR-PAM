@@ -34,6 +34,7 @@ public class PinLogin extends AppCompatActivity {
                 String myPin = pref.getString("userPin", "");
                 if(myPin.equals(pinLoginValue.getText().toString())){
                     startActivity(new Intent(PinLogin.this, MainActivity.class));
+                    finish();
                 }else{
                     Toast.makeText(PinLogin.this, "Wrong Pin!",
                             Toast.LENGTH_SHORT).show();
