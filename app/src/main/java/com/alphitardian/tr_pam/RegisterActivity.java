@@ -81,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                             db.collection("users").document(uid).set(userDetail);
 
                             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                            finish();
                         } else {
                             Toast.makeText(RegisterActivity.this, "Sign Up Failed",
                                     Toast.LENGTH_SHORT).show();

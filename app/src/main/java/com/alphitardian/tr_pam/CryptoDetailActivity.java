@@ -2,9 +2,11 @@ package com.alphitardian.tr_pam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -117,5 +119,10 @@ public class CryptoDetailActivity extends AppCompatActivity {
             LineData data = new LineData(dataSets);
             chart.setData(data);
         }
+    }
+
+    public void buyCrypto(View v) {
+        Intent intent = new Intent(this, BuyCryptoActivity.class);
+        startActivity(intent);
     }
 }
