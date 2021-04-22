@@ -1,6 +1,8 @@
 package com.alphitardian.tr_pam;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
@@ -25,10 +27,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class EditProfileActivity extends AppCompatActivity {
 
     private final int MAPACTIVITY_REQ_CODE = 1;
+    private static String EXTRA_ADDRESS = "extra_address";
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     EditText fName, uName, email, password, address, confirmPassword;
     String _fName, _uName, _email, _password, _address, _confirmPassword;
@@ -48,6 +54,14 @@ public class EditProfileActivity extends AppCompatActivity {
         address = findViewById(R.id.newEditTextAddress);
         _btnSaveProfile = findViewById(R.id.btnSaveProfile);
         _btnLocation = findViewById(R.id.location_button);
+
+        preferences = this.getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        fName.setText(preferences.getString("fullName", ""));
+        uName.setText(preferences.getString("username", ""));
+        email.setText(preferences.getString("email", ""));
+        address.setText(preferences.getString("address", ""));
 
         _btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +92,15 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(EditProfileActivity.this, "Fill the blank form!",
                     Toast.LENGTH_SHORT).show();
         }else{
+            editor.putString("fullName", _fName);
+            editor.putString("username", _uName);
+            editor.putString("email", _email);
+            editor.putString("address", _address);
+            editor.apply();
+
             saveProfile(_email, _password, _fName, _uName, _address);
-            startActivity(new Intent(this, MainActivity.class));
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            setResult(RESULT_OK, intent);
             finish();
         }
     }
