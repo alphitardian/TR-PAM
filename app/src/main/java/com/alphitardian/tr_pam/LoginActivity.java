@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                             address = snapshot.getString("address");
                                             photo_path = snapshot.getString("photo_path");
 
+                                            editor.putBoolean("LoggedIn", true);
                                             editor.putString("userId", Uid);
                                             editor.putString("email", email);
                                             editor.putString("fullName", fName);
@@ -107,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("photo_path", photo_path);
                                             editor.apply();
 
-                                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                            startActivity(new Intent(LoginActivity.this, AddPinLogin.class));
                                             finish();
                                         }
                                     }

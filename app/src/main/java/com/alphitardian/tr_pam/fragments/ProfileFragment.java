@@ -18,11 +18,13 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alphitardian.tr_pam.EditProfileActivity;
+import com.alphitardian.tr_pam.LoginActivity;
 import com.alphitardian.tr_pam.MapsActivity;
 import com.alphitardian.tr_pam.R;
 
@@ -43,14 +45,17 @@ public class ProfileFragment extends Fragment {
     private TextView fullNameTextView, usernameTextView, emailTextView, addressTextView;
     private ImageView profileImage, editButton, walletButton;
 
+    private Button signOutButton;
+
     SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         pref = this.getActivity().getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
-
+        editor = pref.edit();
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -65,6 +70,7 @@ public class ProfileFragment extends Fragment {
         profileImage = view.findViewById(R.id.profile_image);
         editButton = view.findViewById(R.id.edit_button);
         walletButton = view.findViewById(R.id.wallet_button);
+        signOutButton = view.findViewById(R.id.signOutButton);
 
         fullNameTextView.setText(pref.getString("fullName", "fullName"));
         usernameTextView.setText(pref.getString("username", "Username"));
@@ -84,6 +90,16 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WalletActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
             }
         });
     }
