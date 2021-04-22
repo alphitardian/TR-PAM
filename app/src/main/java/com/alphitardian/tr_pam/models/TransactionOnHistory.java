@@ -9,7 +9,7 @@ public class TransactionOnHistory {
     private String type;
 
     @SerializedName("coin")
-    private int coin;
+    private String coin;
 
     @SerializedName("price")
     private double price;
@@ -20,14 +20,6 @@ public class TransactionOnHistory {
     @SerializedName("date")
     private DateResult date;
 
-    public TransactionOnHistory(String type, int coin, double price, double amount, DateResult date) {
-        this.type = type;
-        this.coin = coin;
-        this.price = price;
-        this.amount = amount;
-        this.date = date;
-    }
-
     public String getType() {
         return type;
     }
@@ -36,11 +28,11 @@ public class TransactionOnHistory {
         this.type = type;
     }
 
-    public int getCoin() {
+    public String getCoin() {
         return coin;
     }
 
-    public void setCoin(int coin) {
+    public void setCoin(String coin) {
         this.coin = coin;
     }
 
@@ -65,6 +57,14 @@ public class TransactionOnHistory {
     }
 
     public void setDate(DateResult date) {
+        this.date = date;
+    }
+
+    public TransactionOnHistory(String type, String coin, double price, double amount, DateResult date) {
+        this.type = type;
+        this.coin = coin;
+        this.price = price;
+        this.amount = amount;
         this.date = date;
     }
 }
