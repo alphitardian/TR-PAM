@@ -36,8 +36,5 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         String fullName = pref.getString("fullName", "full name");
-        textView = view.findViewById(R.id.home_textview);
-
-        textView.setText(fullName);
     }
 }
