@@ -21,6 +21,8 @@ import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.adapters.TransactionListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
+import com.alphitardian.tr_pam.models.CryptoData;
+import com.alphitardian.tr_pam.models.CryptoList;
 import com.alphitardian.tr_pam.models.TransactionHistoryList;
 import com.alphitardian.tr_pam.models.TransactionOnHistory;
 
@@ -96,7 +98,7 @@ public class TransactionFragment extends Fragment {
 
             @Override
             public void onFailure(Call<TransactionHistoryList> call, Throwable t) {
-                Log.w("Error failure", t.toString());
+                Log.w("Error failure input", t.getMessage());
             }
         });
     }

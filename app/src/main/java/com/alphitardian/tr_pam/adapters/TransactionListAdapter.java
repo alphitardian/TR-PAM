@@ -1,6 +1,7 @@
 package com.alphitardian.tr_pam.adapters;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +48,14 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         TransactionOnHistory data = transactionOnHistories.get(position);
 
         holder.cryptoNameTextView.setText(data.getCoin() + "");
-        holder.priceTextView.setText(String.format("%.3f", data.getPrice()));
-        holder.transferConfirmationTextView.setText(data.getType());
+        holder.priceTextView.setText("$" + String.format("%.3f", data.getPrice()));
+        if(data.getType().equals("buy")){
+            holder.transferConfirmationTextView.setText("BUY");
+            holder.transferConfirmationTextView.setTextColor(Color.parseColor("#388E3C"));
+        }else{
+            holder.transferConfirmationTextView.setText("SELL");
+            holder.transferConfirmationTextView.setTextColor(Color.parseColor("#D32F2F"));
+        }
         holder.dateTextView.setText(FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));
         //holder.cryptoImage.setImageResource(MarketListAdapter.getCryptoIcon(data.getSymbol()));
 
@@ -58,7 +65,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), TransactionDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, data.getCoin());
-                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice()));
+                intent.putExtra(EXTRA_PRICE, "$" + String.format("%.3f", data.getPrice()));
                 intent.putExtra(EXTRA_ICON, MarketListAdapter.getCryptoIcon("BTC"));
                 intent.putExtra(EXTRA_STATUS, "Transfer Successful");
                 intent.putExtra(EXTRA_DATE, FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));
