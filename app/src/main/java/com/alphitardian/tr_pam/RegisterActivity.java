@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String uid = task.getResult().getUser().getUid();
                             db.collection("users").document(uid).set(userDetail);
 
-                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             finish();
                         } else {
                             Toast.makeText(RegisterActivity.this, "Sign Up Failed",
