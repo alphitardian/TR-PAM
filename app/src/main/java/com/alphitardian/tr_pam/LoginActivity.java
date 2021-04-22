@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;
     Button btnSignIn;
+    ProgressBar progressBar;
 
     String _email, _password;
 
@@ -44,8 +46,10 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.editTextEmail);
         password = findViewById(R.id.editTextPassword);
-
+        progressBar = findViewById(R.id.progress_bar);
         btnSignIn = findViewById(R.id.btnLogin);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
         sharedPreferences = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -59,12 +63,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void signInOnClick(){
+        progressBar.setVisibility(View.VISIBLE);
+
         _email = email.getText().toString();
         _password = password.getText().toString();
 
         if(TextUtils.isEmpty(_email) || TextUtils.isEmpty(_password)){
             Toast.makeText(LoginActivity.this, "Fill the blank form!",
                     Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.INVISIBLE);
         }else{
             signIn(_email, _password);
         }
