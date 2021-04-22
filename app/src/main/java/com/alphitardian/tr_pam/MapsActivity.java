@@ -72,7 +72,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onLocationChanged(@NonNull Location location) {
                 newPosition = new LatLng(location.getLatitude(), location.getLongitude());
-
             }
         });
 
@@ -91,6 +90,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View v) {
                 marker.setPosition(newPosition);
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(newPosition, 15.0f));
+                addressSelection = getCompleteAddress(newPosition);
             }
         });
 
@@ -111,10 +111,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapClick(LatLng latLng) {
-
         marker.setPosition(latLng);
         addressSelection = getCompleteAddress(latLng);
-
     }
 
     private String getCompleteAddress(LatLng latLng) {
