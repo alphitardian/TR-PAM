@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    private final int MAPACTIVITY_REQ_CODE = 1;
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -30,6 +33,7 @@ public class EditProfileActivity extends AppCompatActivity {
     EditText fName, uName, email, password, address, confirmPassword;
     String _fName, _uName, _email, _password, _address, _confirmPassword;
     Button _btnSaveProfile;
+    ImageView _btnLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,11 +47,20 @@ public class EditProfileActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.newEditTextConfirmPassword);
         address = findViewById(R.id.newEditTextAddress);
         _btnSaveProfile = findViewById(R.id.btnSaveProfile);
+        _btnLocation = findViewById(R.id.location_button);
 
         _btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveEditProfile();
+            }
+        });
+
+        _btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivityForResult(intent, MAPACTIVITY_REQ_CODE);
             }
         });
     }
@@ -67,6 +80,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }else{
             saveProfile(_email, _password, _fName, _uName, _address);
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
     }
 
@@ -82,5 +96,15 @@ public class EditProfileActivity extends AppCompatActivity {
             db.collection("users").document(uid).set(userDetail);
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MAPACTIVITY_REQ_CODE) {
+            if (resultCode == RESULT_OK) {
+                address.setText(data.getStringExtra(MapsActivity.EXTRA_ADDRESS));
+            }
+        }
     }
 }

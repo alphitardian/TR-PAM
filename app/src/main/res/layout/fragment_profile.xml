@@ -171,6 +171,18 @@
             android:layout_marginBottom="16dp"
             android:background="#696969"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/primary_button"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:text="Sign Out"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+
     </RelativeLayout>
 
 </FrameLayout>
