@@ -1,5 +1,7 @@
 package com.alphitardian.tr_pam.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,16 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alphitardian.tr_pam.R;
-import com.alphitardian.tr_pam.adapters.MarketListAdapter;
 import com.alphitardian.tr_pam.adapters.TransactionListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
-import com.alphitardian.tr_pam.models.CryptoData;
-import com.alphitardian.tr_pam.models.CryptoList;
+import com.alphitardian.tr_pam.models.TransactionHistoryList;
+import com.alphitardian.tr_pam.models.TransactionOnHistory;
 
 import java.util.ArrayList;
 
@@ -34,12 +34,16 @@ public class TransactionFragment extends Fragment {
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
-    private ArrayList<CryptoData> cryptoData = new ArrayList<>();
+    private ArrayList<TransactionOnHistory> transactionOnHistories = new ArrayList<TransactionOnHistory>();
+
+    SharedPreferences pref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        pref = this.getActivity().getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
         return inflater.inflate(R.layout.fragment_transaction, container, false);
     }
 
@@ -57,22 +61,31 @@ public class TransactionFragment extends Fragment {
     }
 
     private void getAllCrypto() {
+        String userId = pref.getString("userId", "");
+
         ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
-        Call<CryptoList> call = apiList.getAllList();
+        Call<TransactionHistoryList> call = apiList.getTransactionHistory(userId);
 
-        call.enqueue(new Callback<CryptoList>() {
+        call.enqueue(new Callback<TransactionHistoryList>() {
             @Override
-            public void onResponse(Call<CryptoList> call, Response<CryptoList> response) {
+            public void onResponse(Call<TransactionHistoryList> call, Response<TransactionHistoryList> response) {
                 if (response.isSuccessful()) {
-                    CryptoList data = response.body();
+                    TransactionHistoryList data = response.body();
 
-                    Log.d("TAG", "onResponse: " + data.getData().size());
+                    Log.w("Response ", data.getStatus());
 
                     for (int i = 0; i < data.getData().size(); i++) {
-                        CryptoData itemData = new CryptoData(data.getData().get(i).getName(), data.getData().get(i).getSymbol(), data.getData().get(i).getLastUpdate(), data.getData().get(i).getPrice());
-                        cryptoData.add(itemData);
-                    }
 
+                        TransactionOnHistory itemData = new TransactionOnHistory(
+                                data.getData().get(i).getTransaction().getType(),
+                                data.getData().get(i).getTransaction().getCoin(),
+                                data.getData().get(i).getTransaction().getPrice(),
+                                data.getData().get(i).getTransaction().getAmount(),
+                                data.getData().get(i).getTransaction().getDate()
+                        );
+
+                        transactionOnHistories.add(itemData);
+                    }
                     showRecyclerList();
 
                     progressBar.setVisibility(View.INVISIBLE);
@@ -82,15 +95,15 @@ public class TransactionFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<CryptoList> call, Throwable t) {
-
+            public void onFailure(Call<TransactionHistoryList> call, Throwable t) {
+                Log.w("Error failure", t.toString());
             }
         });
     }
 
     private void showRecyclerList(){
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        TransactionListAdapter listAdapter = new TransactionListAdapter(cryptoData);
+        TransactionListAdapter listAdapter = new TransactionListAdapter(transactionOnHistories);
         recyclerView.setAdapter(listAdapter);
     }
 }

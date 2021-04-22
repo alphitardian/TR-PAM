@@ -2,7 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/coin_market_background"
+    android:layout_margin="5dp"
+    android:elevation="10dp">
 
     <ImageView
         android:id="@+id/crypto_image"
@@ -26,6 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
             android:text="Bitcoin"
+            android:textColor="@color/white"
             android:textSize="16dp" />
 
         <TextView
@@ -33,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
             android:text="Transfer Successful" />
 
         <TextView
@@ -52,6 +57,7 @@
         android:layout_alignParentEnd="true"
         android:fontFamily="@font/montserrat_bold"
         android:text="100.000"
+        android:textColor="@color/white"
         android:textSize="20dp" />
 
 </RelativeLayout>

@@ -15,12 +15,15 @@ import com.alphitardian.tr_pam.CryptoDetailActivity;
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.TransactionDetailActivity;
 import com.alphitardian.tr_pam.models.CryptoData;
+import com.alphitardian.tr_pam.models.TransactionHistory;
+import com.alphitardian.tr_pam.models.TransactionOnHistory;
+import com.alphitardian.tr_pam.utils.FbDateFormat;
 
 import java.util.ArrayList;
 
 public class TransactionListAdapter extends RecyclerView.Adapter<TransactionListAdapter.ListViewHolder> {
 
-    private ArrayList<CryptoData> cryptoData;
+    private ArrayList<TransactionOnHistory> transactionOnHistories;
 
     public static final String EXTRA_NAME = "extra_name";
     public static final String EXTRA_PRICE = "extra_price";
@@ -28,8 +31,8 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
     public static final String EXTRA_STATUS = "extra_status";
     public static final String EXTRA_DATE = "extra_date";
 
-    public TransactionListAdapter(ArrayList<CryptoData> cryptoData) {
-        this.cryptoData = cryptoData;
+    public TransactionListAdapter(ArrayList<TransactionOnHistory> transactionOnHistories) {
+        this.transactionOnHistories = transactionOnHistories;
     }
 
     @NonNull
@@ -41,24 +44,24 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
-        CryptoData data = cryptoData.get(position);
+        TransactionOnHistory data = transactionOnHistories.get(position);
 
-        holder.cryptoNameTextView.setText(data.getName());
-        holder.priceTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
-        holder.transferConfirmationTextView.setText(data.getName());
-        holder.dateTextView.setText(data.getLastUpdate());
-        holder.cryptoImage.setImageResource(MarketListAdapter.getCryptoIcon(data.getSymbol()));
+        holder.cryptoNameTextView.setText(data.getCoin() + "");
+        holder.priceTextView.setText(String.format("%.3f", data.getPrice()));
+        holder.transferConfirmationTextView.setText(data.getType());
+        holder.dateTextView.setText(FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));
+        //holder.cryptoImage.setImageResource(MarketListAdapter.getCryptoIcon(data.getSymbol()));
 
         // On Click Event Per Item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), TransactionDetailActivity.class);
-                intent.putExtra(EXTRA_NAME, data.getName());
-                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
-                intent.putExtra(EXTRA_ICON, MarketListAdapter.getCryptoIcon(data.getSymbol()));
+                intent.putExtra(EXTRA_NAME, data.getCoin());
+                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice()));
+                intent.putExtra(EXTRA_ICON, MarketListAdapter.getCryptoIcon("BTC"));
                 intent.putExtra(EXTRA_STATUS, "Transfer Successful");
-                intent.putExtra(EXTRA_DATE, data.getLastUpdate());
+                intent.putExtra(EXTRA_DATE, FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -66,7 +69,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
 
     @Override
     public int getItemCount() {
-        return cryptoData.size();
+        return transactionOnHistories.size();
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder {

@@ -18,6 +18,9 @@ import com.alphitardian.tr_pam.models.BalanceResponse;
 import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.NumberFormat;
+import java.util.Currency;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,8 +94,14 @@ public class TopUpActivity extends AppCompatActivity {
             public void onResponse(Call<CurrentBalance> call, Response<CurrentBalance> response) {
                 if(response.isSuccessful()){
                     CurrentBalance currentBalance = response.body();
+                    String balance = currentBalance.getCurrent();
 
-                    userBalanceTextView.setText(currentBalance.getCurrent());
+                    NumberFormat format = NumberFormat.getCurrencyInstance();
+                    format.setMaximumFractionDigits(0);
+
+                    format.setCurrency(Currency.getInstance("USD"));
+
+                    userBalanceTextView.setText(format.format(Double.parseDouble(balance)));
                 }
             }
 

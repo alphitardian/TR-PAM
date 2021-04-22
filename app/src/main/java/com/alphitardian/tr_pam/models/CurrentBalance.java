@@ -3,6 +3,18 @@ package com.alphitardian.tr_pam.models;
 import com.google.gson.annotations.SerializedName;
 
 public class CurrentBalance {
+
+    @SerializedName("transaction")
+    private BalanceTransaction balanceTransaction;
+
+    public BalanceTransaction getBalanceTransaction() {
+        return balanceTransaction;
+    }
+
+    public void setBalanceTransaction(BalanceTransaction balanceTransaction) {
+        this.balanceTransaction = balanceTransaction;
+    }
+
     @SerializedName("current")
     private String current;
 
@@ -12,7 +24,8 @@ public class CurrentBalance {
     @SerializedName("withdraw")
     private String withdraw;
 
-    public CurrentBalance(String current, String topUp, String withdraw) {
+    public CurrentBalance(BalanceTransaction balanceTransaction, String current, String topUp, String withdraw) {
+        this.balanceTransaction = balanceTransaction;
         this.current = current;
         this.topUp = topUp;
         this.withdraw = withdraw;

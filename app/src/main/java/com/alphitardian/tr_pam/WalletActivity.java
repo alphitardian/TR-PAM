@@ -21,7 +21,9 @@ import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.alphitardian.tr_pam.models.CryptoData;
 import com.alphitardian.tr_pam.models.CryptoList;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,14 +76,21 @@ public class WalletActivity extends AppCompatActivity {
             public void onResponse(Call<CurrentBalance> call, Response<CurrentBalance> response) {
                 if(response.isSuccessful()){
                     CurrentBalance currentBalance = response.body();
+                    String balance = currentBalance.getCurrent();
 
-                    userBalanceTextView.setText(currentBalance.getCurrent());
+                    NumberFormat format = NumberFormat.getCurrencyInstance();
+                    format.setMaximumFractionDigits(0);
+
+                    format.setCurrency(Currency.getInstance("USD"));
+
+                    userBalanceTextView.setText(format.format(Double.parseDouble(balance)));
+
                 }
             }
 
             @Override
             public void onFailure(Call<CurrentBalance> call, Throwable t) {
-
+                Log.w("error", t.toString());
             }
         });
     }
