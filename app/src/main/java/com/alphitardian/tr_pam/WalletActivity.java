@@ -90,7 +90,7 @@ public class WalletActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CurrentBalance> call, Throwable t) {
-                Log.w("error", t.toString());
+                Log.w("error wallet", t.toString());
             }
         });
     }
@@ -123,7 +123,7 @@ public class WalletActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CryptoList> call, Throwable t) {
-
+                Log.w("error wallet", t.toString());
             }
         });
     }
