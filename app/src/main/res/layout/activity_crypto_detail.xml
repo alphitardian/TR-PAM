@@ -20,6 +20,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"/>
 
+    <ImageView
+        android:id="@+id/webViewButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="13dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_baseline_edit_24" />
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
         android:layout_width="match_parent"

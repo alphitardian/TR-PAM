@@ -30,6 +30,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
     public static final String EXTRA_PRICE = "extra_price";
     public static final String EXTRA_ICON = "extra_icon";
     public static final String EXTRA_HISTORY = "extra_history";
+    public static final String EXTRA_SYMBOL = "extra_symbol";
 
     public MarketListAdapter(ArrayList<CryptoData> cryptoData) {
         this.cryptoData = cryptoData;
@@ -68,6 +69,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
                 Intent intent = new Intent(holder.itemView.getContext(), CryptoDetailActivity.class);
                 intent.putExtra(EXTRA_ID, data.getId());
                 intent.putExtra(EXTRA_NAME, data.getName());
+                intent.putExtra(EXTRA_SYMBOL, data.getSymbol());
                 intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
                 intent.putExtra(EXTRA_ICON, getCryptoIcon(data.getSymbol()));
 
