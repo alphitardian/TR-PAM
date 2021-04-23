@@ -23,7 +23,7 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:layout_below="@id/crypto_name_textview"
         android:backgroundTint="@color/fui_transparent"
         android:layout_marginBottom="20dp"/>
@@ -40,9 +40,9 @@
 
         <ImageView
             android:id="@+id/crypto_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:paddingStart="10dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:paddingStart="20dp"
             android:src="@drawable/ic_launcher_foreground"
             />
 
@@ -50,12 +50,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Current Price"
+                android:textSize="10dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"/>
 
@@ -64,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00564"
-                android:textSize="30dp"
+                android:textSize="22dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:fontFamily="@font/montserrat_bold"/>
@@ -72,18 +73,135 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/buy_button"
+    <LinearLayout
+        android:layout_below="@id/horizonal_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buy"
-        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="10pt">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Assets"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat"
+            android:textSize="16dp"
+            android:layout_marginBottom="20dp"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total Coin"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="14dp"></TextView>
+            <TextView
+                android:id="@+id/totalCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:textSize="14dp"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total Buy Price"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="14dp"></TextView>
+            <TextView
+                android:id="@+id/totalBuyPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:textSize="14dp"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Avg Buy Price"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="14dp"></TextView>
+            <TextView
+                android:id="@+id/avgBuyPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:textSize="14dp"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Return"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="14dp"></TextView>
+            <TextView
+                android:id="@+id/totalProfit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:textSize="14dp"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="@color/white"
-        android:onClick="buyCrypto"
-        android:background="@drawable/primary_button"/>
+        android:layout_alignParentEnd="true">
+
+        <Button
+            android:id="@+id/sell_button"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Sell"
+            android:layout_margin="8dp"
+            android:textColor="@color/white"
+            android:onClick="sellCrypto"
+            android:background="@drawable/secondary_button"/>
+
+        <Button
+            android:id="@+id/buy_button"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Buy"
+            android:layout_margin="8dp"
+            android:textColor="@color/white"
+            android:onClick="buyCrypto"
+            android:background="@drawable/primary_button"/>
+    </LinearLayout>
 
 </RelativeLayout>

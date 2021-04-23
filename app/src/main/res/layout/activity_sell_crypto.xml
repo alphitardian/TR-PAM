@@ -139,39 +139,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/creditLayout"
-                android:layout_marginTop="30dp"
-                android:layout_below="@+id/quantityBuyCrypto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/creditLabel"
-                    android:fontFamily="@font/montserrat"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Current Balance"
-                    android:textColor="@color/white"/>
-
-                <TextView
-                    android:id="@+id/buyBalance"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="1000023.00"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/totalLayout"
                 android:layout_marginTop="30dp"
-                android:layout_below="@+id/creditLayout"
+                android:layout_below="@+id/quantityBuyCrypto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -210,7 +180,7 @@
         android:paddingBottom="20dp"
         android:orientation="horizontal">
 
-            <Button
+        <Button
             android:id="@+id/btnBuyCrypto"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="20dp"
@@ -219,7 +189,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/primary_button"
             android:backgroundTint="@android:color/holo_blue_light"
-            android:text="Buy"
+            android:text="Sell"
             android:textColor="@color/white"
             android:fontFamily="@font/montserrat_bold" />
     </LinearLayout>

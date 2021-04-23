@@ -1,5 +1,6 @@
 package com.alphitardian.tr_pam.apis;
 
+import com.alphitardian.tr_pam.models.AssetsInSingle;
 import com.alphitardian.tr_pam.models.Balance;
 import com.alphitardian.tr_pam.models.BalanceResponse;
 import com.alphitardian.tr_pam.models.CurrentBalance;
@@ -7,6 +8,8 @@ import com.alphitardian.tr_pam.models.CryptoList;
 import com.alphitardian.tr_pam.models.Transaction;
 import com.alphitardian.tr_pam.models.TransactionHistoryList;
 import com.alphitardian.tr_pam.models.TransactionResponse;
+
+import java.lang.annotation.Inherited;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -32,4 +35,7 @@ public interface ApiList {
 
     @POST("/transaction/")
     Call<TransactionResponse> createTransaction(@Header("userId") String userId, @Body Transaction transaction);
+
+    @GET("/transaction/assets_in_single")
+    Call<AssetsInSingle> getSingleCryptoReport(@Header("userId") String userId, @Header("coinId") int coinId);
 }

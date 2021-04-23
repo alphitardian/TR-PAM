@@ -3,15 +3,22 @@ package com.alphitardian.tr_pam;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alphitardian.tr_pam.adapters.MarketListAdapter;
+import com.alphitardian.tr_pam.apis.ApiList;
+import com.alphitardian.tr_pam.apis.RetrofitClient;
+import com.alphitardian.tr_pam.models.AssetsInSingle;
+import com.alphitardian.tr_pam.models.AssetsInSingleData;
 import com.alphitardian.tr_pam.models.CryptoPrice;
+import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.alphitardian.tr_pam.utils.LabelFormatter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -22,15 +29,26 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CryptoDetailActivity extends AppCompatActivity {
 
-    private TextView cryptoNameTextView, currentPriceTextView;
+    private TextView cryptoNameTextView, currentPriceTextView, totalCoin, totalBuyPrice, avgBuyPrice, totalProfit;
     private ImageView cryptoImage;
+    private Button sellButton;
     private LineChart chart;
 
+    SharedPreferences pref;
+
     private CryptoPrice priceHistory;
+
+    NumberFormat format = NumberFormat.getCurrencyInstance();
 
     public static final String EXTRA_ID = "extra_id";
     public static final String EXTRA_NAME = "extra_name";
@@ -45,13 +63,20 @@ public class CryptoDetailActivity extends AppCompatActivity {
 
         cryptoNameTextView = findViewById(R.id.crypto_name_textview);
         currentPriceTextView = findViewById(R.id.current_price_textview);
+        totalCoin = findViewById(R.id.totalCoin);
+        totalBuyPrice = findViewById(R.id.totalBuyPrice);
+        avgBuyPrice = findViewById(R.id.avgBuyPrice);
+        totalProfit = findViewById(R.id.totalProfit);
         cryptoImage = findViewById(R.id.crypto_image);
+        sellButton = findViewById(R.id.sell_button);
         chart = findViewById(R.id.line_chart);
+        pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
 
         cryptoNameTextView.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
         currentPriceTextView.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
         cryptoImage.setImageResource(getIntent().getIntExtra(MarketListAdapter.EXTRA_ICON, 0));
 
+        getAsset();
         createGraph();
     }
 
@@ -135,6 +160,64 @@ public class CryptoDetailActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_ID, getIntent().getStringExtra(MarketListAdapter.EXTRA_ID));
 
         startActivity(intent);
+    }
+
+    public void sellCrypto(View v) {
+
+        Intent intent = new Intent(this, SellCrypto.class);
+        intent.putExtra(EXTRA_NAME, getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
+        intent.putExtra(EXTRA_PRICE, getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
+        intent.putExtra(EXTRA_ID, getIntent().getStringExtra(MarketListAdapter.EXTRA_ID));
+
+        startActivity(intent);
+    }
+
+    public void getAsset(){
+        ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
+        Call<AssetsInSingle> call = apiList.getSingleCryptoReport(pref.getString("userId", ""), Integer.parseInt(getIntent().getStringExtra(MarketListAdapter.EXTRA_ID)));
+
+        call.enqueue(new Callback<AssetsInSingle>() {
+            @Override
+            public void onResponse(Call<AssetsInSingle> call, Response<AssetsInSingle> response) {
+                if(response.isSuccessful()){
+
+                    format.setMaximumFractionDigits(0);
+
+                    format.setCurrency(Currency.getInstance("USD"));
+
+                    AssetsInSingle assetsInSingle = response.body();
+                    AssetsInSingleData data = assetsInSingle.getData();
+
+                    Double currentPrice = Double.parseDouble(getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
+
+                    Double avgBuy = 0.0;
+
+                    if(data.getAvgBuy() != null){
+                        avgBuy = data.getAvgBuy();
+                    }
+
+                    totalCoin.setText(data.getAmount() + " Coin");
+                    totalBuyPrice.setText(format.format(data.getTotalAsset()));
+                    avgBuyPrice.setText(format.format(avgBuy));
+                    if(data.getAmount() > 0){
+                        totalProfit.setText(format.format(avgBuy - currentPrice));
+                    }else{
+                        totalProfit.setText(format.format(0.0));
+                    }
+
+                    if(data.getAmount() < 1){
+                        sellButton.setEnabled(false);
+                    }else{
+                        sellButton.setEnabled(true);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AssetsInSingle> call, Throwable t) {
+
+            }
+        });
     }
 
 
