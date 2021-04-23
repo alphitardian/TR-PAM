@@ -122,8 +122,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode,
                                     int resultCode,
-                                    Intent data)
-    {
+                                    Intent data) {
 
         super.onActivityResult(requestCode,
                 resultCode,
@@ -147,6 +146,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
             catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+
+        if (requestCode == MAPACTIVITY_REQ_CODE) {
+            if (resultCode == RESULT_OK) {
+                address.setText(data.getStringExtra(MapsActivity.EXTRA_ADDRESS));
             }
         }
     }
@@ -211,9 +216,6 @@ public class EditProfileActivity extends AppCompatActivity {
             db.collection("users").document(uid).set(userDetail);
         }
 
-    }
-
-    public void uploadImage(){
     }
 
 }
