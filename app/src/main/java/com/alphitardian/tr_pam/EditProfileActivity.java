@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alphitardian.tr_pam.models.UserDetail;
+import com.alphitardian.tr_pam.utils.GlideApp;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -79,6 +80,16 @@ public class EditProfileActivity extends AppCompatActivity {
         storageReference = storage.getReference();
         preferences = this.getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
         editor = preferences.edit();
+
+
+
+        StorageReference ref = storageReference.child(preferences.getString("photo_path", "default"));
+
+        Glide.with(getApplicationContext())
+                .load(ref)
+                .override(500,500)
+                .into(editProfileImage);
+
 
         fName.setText(preferences.getString("fullName", ""));
         uName.setText(preferences.getString("username", ""));

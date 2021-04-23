@@ -1,6 +1,7 @@
 package com.alphitardian.tr_pam;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,7 @@ import com.alphitardian.tr_pam.fragments.TransactionFragment;
 import com.alphitardian.tr_pam.fragments.MarketFragment;
 import com.alphitardian.tr_pam.models.CryptoList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,5 +93,26 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return loadFragment(fragment);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager()
+                .getBackStackEntryCount() > 0) {
 
+            super.onBackPressed();
+
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Close App!");
+            builder.setMessage("Do you want to close the app ?");
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                finish();
+            });
+
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                dialog.cancel();
+            });
+            builder.create();
+            builder.show();
+        }
+    }
 }

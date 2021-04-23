@@ -124,9 +124,10 @@ public class ProfileFragment extends Fragment {
                 usernameTextView.setText(pref.getString("username", "Username"));
                 emailTextView.setText(pref.getString("email", "Email"));
                 addressTextView.setText(pref.getString("address", "Address"));
+                StorageReference ref = storageReference.child(pref.getString("photo_path", "default"));
                 Glide.with(getContext())
-                        .load(pref.getString("photo_path", ""))
-                        .override(200,200)
+                        .load(ref)
+                        .override(500,500)
                         .into(profileImage);
             }
         }
