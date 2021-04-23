@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alphitardian.tr_pam.R;
@@ -29,6 +30,7 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     private TextView homeBalanceValue, homeBuyValue, homeSellValue;
+    private ProgressBar progressBar;
 
     SharedPreferences pref;
 
@@ -48,6 +50,10 @@ public class HomeFragment extends Fragment {
         homeBalanceValue = getActivity().findViewById(R.id.homeBalanceValue);
         homeBuyValue = getActivity().findViewById(R.id.homeBuyValue);
         homeSellValue = getActivity().findViewById(R.id.homeSellValue);
+        progressBar = getActivity().findViewById(R.id.progress_bar);
+
+        homeBalanceValue.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         getCurrentBalance();
     }
 
@@ -69,6 +75,10 @@ public class HomeFragment extends Fragment {
                     format.setMaximumFractionDigits(0);
 
                     format.setCurrency(Currency.getInstance("USD"));
+
+
+                    progressBar.setVisibility(View.GONE);
+                    homeBalanceValue.setVisibility(View.VISIBLE);
 
                     homeBalanceValue.setText(format.format(Double.parseDouble(balance)));
                     homeBuyValue.setText(format.format(Buy));

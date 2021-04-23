@@ -65,6 +65,11 @@
                     android:textColor="@color/white"
                     android:textSize="24dp" />
 
+                <ProgressBar
+                    android:id="@+id/progress_bar_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
 
             <ImageView

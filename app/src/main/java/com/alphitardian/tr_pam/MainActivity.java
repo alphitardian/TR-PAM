@@ -32,7 +32,10 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    public static final int PERMISSION_REQ = 2;
+
     private BottomNavigationView bottomNavigationView;
+    private String[] permissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         loadFragment(new HomeFragment());
+
+        permissions = new String[] {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQ);
+                }
+            }
+        }
     }
 
     // Replace Fragment in the Host Fragment

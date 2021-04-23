@@ -33,7 +33,7 @@ public class WalletActivity extends AppCompatActivity {
 
     TextView userBalanceTextView;
     RecyclerView recyclerView;
-    ProgressBar progressBar;
+    ProgressBar progressBar, progressBarBalance;
     ImageView topupButton;
     private ArrayList<CryptoData> cryptoData = new ArrayList<>();
 
@@ -48,10 +48,13 @@ public class WalletActivity extends AppCompatActivity {
 
         userBalanceTextView = findViewById(R.id.user_balance_textview);
         progressBar = findViewById(R.id.progress_bar);
+        progressBarBalance = findViewById(R.id.progress_bar_balance);
         topupButton = findViewById(R.id.topup_button);
         recyclerView = findViewById(R.id.crypto_grid);
         recyclerView.setHasFixedSize(true);
 
+        userBalanceTextView.setVisibility(View.GONE);
+        progressBarBalance.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
 
         getCurrentBalance();
@@ -82,6 +85,9 @@ public class WalletActivity extends AppCompatActivity {
                     format.setMaximumFractionDigits(0);
 
                     format.setCurrency(Currency.getInstance("USD"));
+
+                    progressBarBalance.setVisibility(View.GONE);
+                    userBalanceTextView.setVisibility(View.VISIBLE);
 
                     userBalanceTextView.setText(format.format(Double.parseDouble(balance)));
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class TopUpActivity extends AppCompatActivity {
     TextView userBalanceTextView;
     EditText nominalEditText;
     Button topUpButton;
+    ProgressBar progressBar;
 
     SharedPreferences pref;
 
@@ -43,6 +45,10 @@ public class TopUpActivity extends AppCompatActivity {
         userBalanceTextView = findViewById(R.id.user_balance_textview);
         nominalEditText = findViewById(R.id.topup_edittext);
         topUpButton = findViewById(R.id.topup_button);
+        progressBar = findViewById(R.id.progress_bar);
+
+        userBalanceTextView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
 
         getCurrentBalance();
 
@@ -70,8 +76,8 @@ public class TopUpActivity extends AppCompatActivity {
 
                 if(balanceResponse.getStatus().equals("success")){
                     Toast.makeText(TopUpActivity.this, "Top Up Successfully", Toast.LENGTH_SHORT).show();
-                    finish();
                     startActivity(new Intent(TopUpActivity.this, WalletActivity.class));
+                    finish();
                 }else{
                     Toast.makeText(TopUpActivity.this, "Top Up Failed!", Toast.LENGTH_SHORT).show();
                 }
@@ -100,6 +106,9 @@ public class TopUpActivity extends AppCompatActivity {
                     format.setMaximumFractionDigits(0);
 
                     format.setCurrency(Currency.getInstance("USD"));
+
+                    userBalanceTextView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
 
                     userBalanceTextView.setText(format.format(Double.parseDouble(balance)));
                 }
