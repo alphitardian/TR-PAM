@@ -32,6 +32,12 @@ public class CryptoDetailActivity extends AppCompatActivity {
 
     private CryptoPrice priceHistory;
 
+    public static final String EXTRA_ID = "extra_id";
+    public static final String EXTRA_NAME = "extra_name";
+    public static final String EXTRA_PRICE = "extra_price";
+    public static final String EXTRA_ICON = "extra_icon";
+    public static final String EXTRA_HISTORY = "extra_history";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +128,14 @@ public class CryptoDetailActivity extends AppCompatActivity {
     }
 
     public void buyCrypto(View v) {
+
         Intent intent = new Intent(this, BuyCryptoActivity.class);
+        intent.putExtra(EXTRA_NAME, getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
+        intent.putExtra(EXTRA_PRICE, getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
+        intent.putExtra(EXTRA_ID, getIntent().getStringExtra(MarketListAdapter.EXTRA_ID));
+
         startActivity(intent);
     }
+
+
 }

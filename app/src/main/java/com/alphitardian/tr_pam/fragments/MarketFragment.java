@@ -71,6 +71,7 @@ public class MarketFragment extends Fragment {
 
                     for (int i = 0; i < data.getData().size(); i++) {
                         CryptoData itemData = new CryptoData(
+                                data.getData().get(i).getId(),
                                 data.getData().get(i).getName(),
                                 data.getData().get(i).getSymbol(),
                                 data.getData().get(i).getLastUpdate(),

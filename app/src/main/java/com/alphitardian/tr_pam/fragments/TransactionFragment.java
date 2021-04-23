@@ -21,8 +21,6 @@ import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.adapters.TransactionListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
-import com.alphitardian.tr_pam.models.CryptoData;
-import com.alphitardian.tr_pam.models.CryptoList;
 import com.alphitardian.tr_pam.models.TransactionHistoryList;
 import com.alphitardian.tr_pam.models.TransactionOnHistory;
 
@@ -79,12 +77,12 @@ public class TransactionFragment extends Fragment {
                     for (int i = 0; i < data.getData().size(); i++) {
 
                         TransactionOnHistory itemData = new TransactionOnHistory(
+                                data.getData().get(i).getTransaction().getId(),
                                 data.getData().get(i).getTransaction().getType(),
                                 data.getData().get(i).getTransaction().getCoin(),
                                 data.getData().get(i).getTransaction().getPrice(),
                                 data.getData().get(i).getTransaction().getAmount(),
-                                data.getData().get(i).getTransaction().getDate()
-                        );
+                                data.getData().get(i).getTransaction().getDate());
 
                         transactionOnHistories.add(itemData);
                     }

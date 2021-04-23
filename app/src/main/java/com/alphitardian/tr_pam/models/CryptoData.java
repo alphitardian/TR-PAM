@@ -4,6 +4,25 @@ import com.google.gson.annotations.SerializedName;
 
 public class CryptoData {
 
+    @SerializedName("id")
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public CryptoData(String id, String name, String symbol, String lastUpdate, CryptoPrice price) {
+        this.id = id;
+        this.name = name;
+        this.symbol = symbol;
+        this.lastUpdate = lastUpdate;
+        this.price = price;
+    }
+
     @SerializedName("coinName")
     private String name;
 

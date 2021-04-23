@@ -4,7 +4,9 @@ import com.alphitardian.tr_pam.models.Balance;
 import com.alphitardian.tr_pam.models.BalanceResponse;
 import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.alphitardian.tr_pam.models.CryptoList;
+import com.alphitardian.tr_pam.models.Transaction;
 import com.alphitardian.tr_pam.models.TransactionHistoryList;
+import com.alphitardian.tr_pam.models.TransactionResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -27,4 +29,7 @@ public interface ApiList {
 
     @GET("/transaction/history")
     Call<TransactionHistoryList> getTransactionHistory(@Header("userId") String userId);
+
+    @POST("/transaction/")
+    Call<TransactionResponse> createTransaction(@Header("userId") String userId, @Body Transaction transaction);
 }

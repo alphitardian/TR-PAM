@@ -2,9 +2,19 @@ package com.alphitardian.tr_pam.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class TransactionOnHistory {
+
+    @SerializedName("id")
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @SerializedName("type")
     private String type;
 
@@ -60,7 +70,8 @@ public class TransactionOnHistory {
         this.date = date;
     }
 
-    public TransactionOnHistory(String type, String coin, double price, double amount, DateResult date) {
+    public TransactionOnHistory(int id, String type, String coin, double price, double amount, DateResult date) {
+        this.id = id;
         this.type = type;
         this.coin = coin;
         this.price = price;

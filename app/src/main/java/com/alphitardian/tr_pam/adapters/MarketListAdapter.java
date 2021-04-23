@@ -3,6 +3,7 @@ package com.alphitardian.tr_pam.adapters;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
 
     private ArrayList<CryptoData> cryptoData;
 
+    public static final String EXTRA_ID = "extra_id";
     public static final String EXTRA_NAME = "extra_name";
     public static final String EXTRA_PRICE = "extra_price";
     public static final String EXTRA_ICON = "extra_icon";
@@ -64,6 +66,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), CryptoDetailActivity.class);
+                intent.putExtra(EXTRA_ID, data.getId());
                 intent.putExtra(EXTRA_NAME, data.getName());
                 intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
                 intent.putExtra(EXTRA_ICON, getCryptoIcon(data.getSymbol()));
