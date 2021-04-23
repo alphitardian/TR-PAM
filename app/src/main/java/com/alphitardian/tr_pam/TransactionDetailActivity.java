@@ -1,6 +1,7 @@
 package com.alphitardian.tr_pam;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 import android.widget.ImageView;
