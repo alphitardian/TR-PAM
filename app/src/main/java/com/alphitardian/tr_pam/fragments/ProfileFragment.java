@@ -27,8 +27,12 @@ import com.alphitardian.tr_pam.MapsActivity;
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.WalletActivity;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -44,6 +48,8 @@ public class ProfileFragment extends Fragment {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    FirebaseStorage storage;
+    StorageReference storageReference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +57,9 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         pref = this.getActivity().getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
         editor = pref.edit();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -71,9 +80,12 @@ public class ProfileFragment extends Fragment {
         usernameTextView.setText(pref.getString("username", "Username"));
         emailTextView.setText(pref.getString("email", "Email"));
         addressTextView.setText(pref.getString("address", "Address"));
+
+        StorageReference ref = storageReference.child(pref.getString("photo_path", "default"));
+
         Glide.with(getContext())
-                .load(pref.getString("photo_path", ""))
-                .override(200,200)
+                .load(ref)
+                .override(500,500)
                 .into(profileImage);
 
         editButton.setOnClickListener(new View.OnClickListener() {
