@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alphitardian.tr_pam.adapters.MarketListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;

@@ -41,10 +41,8 @@ public class ProfileFragment extends Fragment {
     private final int EDITPROFILE_ACTIVITY_REQ_CODE = 3;
 
     private TextView fullNameTextView, usernameTextView, emailTextView, addressTextView;
-    private ImageView profileImage, editButton, walletButton;
+    private ImageView profileImage, editButton, signOutButton;
     private Bitmap photoBitmap;
-
-    private Button signOutButton;
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -73,8 +71,7 @@ public class ProfileFragment extends Fragment {
         addressTextView = view.findViewById(R.id.address_textview);
         profileImage = view.findViewById(R.id.profile_image);
         editButton = view.findViewById(R.id.edit_button);
-        walletButton = view.findViewById(R.id.wallet_button);
-        signOutButton = view.findViewById(R.id.signOutButton);
+        signOutButton = view.findViewById(R.id.signout_button);
 
         fullNameTextView.setText(pref.getString("fullName", "fullName"));
         usernameTextView.setText(pref.getString("username", "Username"));
@@ -93,14 +90,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivityForResult(intent, EDITPROFILE_ACTIVITY_REQ_CODE);
-            }
-        });
-
-        walletButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), WalletActivity.class);
-                startActivity(intent);
             }
         });
 
