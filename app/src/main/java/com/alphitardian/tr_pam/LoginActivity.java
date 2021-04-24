@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;
     Button btnSignIn;
-    ProgressBar progressBar;
+    LinearLayout loading;
 
     String _email, _password;
 
@@ -47,10 +48,9 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.editTextEmail);
         password = findViewById(R.id.editTextPassword);
-        progressBar = findViewById(R.id.progress_bar);
         btnSignIn = findViewById(R.id.btnLogin);
-
-        progressBar.setVisibility(View.INVISIBLE);
+        loading = findViewById(R.id.loading);
+        loading.setVisibility(View.GONE);
 
         sharedPreferences = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void signInOnClick(){
-        progressBar.setVisibility(View.VISIBLE);
+        loading.setVisibility(View.VISIBLE);
 
         _email = email.getText().toString();
         _password = password.getText().toString();
@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(_email) || TextUtils.isEmpty(_password)){
             Toast.makeText(LoginActivity.this, "Fill the blank form!",
                     Toast.LENGTH_SHORT).show();
-            progressBar.setVisibility(View.INVISIBLE);
         }else{
             signIn(_email, _password);
         }
@@ -108,6 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("address", address);
                                             editor.putString("photo_path", photo_path);
                                             editor.apply();
+
+                                            loading.setVisibility(View.GONE);
 
                                             startActivity(new Intent(LoginActivity.this, AddPinLogin.class));
                                             finish();

@@ -6,6 +6,7 @@
     android:layout_gravity="center"
     android:background="@color/primaryBackground">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,6 +91,8 @@
                 android:textColorHint="@color/textHint" />
 
             <EditText
+                android:maxLines="1"
+                android:inputType="textPassword"
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -139,10 +142,19 @@
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
+    <LinearLayout
+        android:id="@+id/loading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        android:layout_height="match_parent"
+        android:background="@color/loadingBackground"
+        android:gravity="center"
+        android:orientation="vertical">
+        <com.tuyenmonkey.mkloader.MKLoader
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:mk_type="Whirlpool"
+            app:mk_color="#ffffff"
+        />
+    </LinearLayout>
 
 </RelativeLayout>

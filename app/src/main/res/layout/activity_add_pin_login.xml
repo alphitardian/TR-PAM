@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Pin"
-            android:inputType="number"
+            android:inputType="number|textPassword"
             android:textAlignment="center"
             android:textColorHint="@color/textHint"
             android:textColor="@color/white"
