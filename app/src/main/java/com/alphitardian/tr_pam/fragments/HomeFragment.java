@@ -19,6 +19,7 @@ import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.CurrentBalance;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -29,8 +30,8 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
+    private ShimmerFrameLayout shimmerBalance, shimmerBuy, shimmerSell;
     private TextView homeBalanceValue, homeBuyValue, homeSellValue;
-    private ProgressBar progressBar;
 
     SharedPreferences pref;
 
@@ -50,10 +51,13 @@ public class HomeFragment extends Fragment {
         homeBalanceValue = getActivity().findViewById(R.id.homeBalanceValue);
         homeBuyValue = getActivity().findViewById(R.id.homeBuyValue);
         homeSellValue = getActivity().findViewById(R.id.homeSellValue);
-        progressBar = getActivity().findViewById(R.id.progress_bar);
+        shimmerBalance = view.findViewById(R.id.shimmer_balance);
+        shimmerBuy = view.findViewById(R.id.shimmer_buy);
+        shimmerSell = view.findViewById(R.id.shimmer_sell);
 
         homeBalanceValue.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
+        homeBuyValue.setVisibility(View.GONE);
+        homeSellValue.setVisibility(View.GONE);
         getCurrentBalance();
     }
 
@@ -76,13 +80,21 @@ public class HomeFragment extends Fragment {
 
                     format.setCurrency(Currency.getInstance("USD"));
 
+                    shimmerBalance.stopShimmer();
+                    shimmerBuy.stopShimmer();
+                    shimmerSell.stopShimmer();
 
-                    progressBar.setVisibility(View.GONE);
-                    homeBalanceValue.setVisibility(View.VISIBLE);
+                    shimmerBalance.setVisibility(View.GONE);
+                    shimmerBuy.setVisibility(View.GONE);
+                    shimmerSell.setVisibility(View.GONE);
 
                     homeBalanceValue.setText(format.format(Double.parseDouble(balance)));
                     homeBuyValue.setText(format.format(Buy));
                     homeSellValue.setText(format.format(Sell));
+
+                    homeBalanceValue.setVisibility(View.VISIBLE);
+                    homeBuyValue.setVisibility(View.VISIBLE);
+                    homeSellValue.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -91,5 +103,21 @@ public class HomeFragment extends Fragment {
                 Log.w("error wallet", t.toString());
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerBalance.startShimmer();
+        shimmerBuy.startShimmer();
+        shimmerSell.startShimmer();
+    }
+
+    @Override
+    public void onPause() {
+        shimmerBalance.stopShimmer();
+        shimmerBuy.stopShimmer();
+        shimmerSell.stopShimmer();
+        super.onPause();
     }
 }

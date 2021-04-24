@@ -8,12 +8,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,6 +25,28 @@
             android:padding="10dp"
             android:textColor="@color/light"
             android:textColorHint="@color/textHint" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/market_item_list_placeholder" />
+                <include layout="@layout/market_item_list_placeholder" />
+                <include layout="@layout/market_item_list_placeholder" />
+                <include layout="@layout/market_item_list_placeholder" />
+                <include layout="@layout/market_item_list_placeholder" />
+                <include layout="@layout/market_item_list_placeholder" />
+                <include layout="@layout/market_item_list_placeholder" />
+                <include layout="@layout/market_item_list_placeholder" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/market_list"

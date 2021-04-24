@@ -98,10 +98,21 @@
                         android:textColor="#fff"
                         android:fontFamily="@font/montserrat_bold"
                         android:textSize="32dp"></TextView>
-                    <ProgressBar
-                        android:id="@+id/progress_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmer_balance"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <include layout="@layout/item_placeholder" />
+                            </LinearLayout>
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
                 </LinearLayout>
                 <ImageView
                     android:layout_width="75dp"
@@ -146,6 +157,19 @@
                     android:textSize="16dp"
                     android:fontFamily="@font/montserrat_bold">
                 </TextView>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="vertical">
+                        <include layout="@layout/item_placeholder" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
                 <TextView
                     android:id="@+id/homeBuyValue"
                     android:layout_width="match_parent"
@@ -178,6 +202,19 @@
                     android:textSize="16dp"
                     android:fontFamily="@font/montserrat_bold">
                 </TextView>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_sell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="vertical">
+                        <include layout="@layout/item_placeholder" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
                 <TextView
                     android:id="@+id/homeSellValue"
                     android:layout_width="match_parent"

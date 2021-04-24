@@ -24,6 +24,7 @@ import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.CryptoData;
 import com.alphitardian.tr_pam.models.CryptoList;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ import retrofit2.Response;
 
 public class MarketFragment extends Fragment {
 
-    private ProgressBar progressBar;
+    private ShimmerFrameLayout mShimmerViewContainer;
     private RecyclerView recyclerView;
     private ArrayList<CryptoData> cryptoData = new ArrayList<>();
 
@@ -48,11 +49,9 @@ public class MarketFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        progressBar = view.findViewById(R.id.progress_bar);
+        mShimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
         recyclerView = view.findViewById(R.id.market_list);
         recyclerView.setHasFixedSize(true);
-
-        progressBar.setVisibility(View.VISIBLE);
 
         getAllCrypto();
     }
@@ -79,9 +78,11 @@ public class MarketFragment extends Fragment {
                         cryptoData.add(itemData);
                     }
 
+                    mShimmerViewContainer.stopShimmer();
+                    mShimmerViewContainer.setVisibility(View.GONE);
+
                     showRecyclerList();
 
-                    progressBar.setVisibility(View.INVISIBLE);
 
                 } else {
                     Toast.makeText(getContext(), "Responses failed!", Toast.LENGTH_SHORT).show();
@@ -99,6 +100,18 @@ public class MarketFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         MarketListAdapter listAdapter = new MarketListAdapter(cryptoData);
         recyclerView.setAdapter(listAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mShimmerViewContainer.startShimmer();
+    }
+
+    @Override
+    public void onPause() {
+        mShimmerViewContainer.stopShimmer();
+        super.onPause();
     }
 
 }

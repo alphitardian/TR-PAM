@@ -23,6 +23,7 @@ import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.TransactionHistoryList;
 import com.alphitardian.tr_pam.models.TransactionOnHistory;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
@@ -32,8 +33,8 @@ import retrofit2.Response;
 
 public class TransactionFragment extends Fragment {
 
-    private ProgressBar progressBar;
     private RecyclerView recyclerView;
+    private ShimmerFrameLayout mShimmerViewContainer;
     private ArrayList<TransactionOnHistory> transactionOnHistories = new ArrayList<TransactionOnHistory>();
 
     SharedPreferences pref;
@@ -51,11 +52,10 @@ public class TransactionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        progressBar = view.findViewById(R.id.progress_bar);
+        mShimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
         recyclerView = view.findViewById(R.id.transaction_list);
         recyclerView.setHasFixedSize(true);
 
-        progressBar.setVisibility(View.VISIBLE);
 
         getAllCrypto();
     }
@@ -86,9 +86,10 @@ public class TransactionFragment extends Fragment {
 
                         transactionOnHistories.add(itemData);
                     }
+                    mShimmerViewContainer.stopShimmer();
+                    mShimmerViewContainer.setVisibility(View.GONE);
                     showRecyclerList();
 
-                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(getContext(), "Responses failed!", Toast.LENGTH_SHORT).show();
                 }
@@ -105,5 +106,17 @@ public class TransactionFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         TransactionListAdapter listAdapter = new TransactionListAdapter(transactionOnHistories);
         recyclerView.setAdapter(listAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mShimmerViewContainer.startShimmer();
+    }
+
+    @Override
+    public void onPause() {
+        mShimmerViewContainer.stopShimmer();
+        super.onPause();
     }
 }

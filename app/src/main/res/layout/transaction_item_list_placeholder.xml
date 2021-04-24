@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/coin_market_background"
+    android:layout_margin="5dp"
+    android:elevation="10dp">
+
+    <View
+        android:id="@+id/crypto_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="8dp"
+        android:background="@drawable/text_placeholder"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/crypto_image"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/crypto_name_textview"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:background="@drawable/text_placeholder"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <View
+            android:id="@+id/transfer_confirmation_textview"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:background="@drawable/text_placeholder"
+            android:layout_marginVertical="5dp"/>
+
+        <TextView
+            android:id="@+id/date_textview"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:background="@drawable/text_placeholder" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/price_textview"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/text_placeholder" />
+
+</RelativeLayout>

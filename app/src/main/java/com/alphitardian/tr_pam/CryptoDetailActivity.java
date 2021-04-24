@@ -1,6 +1,7 @@
 package com.alphitardian.tr_pam;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.AssetsInSingle;
 import com.alphitardian.tr_pam.models.AssetsInSingleData;
+import com.alphitardian.tr_pam.models.CryptoData;
 import com.alphitardian.tr_pam.models.CryptoPrice;
 import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.alphitardian.tr_pam.utils.LabelFormatter;
@@ -40,7 +42,7 @@ import retrofit2.Response;
 public class CryptoDetailActivity extends AppCompatActivity {
 
     private TextView cryptoNameTextView, currentPriceTextView, totalCoin, totalBuyPrice, avgBuyPrice, totalProfit;
-    private ImageView cryptoImage;
+    private ImageView cryptoImage, webViewButton;
     private Button sellButton;
     private LineChart chart;
 
@@ -53,6 +55,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
     public static final String EXTRA_ID = "extra_id";
     public static final String EXTRA_NAME = "extra_name";
     public static final String EXTRA_PRICE = "extra_price";
+    public static final String EXTRA_SYMBOL = "extra_symbol";
     public static final String EXTRA_ICON = "extra_icon";
     public static final String EXTRA_HISTORY = "extra_history";
 
@@ -70,11 +73,21 @@ public class CryptoDetailActivity extends AppCompatActivity {
         cryptoImage = findViewById(R.id.crypto_image);
         sellButton = findViewById(R.id.sell_button);
         chart = findViewById(R.id.line_chart);
+        webViewButton = findViewById(R.id.webViewButton);
         pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
 
         cryptoNameTextView.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
         currentPriceTextView.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
         cryptoImage.setImageResource(getIntent().getIntExtra(MarketListAdapter.EXTRA_ICON, 0));
+
+        webViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CryptoDetailActivity.this, WebViewActivity.class);
+                intent.putExtra(EXTRA_SYMBOL, getIntent().getStringExtra(MarketListAdapter.EXTRA_SYMBOL));
+                startActivity(intent);
+            }
+        });
 
         getAsset();
         createGraph();

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/coin_market_background"
+    android:layout_margin="5dp"
+    android:elevation="10dp">
+
+    <View
+        android:id="@+id/update_percentage_textview"
+        android:layout_width="70dp"
+        android:layout_height="25dp"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/text_placeholder"
+        android:layout_alignParentTop="true"
+        android:textSize="18dp"
+        android:layout_marginBottom="10dp"/>
+
+    <View
+        android:id="@+id/current_price_textview"
+        android:background="@drawable/text_placeholder"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/update_percentage_textview"
+        android:layout_alignParentStart="true" />
+
+    <View
+        android:id="@+id/crypto_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/text_placeholder"
+        android:layout_marginBottom="8dp"/>
+
+    <View
+        android:id="@+id/crypto_shortname_textview"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/crypto_image"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/text_placeholder"
+        android:textAlignment="center" />
+
+</RelativeLayout>
