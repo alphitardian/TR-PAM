@@ -1,6 +1,7 @@
 package com.alphitardian.tr_pam.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -12,10 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alphitardian.tr_pam.R;
+import com.alphitardian.tr_pam.TopUpActivity;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.CurrentBalance;
@@ -32,6 +35,7 @@ public class HomeFragment extends Fragment {
 
     private ShimmerFrameLayout shimmerBalance, shimmerBuy, shimmerSell;
     private TextView homeBalanceValue, homeBuyValue, homeSellValue;
+    private Button goToTopUp;
 
     SharedPreferences pref;
 
@@ -54,11 +58,19 @@ public class HomeFragment extends Fragment {
         shimmerBalance = view.findViewById(R.id.shimmer_balance);
         shimmerBuy = view.findViewById(R.id.shimmer_buy);
         shimmerSell = view.findViewById(R.id.shimmer_sell);
+        goToTopUp = view.findViewById(R.id.goToTopUp);
 
         homeBalanceValue.setVisibility(View.GONE);
         homeBuyValue.setVisibility(View.GONE);
         homeSellValue.setVisibility(View.GONE);
         getCurrentBalance();
+
+        goToTopUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), TopUpActivity.class));
+            }
+        });
     }
 
     public void getCurrentBalance(){

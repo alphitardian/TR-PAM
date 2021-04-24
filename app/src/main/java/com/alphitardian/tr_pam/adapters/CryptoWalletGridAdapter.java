@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alphitardian.tr_pam.R;
+import com.alphitardian.tr_pam.models.AssetsList;
+import com.alphitardian.tr_pam.models.AssetsListCoin;
 import com.alphitardian.tr_pam.models.CryptoData;
 import com.google.android.material.card.MaterialCardView;
 
@@ -19,11 +21,11 @@ import java.util.Random;
 
 public class CryptoWalletGridAdapter extends RecyclerView.Adapter<CryptoWalletGridAdapter.ListViewHolder> {
 
-    private ArrayList<CryptoData> cryptoData;
+    private ArrayList<AssetsListCoin> assetsListsCoin;
     private int[] colors;
 
-    public CryptoWalletGridAdapter(ArrayList<CryptoData> cryptoData) {
-        this.cryptoData = cryptoData;
+    public CryptoWalletGridAdapter(ArrayList<AssetsListCoin> assetsListsCoin) {
+        this.assetsListsCoin = assetsListsCoin;
     }
 
     @NonNull
@@ -35,17 +37,17 @@ public class CryptoWalletGridAdapter extends RecyclerView.Adapter<CryptoWalletGr
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
-        CryptoData data = cryptoData.get(position);
+        AssetsListCoin data = assetsListsCoin.get(position);
 
-        holder.cryptoNameTextView.setText(data.getName());
-        holder.cryptoValueTextView.setText(String.format("%.3f", data.getPrice().getCurrent()));
+        holder.cryptoNameTextView.setText(data.getCoin());
+        holder.cryptoValueTextView.setText(data.getTotal() + " Coin");
         holder.cryptoImage.setImageResource(R.drawable.ic_launcher_foreground);
         holder.cryptoCard.setCardBackgroundColor(colors[new Random().nextInt(colors.length)]);
     }
 
     @Override
     public int getItemCount() {
-        return cryptoData.size();
+        return assetsListsCoin.size();
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
@@ -63,7 +65,6 @@ public class CryptoWalletGridAdapter extends RecyclerView.Adapter<CryptoWalletGr
 
             colors = new int[]{
                     Color.RED,
-                    Color.CYAN,
                     Color.GRAY,
                     Color.MAGENTA,
                     Color.DKGRAY,

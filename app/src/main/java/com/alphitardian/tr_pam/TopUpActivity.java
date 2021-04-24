@@ -18,6 +18,7 @@ import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.Balance;
 import com.alphitardian.tr_pam.models.BalanceResponse;
 import com.alphitardian.tr_pam.models.CurrentBalance;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.NumberFormat;
@@ -30,10 +31,10 @@ import retrofit2.Response;
 
 public class TopUpActivity extends AppCompatActivity {
 
+    ShimmerFrameLayout shimmerFrameLayout;
     TextView userBalanceTextView;
     EditText nominalEditText;
     Button topUpButton;
-    ProgressBar progressBar;
 
     SharedPreferences pref;
 
@@ -47,10 +48,9 @@ public class TopUpActivity extends AppCompatActivity {
         userBalanceTextView = findViewById(R.id.user_balance_textview);
         nominalEditText = findViewById(R.id.topup_edittext);
         topUpButton = findViewById(R.id.topup_button);
-        progressBar = findViewById(R.id.progress_bar);
+        shimmerFrameLayout = findViewById(R.id.shimmer_balance);
 
         userBalanceTextView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
 
         getCurrentBalance();
 
@@ -120,8 +120,10 @@ public class TopUpActivity extends AppCompatActivity {
 
                     format.setCurrency(Currency.getInstance("USD"));
 
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+
                     userBalanceTextView.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
 
                     userBalanceTextView.setText(format.format(Double.parseDouble(balance)));
                 }
@@ -133,6 +135,16 @@ public class TopUpActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onResume() {
+        shimmerFrameLayout.startShimmer();
+        super.onResume();
+    }
 
+    @Override
+    public void onPause() {
+        shimmerFrameLayout.stopShimmer();
+        super.onPause();
+    }
 
 }

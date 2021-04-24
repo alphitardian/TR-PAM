@@ -1,6 +1,8 @@
 package com.alphitardian.tr_pam.apis;
 
 import com.alphitardian.tr_pam.models.AssetsInSingle;
+import com.alphitardian.tr_pam.models.AssetsList;
+import com.alphitardian.tr_pam.models.AssetsListResponse;
 import com.alphitardian.tr_pam.models.Balance;
 import com.alphitardian.tr_pam.models.BalanceResponse;
 import com.alphitardian.tr_pam.models.CurrentBalance;
@@ -38,4 +40,7 @@ public interface ApiList {
 
     @GET("/transaction/assets_in_single")
     Call<AssetsInSingle> getSingleCryptoReport(@Header("userId") String userId, @Header("coinId") int coinId);
+
+    @GET("transaction/my_coin")
+    Call<AssetsListResponse> getMyAssetList(@Header("userId") String userId);
 }
