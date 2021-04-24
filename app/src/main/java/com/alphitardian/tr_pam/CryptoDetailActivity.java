@@ -1,5 +1,6 @@
 package com.alphitardian.tr_pam;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -45,6 +46,9 @@ public class CryptoDetailActivity extends AppCompatActivity {
     private ImageView cryptoImage, webViewButton;
     private Button sellButton;
     private LineChart chart;
+
+    private final int BUY_CRYPTO = 33;
+    private final int SELL_CRYPTO = 34;
 
     SharedPreferences pref;
 
@@ -172,7 +176,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_PRICE, getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
         intent.putExtra(EXTRA_ID, getIntent().getStringExtra(MarketListAdapter.EXTRA_ID));
 
-        startActivity(intent);
+        startActivityForResult(intent, BUY_CRYPTO);
     }
 
     public void sellCrypto(View v) {
@@ -182,7 +186,20 @@ public class CryptoDetailActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_PRICE, getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
         intent.putExtra(EXTRA_ID, getIntent().getStringExtra(MarketListAdapter.EXTRA_ID));
 
-        startActivity(intent);
+        startActivityForResult(intent, SELL_CRYPTO);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == BUY_CRYPTO){
+            getAsset();
+        }
+
+        if(requestCode == SELL_CRYPTO){
+            getAsset();
+        }
     }
 
     public void getAsset(){

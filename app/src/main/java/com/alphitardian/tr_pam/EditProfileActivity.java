@@ -82,8 +82,6 @@ public class EditProfileActivity extends AppCompatActivity {
         preferences = this.getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-
-
         StorageReference ref = storageReference.child(preferences.getString("photo_path", "default"));
 
         Glide.with(getApplicationContext())

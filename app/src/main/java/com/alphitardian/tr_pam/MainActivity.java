@@ -20,6 +20,8 @@ import com.alphitardian.tr_pam.fragments.MarketFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -109,18 +111,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             super.onBackPressed();
 
         } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Close App!");
-            builder.setMessage("Do you want to close the app ?");
-            builder.setPositiveButton("OK", (dialog, which) -> {
-                finish();
-            });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> {
-                dialog.cancel();
-            });
-            builder.create();
-            builder.show();
+            new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Are you sure?")
+                    .setContentText("Do you want to close the application?")
+                    .setConfirmText("Logout")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            MainActivity.super.onBackPressed();
+                        }
+                    })
+                    .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .show();
         }
     }
 }

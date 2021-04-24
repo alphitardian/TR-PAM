@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.NumberFormat;
 import java.util.Currency;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -76,11 +77,22 @@ public class TopUpActivity extends AppCompatActivity {
                 BalanceResponse balanceResponse = response.body();
 
                 if(balanceResponse.getStatus().equals("success")){
-                    Toast.makeText(TopUpActivity.this, "Top Up Successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(TopUpActivity.this, WalletActivity.class));
-                    finish();
+                    SweetAlertDialog pDialog = new SweetAlertDialog(TopUpActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                    pDialog.setTitleText("Success");
+                    pDialog.setContentText("transaction is successful, your wallet is updated!");
+                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                        startActivity(new Intent(TopUpActivity.this, WalletActivity.class));
+                        finish();
+                    });
+                    pDialog.show();
                 }else{
-                    Toast.makeText(TopUpActivity.this, "Top Up Failed!", Toast.LENGTH_SHORT).show();
+                    SweetAlertDialog pDialog = new SweetAlertDialog(TopUpActivity.this, SweetAlertDialog.ERROR_TYPE);
+                    pDialog.setTitleText("Error");
+                    pDialog.setContentText("transaction failed, please try again later!");
+                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                        pDialog.dismiss();
+                    });
+                    pDialog.show();
                 }
             }
 

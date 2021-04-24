@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 import com.alphitardian.tr_pam.EditProfileActivity;
 import com.alphitardian.tr_pam.LoginActivity;
+import com.alphitardian.tr_pam.MainActivity;
 import com.alphitardian.tr_pam.MapsActivity;
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.WalletActivity;
@@ -33,6 +34,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -96,10 +99,26 @@ public class ProfileFragment extends Fragment {
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.clear();
-                editor.apply();
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                getActivity().finish();
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Do you want to logout from your account?")
+                        .setConfirmText("Close")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                editor.clear();
+                                editor.apply();
+                                startActivity(new Intent(getActivity(), LoginActivity.class));
+                                getActivity().finish();
+                            }
+                        })
+                        .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
             }
         });
     }

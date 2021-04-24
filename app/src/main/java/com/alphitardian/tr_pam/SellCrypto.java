@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.alphitardian.tr_pam.models.TransactionResponse;
 import java.text.NumberFormat;
 import java.util.Currency;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -155,19 +157,33 @@ public class SellCrypto extends AppCompatActivity {
             @Override
             public void onResponse(Call<TransactionResponse> call, Response<TransactionResponse> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(SellCrypto.this, "Transaction Successfully",
-                            Toast.LENGTH_SHORT).show();
+                    SweetAlertDialog pDialog = new SweetAlertDialog(SellCrypto.this, SweetAlertDialog.SUCCESS_TYPE);
+                    pDialog.setTitleText("Success");
+                    pDialog.setContentText("transaction is successful, your coins have been removed from the wallet");
+                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                        finish();
+                    });
+                    pDialog.show();
                 }else{
-                    Toast.makeText(SellCrypto.this, "Transaction Failed",
-                            Toast.LENGTH_SHORT).show();
+                    SweetAlertDialog pDialog = new SweetAlertDialog(SellCrypto.this, SweetAlertDialog.ERROR_TYPE);
+                    pDialog.setTitleText("Error");
+                    pDialog.setContentText("Transaction failed, please try again");
+                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                        finish();
+                    });
+                    pDialog.show();
                 }
             }
 
             @Override
             public void onFailure(Call<TransactionResponse> call, Throwable t) {
-                Toast.makeText(SellCrypto.this, "Error during Transaction",
-                        Toast.LENGTH_SHORT).show();
-                Log.w("Error Transaction", t.toString());
+                SweetAlertDialog pDialog = new SweetAlertDialog(SellCrypto.this, SweetAlertDialog.ERROR_TYPE);
+                pDialog.setTitleText("Error");
+                pDialog.setContentText("Transaction failed, please try again");
+                pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                    finish();
+                });
+                pDialog.show();
             }
         });
     }
