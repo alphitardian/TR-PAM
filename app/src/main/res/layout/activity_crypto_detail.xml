@@ -27,7 +27,8 @@
         android:layout_margin="13dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_baseline_edit_24" />
+        android:tint="@color/white"
+        android:src="@drawable/trading_icon" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"

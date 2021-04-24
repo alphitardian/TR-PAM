@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">#18192F</item>
         <!-- Customize your theme here. -->
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 </resources>
