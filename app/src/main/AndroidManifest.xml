@@ -40,13 +40,7 @@
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".BuyCryptoActivity" />
         <activity android:name=".WebViewActivity"/>
-        <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".LoginActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
