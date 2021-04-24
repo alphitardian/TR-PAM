@@ -57,7 +57,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
             holder.transferConfirmationTextView.setTextColor(Color.parseColor("#D32F2F"));
         }
         holder.dateTextView.setText(FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));
-        //holder.cryptoImage.setImageResource(MarketListAdapter.getCryptoIcon(data.getSymbol()));
+        holder.cryptoImage.setImageResource(MarketListAdapter.getCryptoIcon(data.getCoin()));
 
         // On Click Event Per Item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +66,8 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
                 Intent intent = new Intent(holder.itemView.getContext(), TransactionDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, data.getCoin());
                 intent.putExtra(EXTRA_PRICE, "$" + String.format("%.3f", data.getPrice()));
-                intent.putExtra(EXTRA_ICON, MarketListAdapter.getCryptoIcon("BTC"));
-                intent.putExtra(EXTRA_STATUS, "Transfer Successful");
+                intent.putExtra(EXTRA_ICON, MarketListAdapter.getCryptoIcon(data.getCoin()));
+                intent.putExtra(EXTRA_STATUS, data.getType());
                 intent.putExtra(EXTRA_DATE, FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));
                 holder.itemView.getContext().startActivity(intent);
             }

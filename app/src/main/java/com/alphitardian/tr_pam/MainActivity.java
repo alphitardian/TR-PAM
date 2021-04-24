@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("Are you sure?")
                     .setContentText("Do you want to close the application?")
-                    .setConfirmText("Logout")
+                    .setConfirmText("Close")
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {

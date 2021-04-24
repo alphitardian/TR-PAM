@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -39,6 +40,8 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.alphitardian.tr_pam.utils.PathProvider.getPath;
 
@@ -202,17 +205,17 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     UserDetail userDetail = new UserDetail(userName, fullName, address, photoPath);
 
+                    Log.w("photo path", userDetail.getPhoto_path() + "");
+                    db.collection("users").document(uid).set(userDetail);
+
+                    Toast.makeText(EditProfileActivity.this,"Image Uploaded!!",  Toast.LENGTH_SHORT).show();
+
                     editor.putString("fullName", _fName);
                     editor.putString("username", _uName);
                     editor.putString("email", _email);
                     editor.putString("address", _address);
                     editor.putString("photo_path", photoPath);
                     editor.apply();
-
-                    Log.w("photo path", userDetail.getPhoto_path() + "");
-                    db.collection("users").document(uid).set(userDetail);
-
-                    Toast.makeText(EditProfileActivity.this,"Image Uploaded!!",  Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -221,7 +224,16 @@ public class EditProfileActivity extends AppCompatActivity {
             user.updateEmail(email);
             String uid = user.getUid();
             String photoPath = preferences.getString("photo_path", "default");
+
             UserDetail userDetail = new UserDetail(userName, fullName, address, photoPath);
+
+            editor.putString("fullName", _fName);
+            editor.putString("username", _uName);
+            editor.putString("email", _email);
+            editor.putString("address", _address);
+            editor.putString("photo_path", photoPath);
+            editor.apply();
+
             Log.w("photo path", userDetail.getPhoto_path() + "");
             db.collection("users").document(uid).set(userDetail);
         }

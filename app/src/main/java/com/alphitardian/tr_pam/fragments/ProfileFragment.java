@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.alphitardian.tr_pam.EditProfileActivity;
 import com.alphitardian.tr_pam.LoginActivity;
@@ -102,7 +103,7 @@ public class ProfileFragment extends Fragment {
                 new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
                         .setContentText("Do you want to logout from your account?")
-                        .setConfirmText("Close")
+                        .setConfirmText("Sign Out")
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
@@ -137,6 +138,10 @@ public class ProfileFragment extends Fragment {
                         .load(ref)
                         .override(500,500)
                         .into(profileImage);
+
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         }
     }

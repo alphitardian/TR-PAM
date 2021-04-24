@@ -113,23 +113,41 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
         switch (name) {
             case "BTC":
                 return R.drawable.btc_icon;
+            case "Bitcoin":
+                return R.drawable.btc_icon;
             case "ETH":
                 return R.drawable.eth_icon;
+            case "Ethereum":
+                return R.drawable.eth_icon;
             case "BNB":
+                return R.drawable.bnb_icon;
+            case "Binance Coin":
                 return R.drawable.bnb_icon;
             case "XRP":
                 return R.drawable.xrp_icon;
             case "USDT":
                 return R.drawable.usdt_icon;
+            case "Tether":
+                return R.drawable.usdt_icon;
             case "ADA":
+                return R.drawable.ada_icon;
+            case "Cardano":
                 return R.drawable.ada_icon;
             case "DOGE":
                 return R.drawable.doge_icon;
+            case "Dogecoin":
+                return R.drawable.doge_icon;
             case "DOT":
+                return R.drawable.dot_icon;
+            case "Polkadot":
                 return R.drawable.dot_icon;
             case "UNI":
                 return R.drawable.uni_icon;
+            case "Uniswap":
+                return R.drawable.uni_icon;
             case "LTC":
+                return R.drawable.ltc_icon;
+            case "Litecoin":
                 return R.drawable.ltc_icon;
             default:
                 return R.drawable.btc_icon;
