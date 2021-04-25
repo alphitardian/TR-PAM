@@ -144,10 +144,17 @@ public class BuyCryptoActivity extends AppCompatActivity {
 
     private void buyCrypto() {
         String _type = "buy";
+
+        String tempCoinValue = editTextQuantity.getText().toString();
+        double price = getIntent().getDoubleExtra(EXTRA_PRICE, 0.0);
+        int coinValue = Integer.parseInt(tempCoinValue);
+        Log.w("coin value", coinValue+"");
+        total = coinValue * price;
+
         String _coin = txtViewCrypto.getText().toString();
         int _id = Integer.parseInt(getIntent().getExtras().getString(MarketListAdapter.EXTRA_ID));
         int _amount = Integer.parseInt(editTextQuantity.getText().toString());
-        double _price = Double.parseDouble(priceTxtView.getText().toString());
+        double _price = total;
 
         Transaction transaction = new Transaction(_id, _coin, _type, _price, _amount);
 
@@ -162,6 +169,7 @@ public class BuyCryptoActivity extends AppCompatActivity {
                     pDialog.setTitleText(getString(R.string.success_alert_title));
                     pDialog.setContentText(getString(R.string.success_buy_alert_content));
                     pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                        pDialog.dismiss();
                         finish();
                     });
                     pDialog.show();
