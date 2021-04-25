@@ -184,7 +184,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
             public void onResponse(Call<AssetsInSingle> call, Response<AssetsInSingle> response) {
                 if (response.isSuccessful()) {
 
-                    format.setMaximumFractionDigits(0);
+                    format.setMaximumFractionDigits(3);
 
                     format.setCurrency(Currency.getInstance("USD"));
 
@@ -233,7 +233,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
                     CryptoList cryptoList = response.body();
                     ArrayList<CryptoData> cryptoData = cryptoList.getData();
 
-                    format.setMaximumFractionDigits(0);
+                    format.setMaximumFractionDigits(3);
                     format.setCurrency(Currency.getInstance("USD"));
 
                     for(int i = 0; i < cryptoData.size(); i++){

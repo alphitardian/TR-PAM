@@ -19,11 +19,15 @@ import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.models.CryptoData;
 import com.alphitardian.tr_pam.models.CryptoPrice;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.ListViewHolder> {
 
     private ArrayList<CryptoData> cryptoData;
+
+    NumberFormat format = NumberFormat.getCurrencyInstance();
 
     public static final String EXTRA_ID = "extra_id";
     public static final String EXTRA_NAME = "extra_name";
@@ -45,6 +49,9 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
+        format.setMaximumFractionDigits(3);
+        format.setCurrency(Currency.getInstance("USD"));
+
         CryptoData data = cryptoData.get(position);
 
         Double currentMovement = (data.getPrice().getCurrent() - data.getPrice().getIn24h()) * 100/data.getPrice().getIn24h();
@@ -58,7 +65,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
             holder.updatePercentageIcon.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24);
         }
 
-        holder.currentPriceTextView.setText("$" + String.format("%.3f", data.getPrice().getCurrent()));
+        holder.currentPriceTextView.setText(format.format(data.getPrice().getCurrent()));
         holder.cryptoShortNameTextView.setText(data.getSymbol());
         holder.cryptoImage.setImageResource(getCryptoIcon(data.getSymbol()));
 

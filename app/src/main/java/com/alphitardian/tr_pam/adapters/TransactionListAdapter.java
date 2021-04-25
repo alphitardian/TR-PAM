@@ -51,7 +51,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         TransactionOnHistory data = transactionOnHistories.get(position);
 
-        format.setMaximumFractionDigits(0);
+        format.setMaximumFractionDigits(3);
         format.setCurrency(Currency.getInstance("USD"));
 
         holder.cryptoNameTextView.setText(data.getCoin() + "");

@@ -49,8 +49,6 @@ public class BuyCryptoActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        format.setMaximumFractionDigits(0);
-        format.setCurrency(Currency.getInstance("USD"));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_crypto_screen);
         pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
@@ -178,7 +176,7 @@ public class BuyCryptoActivity extends AppCompatActivity {
                     pDialog.setTitleText(getString(R.string.error_alert_title));
                     pDialog.setContentText(getString(R.string.error_alert_content));
                     pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
-                        finish();
+                        pDialog.dismiss();
                     });
                     pDialog.show();
                 }
@@ -190,7 +188,7 @@ public class BuyCryptoActivity extends AppCompatActivity {
                 pDialog.setTitleText(getString(R.string.error_alert_title));
                 pDialog.setContentText(getString(R.string.error_alert_content));
                 pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
-                    finish();
+                    pDialog.dismiss();
                 });
                 pDialog.show();
             }
@@ -198,6 +196,10 @@ public class BuyCryptoActivity extends AppCompatActivity {
     }
 
     private void getCurrentBalance() {
+
+        format.setMaximumFractionDigits(3);
+        format.setCurrency(Currency.getInstance("USD"));
+
         ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
         Call<CurrentBalance> call = apiList.getCurrentBalance(pref.getString("userId", ""));
 
@@ -211,9 +213,6 @@ public class BuyCryptoActivity extends AppCompatActivity {
                     myBalance = Double.parseDouble(balance);
 
                     NumberFormat format = NumberFormat.getCurrencyInstance();
-                    format.setMaximumFractionDigits(0);
-
-                    format.setCurrency(Currency.getInstance("USD"));
 
                     buyBalance.setText(format.format(myBalance));
 

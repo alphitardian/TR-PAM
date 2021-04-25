@@ -92,7 +92,7 @@ public class WalletActivity extends AppCompatActivity {
                     String balance = currentBalance.getCurrent();
 
                     NumberFormat format = NumberFormat.getCurrencyInstance();
-                    format.setMaximumFractionDigits(0);
+                    format.setMaximumFractionDigits(3);
 
                     format.setCurrency(Currency.getInstance("USD"));
 

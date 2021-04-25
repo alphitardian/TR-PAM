@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class RegisterActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -75,8 +77,15 @@ public class RegisterActivity extends AppCompatActivity {
                             String uid = task.getResult().getUser().getUid();
                             db.collection("users").document(uid).set(userDetail);
 
-                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                            finish();
+                            SweetAlertDialog pDialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                            pDialog.setTitleText(getString(R.string.success_alert_title));
+                            pDialog.setContentText(getString(R.string.success_buy_alert_content));
+                            pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                pDialog.dismiss();
+                                finish();
+                            });
+                            pDialog.show();
                         } else {
                             Toast.makeText(RegisterActivity.this, getString(R.string.sign_up_failed_toast),
                                     Toast.LENGTH_SHORT).show();

@@ -167,6 +167,7 @@ public class SellCrypto extends AppCompatActivity {
                     pDialog.setTitleText(getString(R.string.success_alert_title));
                     pDialog.setContentText(getString(R.string.success_sell_alert_content));
                     pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                        pDialog.dismiss();
                         finish();
                     });
                     pDialog.show();
@@ -175,7 +176,7 @@ public class SellCrypto extends AppCompatActivity {
                     pDialog.setTitleText(getString(R.string.error_alert_title));
                     pDialog.setContentText(getString(R.string.error_alert_content));
                     pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
-                        finish();
+                        pDialog.dismiss();
                     });
                     pDialog.show();
                 }
@@ -187,7 +188,7 @@ public class SellCrypto extends AppCompatActivity {
                 pDialog.setTitleText(getString(R.string.error_alert_title));
                 pDialog.setContentText(getString(R.string.error_alert_content));
                 pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
-                    finish();
+                    pDialog.dismiss();
                 });
                 pDialog.show();
             }
