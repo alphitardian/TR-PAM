@@ -113,5 +113,9 @@
     <string name="success_transaction_alert_content">transaction is successful, your wallet is updated!</string>
     <string name="close_app_alert_content">Do you want to close the application?</string>
     <string name="close_app_alert_confirm_button">Close</string>
+    <string name="transaction_nav">Transaction</string>
+    <string name="profile_nav">Profile</string>
+    <string name="market_nav">Market</string>
+    <string name="home_nav">Home</string>
 
 </resources>
