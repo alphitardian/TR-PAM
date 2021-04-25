@@ -155,7 +155,7 @@ public class BuyCryptoActivity extends AppCompatActivity {
         String _coin = txtViewCrypto.getText().toString();
         int _id = Integer.parseInt(getIntent().getExtras().getString(MarketListAdapter.EXTRA_ID));
         int _amount = Integer.parseInt(editTextQuantity.getText().toString());
-        double _price = total;
+        double _price = price;
 
         Transaction transaction = new Transaction(_id, _coin, _type, _price, _amount);
 

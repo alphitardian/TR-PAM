@@ -184,7 +184,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
             public void onResponse(Call<AssetsInSingle> call, Response<AssetsInSingle> response) {
                 if (response.isSuccessful()) {
 
-                    format.setMaximumFractionDigits(3);
+                    format.setMaximumFractionDigits(5);
 
                     format.setCurrency(Currency.getInstance("USD"));
 
@@ -200,7 +200,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
                     }
 
                     totalCoin.setText(data.getAmount() + " Coin");
-                    totalBuyPrice.setText(format.format(data.getTotalAsset()));
+                    totalBuyPrice.setText(format.format(currentPrice * data.getAmount()));
 
                     if (data.getAmount() < 1) {
                         totalProfit.setText(format.format(0.0));
@@ -208,7 +208,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
                         sellButton.setEnabled(false);
                     } else {
                         totalProfit.setText(format.format((avgBuy - currentPrice) * data.getAmount()));
-                        avgBuyPrice.setText(format.format(data.getAvgBuy()));
+                        avgBuyPrice.setText(format.format(avgBuy));
                         sellButton.setEnabled(true);
                     }
                 }
@@ -233,7 +233,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
                     CryptoList cryptoList = response.body();
                     ArrayList<CryptoData> cryptoData = cryptoList.getData();
 
-                    format.setMaximumFractionDigits(3);
+                    format.setMaximumFractionDigits(5);
                     format.setCurrency(Currency.getInstance("USD"));
 
                     for(int i = 0; i < cryptoData.size(); i++){
