@@ -65,7 +65,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Price"
+                    android:text="@string/price_textview"
                     android:textColor="@color/white"/>
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Quantity"
+                    android:text="@string/quantity_textview"
                     android:fontFamily="@font/montserrat"
                     android:textColor="@color/white"/>
 
@@ -152,7 +152,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Current Balance"
+                    android:text="@string/current_balance_textview"
                     android:textColor="@color/white"/>
 
                 <TextView
@@ -182,7 +182,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Total"
+                    android:text="@string/total_textview"
                     android:textColor="@color/white"/>
 
                 <TextView
@@ -219,7 +219,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/primary_button"
             android:backgroundTint="@android:color/holo_blue_light"
-            android:text="Buy"
+            android:text="@string/buy_button"
             android:textColor="@color/white"
             android:fontFamily="@font/montserrat_bold" />
     </LinearLayout>

@@ -121,7 +121,7 @@ public class MarketFragment extends Fragment {
 
 
                 } else {
-                    Toast.makeText(getContext(), "Responses failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getText(R.string.response_failed_toast), Toast.LENGTH_SHORT).show();
                 }
             }
 

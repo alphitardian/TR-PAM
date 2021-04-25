@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,8 +28,8 @@
         android:layout_margin="13dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:tint="@color/white"
-        android:src="@drawable/trading_icon" />
+        android:src="@drawable/trading_icon"
+        app:tint="@color/white" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/line_chart"
@@ -65,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Price"
+                android:text="@string/current_price_textview"
                 android:textSize="10dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"/>
@@ -90,26 +91,29 @@
         android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:paddingHorizontal="10pt">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Assets"
+            android:text="@string/my_assets_textview"
             android:textColor="@color/white"
             android:fontFamily="@font/montserrat"
             android:textSize="16dp"
-            android:layout_marginBottom="20dp"></TextView>
+            android:layout_marginBottom="20dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Total Coin"
+                android:text="@string/total_coin_textview"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
+
             <TextView
                 android:id="@+id/totalCoin"
                 android:layout_width="wrap_content"
@@ -117,20 +121,22 @@
                 android:text="$0"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Total Buy Price"
+                android:text="@string/total_buy_price_textview"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
+
             <TextView
                 android:id="@+id/totalBuyPrice"
                 android:layout_width="wrap_content"
@@ -138,20 +144,22 @@
                 android:text="$0"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Avg Buy Price"
+                android:text="@string/avg_buy_price_textview"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
+
             <TextView
                 android:id="@+id/avgBuyPrice"
                 android:layout_width="wrap_content"
@@ -159,20 +167,22 @@
                 android:text="$0"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Return"
+                android:text="@string/return_textview"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
+
             <TextView
                 android:id="@+id/totalProfit"
                 android:layout_width="wrap_content"
@@ -180,7 +190,7 @@
                 android:text="$0"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"
-                android:textSize="14dp"></TextView>
+                android:textSize="14dp" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -196,7 +206,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:text="Sell"
+            android:text="@string/sell_button"
             android:layout_margin="8dp"
             android:textColor="@color/white"
             android:onClick="sellCrypto"
@@ -207,7 +217,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:text="Buy"
+            android:text="@string/buy_button"
             android:layout_margin="8dp"
             android:textColor="@color/white"
             android:onClick="buyCrypto"

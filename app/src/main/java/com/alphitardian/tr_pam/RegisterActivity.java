@@ -2,8 +2,6 @@ package com.alphitardian.tr_pam;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alphitardian.tr_pam.models.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,8 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -53,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void signUpOnClick(){
+    public void signUpOnClick() {
 
         _fName = fName.getText().toString();
         _uName = uName.getText().toString();
@@ -61,10 +55,10 @@ public class RegisterActivity extends AppCompatActivity {
         _password = password.getText().toString();
         _address = address.getText().toString();
 
-        if(TextUtils.isEmpty(_fName) || TextUtils.isEmpty(_uName) || TextUtils.isEmpty(_password) || TextUtils.isEmpty(_address) || TextUtils.isEmpty(_email)){
-            Toast.makeText(RegisterActivity.this, "Fill the blank form!",
+        if (TextUtils.isEmpty(_fName) || TextUtils.isEmpty(_uName) || TextUtils.isEmpty(_password) || TextUtils.isEmpty(_address) || TextUtils.isEmpty(_email)) {
+            Toast.makeText(RegisterActivity.this, getString(R.string.blank_form_toast),
                     Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             signUp(_email, _password, _fName, _uName, _address);
         }
     }
@@ -84,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Sign Up Failed",
+                            Toast.makeText(RegisterActivity.this, getString(R.string.sign_up_failed_toast),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

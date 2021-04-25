@@ -1,13 +1,11 @@
 package com.alphitardian.tr_pam;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,32 +16,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alphitardian.tr_pam.models.UserDetail;
-import com.alphitardian.tr_pam.utils.GlideApp;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static com.alphitardian.tr_pam.utils.PathProvider.getPath;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -89,7 +75,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Glide.with(getApplicationContext())
                 .load(ref)
-                .override(500,500)
+                .override(500, 500)
                 .into(editProfileImage);
 
 
@@ -120,8 +106,8 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
     }
-    private void SelectImage()
-    {
+
+    private void SelectImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -155,9 +141,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                 getContentResolver(),
                                 filePath);
                 editProfileImage.setImageBitmap(bitmap);
-            }
-
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -177,7 +161,7 @@ public class EditProfileActivity extends AppCompatActivity {
         _address = address.getText().toString();
 
         if (TextUtils.isEmpty(_fName) || TextUtils.isEmpty(_uName) || TextUtils.isEmpty(_address) || TextUtils.isEmpty(_email)) {
-            Toast.makeText(EditProfileActivity.this, "Fill the blank form!",
+            Toast.makeText(EditProfileActivity.this, getString(R.string.blank_form_toast),
                     Toast.LENGTH_SHORT).show();
         } else {
 
@@ -188,9 +172,9 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void saveProfile(String email, String password, String fullName, String userName, String address ) {
+    public void saveProfile(String email, String password, String fullName, String userName, String address) {
 
-        if(filePath!= null){
+        if (filePath != null) {
 
             StorageReference ref = storageReference.child("/images/" + UUID.randomUUID().toString());
 
@@ -208,7 +192,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     Log.w("photo path", userDetail.getPhoto_path() + "");
                     db.collection("users").document(uid).set(userDetail);
 
-                    Toast.makeText(EditProfileActivity.this,"Image Uploaded!!",  Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, getString(R.string.image_upload_toast), Toast.LENGTH_SHORT).show();
 
                     editor.putString("fullName", _fName);
                     editor.putString("username", _uName);
@@ -220,7 +204,7 @@ public class EditProfileActivity extends AppCompatActivity {
             });
 
 
-        }else{
+        } else {
             user.updateEmail(email);
             String uid = user.getUid();
             String photoPath = preferences.getString("photo_path", "default");

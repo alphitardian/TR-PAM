@@ -24,14 +24,14 @@
                 android:orientation="vertical"
                 android:paddingTop="10dp"
                 android:layout_weight="1">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Welcome back,"
+                    android:text="@string/welcome_back_textview"
                     android:textColor="@color/textHint"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="20dp"
-                    ></TextView>
+                    android:textSize="20dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,24 +43,23 @@
                         android:text="Warung"
                         android:textColor="@color/white"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textSize="32dp"
-                        ></TextView>
+                        android:textSize="32dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kripto."
                         android:textColor="@color/white"
                         android:fontFamily="@font/montserrat"
-                        android:textSize="32dp"
-                        ></TextView>
+                        android:textSize="32dp" />
                 </LinearLayout>
             </LinearLayout>
+
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/bnb_icon"
-                android:layout_gravity="center"
-                ></ImageView>
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,14 +81,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Balance"
+                        android:text="@string/balance_textview"
                         android:textColor="@color/textHint"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textSize="18dp"
-                        ></TextView>
+                        android:textSize="18dp" />
+
                     <TextView
                         android:id="@+id/homeBalanceValue"
                         android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                         android:text="$0"
                         android:textColor="#fff"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textSize="32dp"></TextView>
+                        android:textSize="32sp" />
 
                         <com.facebook.shimmer.ShimmerFrameLayout
                             android:id="@+id/shimmer_balance"
@@ -114,21 +114,23 @@
                         </com.facebook.shimmer.ShimmerFrameLayout>
 
                 </LinearLayout>
+
                 <ImageView
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:src="@drawable/ic_round_attach_money_24"></ImageView>
+                    android:src="@drawable/ic_round_attach_money_24" />
             </LinearLayout>
+
             <Button
                 android:id="@+id/goToTopUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Top Up"
+                android:text="@string/top_up_button"
                 android:textColor="@color/white"
                 android:background="@drawable/primary_button"
                 android:padding="10dp"
-                android:fontFamily="@font/montserrat_bold"></Button>
+                android:fontFamily="@font/montserrat_bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -145,15 +147,16 @@
                 android:paddingVertical="30dp"
                 android:paddingHorizontal="20dp"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:src="@drawable/btc_icon"
-                    android:layout_marginBottom="20dp"></ImageView>
+                    android:layout_marginBottom="20dp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Total Buy"
+                    android:text="@string/total_buy_textview"
                     android:textColor="@color/textHint"
                     android:textSize="16dp"
                     android:fontFamily="@font/montserrat_bold">
@@ -190,15 +193,16 @@
                 android:paddingVertical="30dp"
                 android:paddingHorizontal="20dp"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:src="@drawable/eth_icon"
-                    android:layout_marginBottom="20dp"></ImageView>
+                    android:layout_marginBottom="20dp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Total Sell"
+                    android:text="@string/total_sell_textview"
                     android:textColor="@color/textHint"
                     android:textSize="16dp"
                     android:fontFamily="@font/montserrat_bold">

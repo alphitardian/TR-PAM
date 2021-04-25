@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/montserrat"
-            android:text="Create new account"
+            android:text="@string/create_new_account_textview"
             android:textColor="@color/white"
             android:textSize="24dp" />
 
@@ -127,7 +127,7 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/auth_button"
             android:fontFamily="@font/montserrat"
-            android:text="Sign Up"
+            android:text="@string/sign_up_button"
             android:textSize="16dp"
             android:textStyle="bold" />
 

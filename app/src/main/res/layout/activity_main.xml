@@ -56,6 +56,7 @@
         app:layout_anchor="@id/bottom_appbar"
         android:backgroundTint="#3FA6FF"
         app:tint="@color/white"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:ignore="ContentDescription" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

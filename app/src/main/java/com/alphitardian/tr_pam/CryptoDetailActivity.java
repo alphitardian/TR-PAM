@@ -1,28 +1,23 @@
 package com.alphitardian.tr_pam;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alphitardian.tr_pam.adapters.MarketListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.AssetsInSingle;
 import com.alphitardian.tr_pam.models.AssetsInSingleData;
-import com.alphitardian.tr_pam.models.CryptoData;
 import com.alphitardian.tr_pam.models.CryptoPrice;
-import com.alphitardian.tr_pam.models.CurrentBalance;
-import com.alphitardian.tr_pam.utils.LabelFormatter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -193,23 +188,23 @@ public class CryptoDetailActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == BUY_CRYPTO){
+        if (requestCode == BUY_CRYPTO) {
             getAsset();
         }
 
-        if(requestCode == SELL_CRYPTO){
+        if (requestCode == SELL_CRYPTO) {
             getAsset();
         }
     }
 
-    public void getAsset(){
+    public void getAsset() {
         ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
         Call<AssetsInSingle> call = apiList.getSingleCryptoReport(pref.getString("userId", ""), Integer.parseInt(getIntent().getStringExtra(MarketListAdapter.EXTRA_ID)));
 
         call.enqueue(new Callback<AssetsInSingle>() {
             @Override
             public void onResponse(Call<AssetsInSingle> call, Response<AssetsInSingle> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     format.setMaximumFractionDigits(0);
 
@@ -222,22 +217,22 @@ public class CryptoDetailActivity extends AppCompatActivity {
 
                     Double avgBuy = 0.0;
 
-                    if(data.getAvgBuy() != null){
+                    if (data.getAvgBuy() != null) {
                         avgBuy = data.getAvgBuy();
                     }
 
                     totalCoin.setText(data.getAmount() + " Coin");
                     totalBuyPrice.setText(format.format(data.getTotalAsset()));
                     avgBuyPrice.setText(format.format(avgBuy));
-                    if(data.getAmount() > 0){
+                    if (data.getAmount() > 0) {
                         totalProfit.setText(format.format(avgBuy - currentPrice));
-                    }else{
+                    } else {
                         totalProfit.setText(format.format(0.0));
                     }
 
-                    if(data.getAmount() < 1){
+                    if (data.getAmount() < 1) {
                         sellButton.setEnabled(false);
-                    }else{
+                    } else {
                         sellButton.setEnabled(true);
                     }
                 }

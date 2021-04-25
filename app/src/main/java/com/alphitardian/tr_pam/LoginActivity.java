@@ -4,21 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
-import com.alphitardian.tr_pam.models.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -63,35 +58,35 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void signInOnClick(){
+    public void signInOnClick() {
         loading.setVisibility(View.VISIBLE);
 
         _email = email.getText().toString();
         _password = password.getText().toString();
 
-        if(TextUtils.isEmpty(_email) || TextUtils.isEmpty(_password)){
-            Toast.makeText(LoginActivity.this, "Fill the blank form!",
+        if (TextUtils.isEmpty(_email) || TextUtils.isEmpty(_password)) {
+            Toast.makeText(LoginActivity.this, getResources().getText(R.string.blank_form_toast),
                     Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             signIn(_email, _password);
         }
     }
 
-    public void signIn(String email, String password){
+    public void signIn(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             String Uid = task.getResult().getUser().getUid();
                             String email = task.getResult().getUser().getEmail();
                             DocumentReference docRef = db.collection("users").document(Uid);
                             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if(task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         DocumentSnapshot snapshot = task.getResult();
-                                        if(snapshot.exists()){
+                                        if (snapshot.exists()) {
                                             String fName, uName, address, photo_path;
 
                                             fName = snapshot.getString("fullName");
@@ -117,8 +112,8 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
 
-                        }else{
-                            Toast.makeText(LoginActivity.this, "Wrong username or password",
+                        } else {
+                            Toast.makeText(LoginActivity.this, getResources().getText(R.string.wrong_username_password_toast),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

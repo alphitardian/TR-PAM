@@ -21,7 +21,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/auth_form"
             android:fontFamily="@font/montserrat"
-            android:hint="Search.."
+            android:hint="@string/search_hint_edittext"
             android:padding="10dp"
             android:textColor="@color/light"
             android:textColorHint="@color/textHint" />

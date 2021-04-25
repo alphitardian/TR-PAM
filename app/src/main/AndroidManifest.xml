@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TR_PAM">
-        <activity android:name=".SellCrypto"></activity>
+        <activity android:name=".WithdrawActivity"></activity>
+        <activity android:name=".SellCrypto" />
         <activity android:name=".AddPinLogin" />
         <activity android:name=".PinLogin" />
         <activity android:name=".SplashScreen">
@@ -39,7 +40,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".BuyCryptoActivity" />
-        <activity android:name=".WebViewActivity"/>
+        <activity android:name=".WebViewActivity" />
         <activity android:name=".LoginActivity" />
 
         <meta-data

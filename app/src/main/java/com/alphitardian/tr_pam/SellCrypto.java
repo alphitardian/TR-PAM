@@ -1,13 +1,8 @@
 package com.alphitardian.tr_pam;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.alphitardian.tr_pam.adapters.MarketListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
 import com.alphitardian.tr_pam.models.AssetsInSingle;
 import com.alphitardian.tr_pam.models.AssetsInSingleData;
-import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.alphitardian.tr_pam.models.Transaction;
 import com.alphitardian.tr_pam.models.TransactionResponse;
 
@@ -72,13 +68,13 @@ public class SellCrypto extends AppCompatActivity {
         btnIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkTotalAndValue()){
+                if (checkTotalAndValue()) {
                     amount += 1;
                     editTextQuantity.setText(amount + "");
                     checkQuantity();
                     checkTotal();
-                }else{
-                    Toast.makeText(SellCrypto.this, "You don't have enough coin",
+                } else {
+                    Toast.makeText(SellCrypto.this, getString(R.string.dont_have_coin_toast),
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -103,18 +99,18 @@ public class SellCrypto extends AppCompatActivity {
 
     }
 
-    public void checkQuantity(){
+    public void checkQuantity() {
         String value = editTextQuantity.getText().toString();
         int amountCheck = Integer.parseInt(value);
 
-        if(amountCheck < 1){
+        if (amountCheck < 1) {
             btnDecrease.setEnabled(false);
-        }else{
+        } else {
             btnDecrease.setEnabled(true);
         }
     }
 
-    public void checkTotal(){
+    public void checkTotal() {
         String tempCoinValue = editTextQuantity.getText().toString();
         String tempPrice = priceTxtView.getText().toString();
         int coinValue = Integer.parseInt(tempCoinValue);
@@ -130,18 +126,18 @@ public class SellCrypto extends AppCompatActivity {
         totalPrice.setText(format.format(total));
     }
 
-    public boolean checkTotalAndValue(){
+    public boolean checkTotalAndValue() {
 
         String tempPrice = priceTxtView.getText().toString();
 
-        if(currentAmount < amount + 1){
+        if (currentAmount < amount + 1) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
 
-    private void sellCrypto(){
+    private void sellCrypto() {
         String _type = "sell";
         String _coin = txtViewCrypto.getText().toString();
         int _id = Integer.parseInt(getIntent().getExtras().getString(MarketListAdapter.EXTRA_ID));
@@ -156,19 +152,19 @@ public class SellCrypto extends AppCompatActivity {
         call.enqueue(new Callback<TransactionResponse>() {
             @Override
             public void onResponse(Call<TransactionResponse> call, Response<TransactionResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     SweetAlertDialog pDialog = new SweetAlertDialog(SellCrypto.this, SweetAlertDialog.SUCCESS_TYPE);
-                    pDialog.setTitleText("Success");
-                    pDialog.setContentText("transaction is successful, your coins have been removed from the wallet");
-                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                    pDialog.setTitleText(getString(R.string.success_alert_title));
+                    pDialog.setContentText(getString(R.string.success_sell_alert_content));
+                    pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
                         finish();
                     });
                     pDialog.show();
-                }else{
+                } else {
                     SweetAlertDialog pDialog = new SweetAlertDialog(SellCrypto.this, SweetAlertDialog.ERROR_TYPE);
-                    pDialog.setTitleText("Error");
-                    pDialog.setContentText("Transaction failed, please try again");
-                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                    pDialog.setTitleText(getString(R.string.error_alert_title));
+                    pDialog.setContentText(getString(R.string.error_alert_content));
+                    pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
                         finish();
                     });
                     pDialog.show();
@@ -178,9 +174,9 @@ public class SellCrypto extends AppCompatActivity {
             @Override
             public void onFailure(Call<TransactionResponse> call, Throwable t) {
                 SweetAlertDialog pDialog = new SweetAlertDialog(SellCrypto.this, SweetAlertDialog.ERROR_TYPE);
-                pDialog.setTitleText("Error");
-                pDialog.setContentText("Transaction failed, please try again");
-                pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                pDialog.setTitleText(getString(R.string.error_alert_title));
+                pDialog.setContentText(getString(R.string.error_alert_content));
+                pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
                     finish();
                 });
                 pDialog.show();
@@ -188,14 +184,14 @@ public class SellCrypto extends AppCompatActivity {
         });
     }
 
-    public void getAsset(){
+    public void getAsset() {
         ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
         Call<AssetsInSingle> call = apiList.getSingleCryptoReport(pref.getString("userId", ""), Integer.parseInt(getIntent().getStringExtra(MarketListAdapter.EXTRA_ID)));
 
         call.enqueue(new Callback<AssetsInSingle>() {
             @Override
             public void onResponse(Call<AssetsInSingle> call, Response<AssetsInSingle> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     AssetsInSingle assetsInSingle = response.body();
                     AssetsInSingleData data = assetsInSingle.getData();
 

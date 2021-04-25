@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Login String -->
+    <string name="welcome_back_textview">Welcome back,</string>
     <string name="login_text">Sign In</string>
     <string name="login_username_edittext">Username</string>
     <string name="login_password_edittext">Password</string>
@@ -15,9 +16,96 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="login_button">SIGN IN</string>
     <string name="login_register">Register</string>
+    <string name="don_t_have_an_account_textview">Don\'t have an account ?</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="blank_form_toast">Fill the blank form!</string>
+    <string name="wrong_username_password_toast">Wrong username or password</string>
 
+    <!-- Register -->
+    <string name="create_new_account_textview">Create new account</string>
+    <string name="sign_up_failed_toast">Sign Up Failed</string>
     <string name="register_fullname">Fullname</string>
     <string name="register_address">Address</string>
 
+    <!-- Pin Login -->
+    <string name="pin_login_textview">Pin Login</string>
+    <string name="enter_pin_hint_edittext">Enter Pin</string>
+    <string name="empty_pin_toast">Pin is Empty!</string>
+    <string name="wrong_pin_toast">Wrong Pin!</string>
+    <string name="pin_login_button">Login</string>
+
+    <!-- Home Fragment -->
+    <string name="balance_textview">Balance</string>
+    <string name="top_up_button">Top Up</string>
+    <string name="total_buy_textview">Total Buy</string>
+    <string name="total_sell_textview">Total Sell</string>
+
+    <!-- Market Fragment -->
+    <string name="search_hint_edittext">Search..</string>
+    <string name="response_failed_toast">Responses failed!</string>
+
+    <!-- Profile Fragment -->
+    <string name="profile_textview">Profile</string>
+    <string name="full_name_textview">Full Name</string>
+    <string name="sign_out_alert_title">Are you sure?</string>
+    <string name="sign_out_alert_content">Do you want to logout from your account?</string>
+    <string name="sign_out_alert_confirm_button">Sign Out</string>
+    <string name="cancel_alert_button">Cancel</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_textview">Edit Profile</string>
+    <string name="change_photo_button">Change Photo</string>
+    <string name="new_fullname_hint_edittext">New Fullname</string>
+    <string name="new_username_hint_edittext">New Username</string>
+    <string name="new_email_hint_edittext">New Email</string>
+    <string name="new_address_hint_edittext">New Address</string>
+    <string name="save_button">save</string>
+    <string name="image_upload_toast">Image Uploaded!!</string>
+
+    <!-- Maps -->
+    <string name="search_location_textview">Search Location</string>
+    <string name="use_location_button">Use Location</string>
+    <string name="failed_get_location_toast">Can\'t get location. Please try again.</string>
+
+    <!-- Crypto Detail -->
+    <string name="current_price_textview">Current Price</string>
+    <string name="my_assets_textview">My Assets</string>
+    <string name="total_coin_textview">Total Coin</string>
+    <string name="total_buy_price_textview">Total Buy Price</string>
+    <string name="avg_buy_price_textview">Avg Buy Price</string>
+    <string name="return_textview">Return</string>
+    <string name="sell_button">Sell</string>
+    <string name="buy_button">Buy</string>
+
+    <!-- Sell Crypto -->
+    <string name="dont_have_coin_toast">You don\'t have enough coin</string>
+    <string name="price_textview">Price</string>
+    <string name="quantity_textview">Quantity</string>
+    <string name="total_textview">Total</string>
+    <string name="success_alert_title">Success</string>
+    <string name="success_sell_alert_content">transaction is successful, your coins have been removed from the wallet</string>
+    <string name="error_alert_title">Error</string>
+    <string name="error_alert_content">Transaction failed, please try again later!</string>
+    <string name="transaction_alert_confirm_button">Ok</string>
+
+    <!-- Buy Crypto -->
+    <string name="current_balance_textview">Current Balance</string>
+    <string name="dont_have_balance_toast">You don\'t have enough balance</string>
+    <string name="success_buy_alert_content">transaction is successful, your coins have been added to the wallet</string>
+
+    <!-- Transaction Detail -->
+    <string name="transaction_detail_textview">Transaction Detail</string>
+    <string name="purchase_amount_textview">Purchase Amount</string>
+    <string name="purchase_date_textview">Purchase Date</string>
+
+    <!-- Wallet -->
+    <string name="wallet_textview">Wallet</string>
+    <string name="your_balance_textview">Your Balance</string>
+    <string name="withdraw_textview">Withdraw</string>
+    <string name="crypto_list_textview">Crypto List</string>
+
+    <!-- Top Up & Withdraw -->
+    <string name="nominal_textview">Nominal</string>
+    <string name="success_transaction_alert_content">transaction is successful, your wallet is updated!</string>
 
 </resources>

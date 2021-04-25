@@ -4,18 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.alphitardian.tr_pam.R;
 import com.alphitardian.tr_pam.TopUpActivity;
@@ -73,7 +71,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void getCurrentBalance(){
+    public void getCurrentBalance() {
         ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
         Call<CurrentBalance> call = apiList.getCurrentBalance(pref.getString("userId", ""));
 
@@ -81,7 +79,7 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<CurrentBalance>() {
             @Override
             public void onResponse(Call<CurrentBalance> call, Response<CurrentBalance> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     CurrentBalance currentBalance = response.body();
                     String balance = currentBalance.getCurrent();
                     Double Buy = currentBalance.getBalanceTransaction().getTransactionBuy();

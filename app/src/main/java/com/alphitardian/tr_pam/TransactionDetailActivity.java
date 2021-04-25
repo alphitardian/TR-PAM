@@ -1,11 +1,10 @@
 package com.alphitardian.tr_pam;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alphitardian.tr_pam.adapters.TransactionListAdapter;
 import com.google.android.material.card.MaterialCardView;
@@ -36,7 +35,7 @@ public class TransactionDetailActivity extends AppCompatActivity {
 
         cryptoNameTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_NAME));
         purchaseAmountTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_PRICE));
-        currentStatusTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_STATUS).toUpperCase() + " Transaction Success".toUpperCase());
+        currentStatusTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_STATUS).toUpperCase());
         purchaseDateTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_DATE));
         cryptoImage.setImageResource(getIntent().getIntExtra(TransactionListAdapter.EXTRA_ICON, 0));
     }

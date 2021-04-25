@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="Edit Profile"
+                android:text="@string/edit_profile_textview"
                 android:textColor="@color/white"
                 android:textSize="30dp"
                 android:textStyle="bold" />
@@ -30,18 +30,18 @@
                 android:id="@+id/editProfileImage"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:src="@drawable/ic_baseline_person_24"
-                android:layout_marginVertical="20dp"/>
+                android:layout_marginVertical="20dp"
+                android:src="@drawable/ic_baseline_person_24" />
 
             <TextView
                 android:id="@+id/changePhoto"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Change Photo"
                 android:layout_marginBottom="30dp"
-                android:fontFamily="@font/montserrat"></TextView>
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/change_photo_button"
+                android:textColor="@color/white" />
 
             <EditText
                 android:id="@+id/newEditTextFullname"
@@ -50,7 +50,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/auth_form"
                 android:fontFamily="@font/montserrat"
-                android:hint="New Fullname"
+                android:hint="@string/new_fullname_hint_edittext"
                 android:padding="10dp"
                 android:textColor="@color/light"
                 android:textColorHint="@color/textHint" />
@@ -63,7 +63,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/auth_form"
                 android:fontFamily="@font/montserrat"
-                android:hint="New Username"
+                android:hint="@string/new_username_hint_edittext"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:textColor="@color/light"
@@ -76,7 +76,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/auth_form"
                 android:fontFamily="@font/montserrat"
-                android:hint="New Email"
+                android:hint="@string/new_email_hint_edittext"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:textColor="@color/light"
@@ -95,7 +95,7 @@
                     android:layout_weight="5"
                     android:background="@drawable/auth_form"
                     android:fontFamily="@font/montserrat"
-                    android:hint="New Address"
+                    android:hint="@string/new_address_hint_edittext"
                     android:padding="10dp"
                     android:textColor="@color/light"
                     android:textColorHint="@color/textHint" />
@@ -117,9 +117,9 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:textColor="@color/white"
                 android:background="@drawable/primary_button"
-                android:text="save"
+                android:text="@string/save_button"
+                android:textColor="@color/white"
                 android:textSize="17dp"
                 android:textStyle="bold" />
 

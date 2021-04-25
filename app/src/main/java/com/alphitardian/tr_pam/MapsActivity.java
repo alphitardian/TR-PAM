@@ -1,10 +1,5 @@
 package com.alphitardian.tr_pam;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +18,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -80,7 +79,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         progressBar.setVisibility(View.INVISIBLE);
 
-        permissions = new String[] {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+        permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             for (String permission : permissions) {
@@ -121,7 +120,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 addressEditText.setText(addressSelection);
                             } else {
                                 progressBar.setVisibility(View.INVISIBLE);
-                                Toast.makeText(MapsActivity.this, "Can't get location. Please try again.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MapsActivity.this, getString(R.string.failed_get_location_toast), Toast.LENGTH_SHORT).show();
                             }
                         });
                     } catch (Exception e) {
@@ -157,7 +156,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     addressEditText.setText(addressSelection);
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(MapsActivity.this, "Can't get location. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsActivity.this, getString(R.string.failed_get_location_toast), Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -178,7 +177,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     addressEditText.setText(addressSelection);
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(MapsActivity.this, "Can't get location. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsActivity.this, getString(R.string.failed_get_location_toast), Toast.LENGTH_SHORT).show();
                 }
             });
         });

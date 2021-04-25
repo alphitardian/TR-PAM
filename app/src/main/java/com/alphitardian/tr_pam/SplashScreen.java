@@ -1,12 +1,11 @@
 package com.alphitardian.tr_pam;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 if (pref.getBoolean("LoggedIn", false)) {
                     startActivity(new Intent(SplashScreen.this, PinLogin.class));
-                }else{
+                } else {
                     startActivity(new Intent(SplashScreen.this, LoginActivity.class));
                 }
 

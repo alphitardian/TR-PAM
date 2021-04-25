@@ -1,29 +1,24 @@
 package com.alphitardian.tr_pam;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alphitardian.tr_pam.adapters.CryptoWalletGridAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
-import com.alphitardian.tr_pam.models.AssetsList;
 import com.alphitardian.tr_pam.models.AssetsListCoin;
 import com.alphitardian.tr_pam.models.AssetsListResponse;
 import com.alphitardian.tr_pam.models.CurrentBalance;
-import com.alphitardian.tr_pam.models.CryptoData;
-import com.alphitardian.tr_pam.models.CryptoList;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.text.NumberFormat;
@@ -40,7 +35,7 @@ public class WalletActivity extends AppCompatActivity {
     ShimmerFrameLayout shimmerBalance, shimmerAssets;
     TextView userBalanceTextView;
     RecyclerView recyclerView;
-    ImageView topupButton;
+    ImageView topupButton, withdrawButton;
 
     private ArrayList<AssetsListCoin> assetsListsCoin = new ArrayList<>();
 
@@ -55,6 +50,7 @@ public class WalletActivity extends AppCompatActivity {
 
         userBalanceTextView = findViewById(R.id.user_balance_textview);
         topupButton = findViewById(R.id.topup_button);
+        withdrawButton = findViewById(R.id.withdraw_button);
         recyclerView = findViewById(R.id.crypto_grid);
         shimmerBalance = findViewById(R.id.shimmer_balance);
         shimmerAssets = findViewById(R.id.shimmer_assets);
@@ -73,6 +69,15 @@ public class WalletActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        withdrawButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getCurrentBalance() {
@@ -82,7 +87,7 @@ public class WalletActivity extends AppCompatActivity {
         call.enqueue(new Callback<CurrentBalance>() {
             @Override
             public void onResponse(Call<CurrentBalance> call, Response<CurrentBalance> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     CurrentBalance currentBalance = response.body();
                     String balance = currentBalance.getCurrent();
 
@@ -132,7 +137,7 @@ public class WalletActivity extends AppCompatActivity {
                     shimmerAssets.setVisibility(View.GONE);
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Responses failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.response_failed_toast), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -143,7 +148,7 @@ public class WalletActivity extends AppCompatActivity {
         });
     }
 
-    private void showRecyclerList(){
+    private void showRecyclerList() {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         CryptoWalletGridAdapter listAdapter = new CryptoWalletGridAdapter(assetsListsCoin);
         recyclerView.setAdapter(listAdapter);

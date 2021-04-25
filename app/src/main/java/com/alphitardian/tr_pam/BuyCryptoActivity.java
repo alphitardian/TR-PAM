@@ -2,9 +2,7 @@ package com.alphitardian.tr_pam;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alphitardian.tr_pam.adapters.MarketListAdapter;
 import com.alphitardian.tr_pam.apis.ApiList;
 import com.alphitardian.tr_pam.apis.RetrofitClient;
-import com.alphitardian.tr_pam.models.BalanceResponse;
 import com.alphitardian.tr_pam.models.CurrentBalance;
 import com.alphitardian.tr_pam.models.Transaction;
 import com.alphitardian.tr_pam.models.TransactionResponse;
@@ -72,13 +67,13 @@ public class BuyCryptoActivity extends AppCompatActivity {
         btnIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkTotalAndValue()){
+                if (checkTotalAndValue()) {
                     amount += 1;
                     editTextQuantity.setText(amount + "");
                     checkQuantity();
                     checkTotal();
-                }else{
-                    Toast.makeText(BuyCryptoActivity.this, "You don't have enough balance",
+                } else {
+                    Toast.makeText(BuyCryptoActivity.this, getString(R.string.dont_have_balance_toast),
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -103,18 +98,18 @@ public class BuyCryptoActivity extends AppCompatActivity {
 
     }
 
-    public void checkQuantity(){
+    public void checkQuantity() {
         String value = editTextQuantity.getText().toString();
         int amountCheck = Integer.parseInt(value);
 
-        if(amountCheck < 1){
+        if (amountCheck < 1) {
             btnDecrease.setEnabled(false);
-        }else{
+        } else {
             btnDecrease.setEnabled(true);
         }
     }
 
-    public void checkTotal(){
+    public void checkTotal() {
         String tempCoinValue = editTextQuantity.getText().toString();
         String tempPrice = priceTxtView.getText().toString();
         int coinValue = Integer.parseInt(tempCoinValue);
@@ -130,19 +125,19 @@ public class BuyCryptoActivity extends AppCompatActivity {
         totalPrice.setText(format.format(total));
     }
 
-    public boolean checkTotalAndValue(){
+    public boolean checkTotalAndValue() {
 
         String tempPrice = priceTxtView.getText().toString();
         Double coinPrice = Double.parseDouble(tempPrice);
 
-        if(myBalance < total + coinPrice){
+        if (myBalance < total + coinPrice) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
 
-    private void buyCrypto(){
+    private void buyCrypto() {
         String _type = "buy";
         String _coin = txtViewCrypto.getText().toString();
         int _id = Integer.parseInt(getIntent().getExtras().getString(MarketListAdapter.EXTRA_ID));
@@ -157,19 +152,19 @@ public class BuyCryptoActivity extends AppCompatActivity {
         call.enqueue(new Callback<TransactionResponse>() {
             @Override
             public void onResponse(Call<TransactionResponse> call, Response<TransactionResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     SweetAlertDialog pDialog = new SweetAlertDialog(BuyCryptoActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                    pDialog.setTitleText("Success");
-                    pDialog.setContentText("transaction is successful, your coins have been added to the wallet");
-                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
-                       finish();
+                    pDialog.setTitleText(getString(R.string.success_alert_title));
+                    pDialog.setContentText(getString(R.string.success_buy_alert_content));
+                    pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                        finish();
                     });
                     pDialog.show();
-                }else{
+                } else {
                     SweetAlertDialog pDialog = new SweetAlertDialog(BuyCryptoActivity.this, SweetAlertDialog.ERROR_TYPE);
-                    pDialog.setTitleText("Error");
-                    pDialog.setContentText("Transaction failed, please try again");
-                    pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                    pDialog.setTitleText(getString(R.string.error_alert_title));
+                    pDialog.setContentText(getString(R.string.error_alert_content));
+                    pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
                         finish();
                     });
                     pDialog.show();
@@ -179,9 +174,9 @@ public class BuyCryptoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<TransactionResponse> call, Throwable t) {
                 SweetAlertDialog pDialog = new SweetAlertDialog(BuyCryptoActivity.this, SweetAlertDialog.ERROR_TYPE);
-                pDialog.setTitleText("Error");
-                pDialog.setContentText("Transaction failed, please try again");
-                pDialog.setConfirmButton("Ok", sweetAlertDialog -> {
+                pDialog.setTitleText(getString(R.string.error_alert_title));
+                pDialog.setContentText(getString(R.string.error_alert_content));
+                pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
                     finish();
                 });
                 pDialog.show();
@@ -196,7 +191,7 @@ public class BuyCryptoActivity extends AppCompatActivity {
         call.enqueue(new Callback<CurrentBalance>() {
             @Override
             public void onResponse(Call<CurrentBalance> call, Response<CurrentBalance> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     CurrentBalance currentBalance = response.body();
                     String balance = currentBalance.getCurrent();
 
