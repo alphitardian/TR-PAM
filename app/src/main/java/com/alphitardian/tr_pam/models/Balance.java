@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Balance {
     @SerializedName("amount")
-    private int amount;
+    private double amount;
 
     @SerializedName("gateway")
     private String gateway;
@@ -12,7 +12,7 @@ public class Balance {
     @SerializedName("type")
     private String type;
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -36,7 +36,7 @@ public class Balance {
         this.type = type;
     }
 
-    public Balance(int amount, String gateway, String type) {
+    public Balance(double amount, String gateway, String type) {
         this.amount = amount;
         this.gateway = gateway;
         this.type = type;

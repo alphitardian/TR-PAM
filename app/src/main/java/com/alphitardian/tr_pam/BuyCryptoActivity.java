@@ -51,6 +51,9 @@ public class BuyCryptoActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_crypto_screen);
+
+        format.setMaximumFractionDigits(0);
+        format.setCurrency(Currency.getInstance("USD"));
         pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
         txtViewCrypto = findViewById(R.id.txtViewCrypto);
         priceTxtView = findViewById(R.id.txtViewPrice);
@@ -213,6 +216,8 @@ public class BuyCryptoActivity extends AppCompatActivity {
                     myBalance = Double.parseDouble(balance);
 
                     NumberFormat format = NumberFormat.getCurrencyInstance();
+                    format.setMaximumFractionDigits(0);
+                    format.setCurrency(Currency.getInstance("USD"));
 
                     buyBalance.setText(format.format(myBalance));
 

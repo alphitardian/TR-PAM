@@ -60,7 +60,7 @@ public class TopUpActivity extends AppCompatActivity {
 
     private void topUpProcess() {
 
-        int amount = Integer.parseInt(nominalEditText.getText().toString());
+        double amount = Double.parseDouble(nominalEditText.getText().toString());
 
         Balance balance = new Balance(amount, "Direct", "topup");
 

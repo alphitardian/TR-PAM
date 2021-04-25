@@ -63,7 +63,7 @@ public class WithdrawActivity extends AppCompatActivity {
 
     private void withdrawProcess() {
 
-        int amount = Integer.parseInt(nominalEditText.getText().toString());
+        double amount = Double.parseDouble(nominalEditText.getText().toString());
 
         Balance balance = new Balance(amount, "Direct", "withdraw");
 
