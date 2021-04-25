@@ -104,7 +104,8 @@
             android:hint="@string/login_password"
             android:padding="10dp"
             android:textColor="@color/light"
-            android:textColorHint="@color/textHint" />
+            android:textColorHint="@color/textHint"
+            android:inputType="textPassword"/>
 
         <EditText
             android:id="@+id/regisEditTextConfirmPassword"
@@ -116,7 +117,8 @@
             android:hint="@string/confirm_password"
             android:padding="10dp"
             android:textColor="@color/light"
-            android:textColorHint="@color/textHint" />
+            android:textColorHint="@color/textHint"
+            android:inputType="textPassword"/>
 
 
         <Button
