@@ -91,7 +91,6 @@ public class CryptoDetailActivity extends AppCompatActivity {
 
         getCryptoDetail();
         getAsset();
-        createGraph(values);
     }
 
     @Override
@@ -200,7 +199,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
                     }
 
                     totalCoin.setText(data.getAmount() + " Coin");
-                    totalBuyPrice.setText(format.format(data.getTotalAsset()));
+                    totalBuyPrice.setText(format.format(data.getAmount()*currentPrice));
 
                     if (data.getAmount() < 1) {
                         totalProfit.setText(format.format(0.0));
