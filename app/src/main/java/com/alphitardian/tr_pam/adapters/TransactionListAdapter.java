@@ -20,11 +20,15 @@ import com.alphitardian.tr_pam.models.TransactionHistory;
 import com.alphitardian.tr_pam.models.TransactionOnHistory;
 import com.alphitardian.tr_pam.utils.FbDateFormat;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class TransactionListAdapter extends RecyclerView.Adapter<TransactionListAdapter.ListViewHolder> {
 
     private ArrayList<TransactionOnHistory> transactionOnHistories;
+
+    NumberFormat format = NumberFormat.getCurrencyInstance();
 
     public static final String EXTRA_NAME = "extra_name";
     public static final String EXTRA_PRICE = "extra_price";
@@ -47,8 +51,11 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         TransactionOnHistory data = transactionOnHistories.get(position);
 
+        format.setMaximumFractionDigits(0);
+        format.setCurrency(Currency.getInstance("USD"));
+
         holder.cryptoNameTextView.setText(data.getCoin() + "");
-        holder.priceTextView.setText("$" + String.format("%.3f", data.getPrice()));
+        holder.priceTextView.setText(format.format(data.getPrice()*data.getAmount()));
         if(data.getType().equals("buy")){
             holder.transferConfirmationTextView.setText((R.string.transaction_list_buy));
             holder.transferConfirmationTextView.setTextColor(Color.parseColor("#388E3C"));
@@ -65,7 +72,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), TransactionDetailActivity.class);
                 intent.putExtra(EXTRA_NAME, data.getCoin());
-                intent.putExtra(EXTRA_PRICE, "$" + String.format("%.3f", data.getPrice()));
+                intent.putExtra(EXTRA_PRICE, format.format(data.getPrice()*data.getAmount()));
                 intent.putExtra(EXTRA_ICON, MarketListAdapter.getCryptoIcon(data.getCoin()));
                 intent.putExtra(EXTRA_STATUS, data.getType());
                 intent.putExtra(EXTRA_DATE, FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));

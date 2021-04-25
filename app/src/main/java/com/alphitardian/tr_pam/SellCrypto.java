@@ -51,6 +51,8 @@ public class SellCrypto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_crypto);
 
+        format.setMaximumFractionDigits(0);
+        format.setCurrency(Currency.getInstance("USD"));
         pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
         txtViewCrypto = findViewById(R.id.txtViewCrypto);
         priceTxtView = findViewById(R.id.txtViewPrice);
@@ -139,11 +141,18 @@ public class SellCrypto extends AppCompatActivity {
     }
 
     private void sellCrypto() {
+
+        String tempCoinValue = editTextQuantity.getText().toString();
+        double price = getIntent().getDoubleExtra(EXTRA_PRICE, 0.0);
+        int coinValue = Integer.parseInt(tempCoinValue);
+
+        total = coinValue * price;
+
         String _type = "sell";
         String _coin = txtViewCrypto.getText().toString();
         int _id = Integer.parseInt(getIntent().getExtras().getString(MarketListAdapter.EXTRA_ID));
         int _amount = Integer.parseInt(editTextQuantity.getText().toString());
-        double _price = Double.parseDouble(priceTxtView.getText().toString());
+        double _price = total;
 
         Transaction transaction = new Transaction(_id, _coin, _type, _price, _amount);
 
