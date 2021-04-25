@@ -24,7 +24,7 @@ public interface ApiList {
     Call<CryptoList> getAllList();
 
     @GET("/coin/api/v1/single")
-    Call<CryptoList> getSingleCrypto();
+    Call<CryptoList> getSingleCrypto(@Header("coinId") int coinId);
 
     @GET("/balance/current")
     Call<CurrentBalance> getCurrentBalance(@Header("userId") String userId);

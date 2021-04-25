@@ -71,7 +71,7 @@
     <string name="current_price_textview">Harga Terkini</string>
     <string name="my_assets_textview">Aset Saya</string>
     <string name="total_coin_textview">Total Koin</string>
-    <string name="total_buy_price_textview">Total Beli</string>
+    <string name="total_buy_price_textview">Total Asset</string>
     <string name="avg_buy_price_textview">Rerata Beli</string>
     <string name="return_textview">Return</string>
     <string name="sell_button">Jual</string>

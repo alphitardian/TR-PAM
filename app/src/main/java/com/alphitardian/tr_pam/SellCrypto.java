@@ -30,10 +30,16 @@ import retrofit2.Response;
 
 public class SellCrypto extends AppCompatActivity {
 
+    public static final String EXTRA_ID = "extra_id";
+    public static final String EXTRA_NAME = "extra_name";
+    public static final String EXTRA_PRICE = "extra_price";
+
     private TextView txtViewCrypto, priceTxtView, buyBalance, totalPrice;
     private EditText editTextQuantity;
     private ImageView btnDecrease, btnIncrease;
     Button btnBuyCrypto;
+
+    NumberFormat format = NumberFormat.getCurrencyInstance();
 
     SharedPreferences pref;
     int amount = 0;
@@ -45,8 +51,6 @@ public class SellCrypto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_crypto);
 
-        Intent intent = new Intent(SellCrypto.this, CryptoDetailActivity.class);
-
         pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
         txtViewCrypto = findViewById(R.id.txtViewCrypto);
         priceTxtView = findViewById(R.id.txtViewPrice);
@@ -57,8 +61,8 @@ public class SellCrypto extends AppCompatActivity {
         btnDecrease = findViewById(R.id.btnDecrease);
         btnBuyCrypto = findViewById(R.id.btnBuyCrypto);
 
-        txtViewCrypto.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
-        priceTxtView.setText(String.format("%.3f", getIntent().getDoubleExtra(MarketListAdapter.EXTRA_PRICE, 0)));
+        txtViewCrypto.setText(getIntent().getStringExtra(EXTRA_NAME));
+        priceTxtView.setText(format.format(getIntent().getDoubleExtra(EXTRA_PRICE, 0.0)));
         editTextQuantity.setText("0");
         totalPrice.setText("$0");
 
@@ -112,9 +116,8 @@ public class SellCrypto extends AppCompatActivity {
 
     public void checkTotal() {
         String tempCoinValue = editTextQuantity.getText().toString();
-        String tempPrice = priceTxtView.getText().toString();
+        double price = getIntent().getDoubleExtra(EXTRA_PRICE, 0.0);
         int coinValue = Integer.parseInt(tempCoinValue);
-        double price = Double.parseDouble(tempPrice);
 
         total = coinValue * price;
 
@@ -127,8 +130,6 @@ public class SellCrypto extends AppCompatActivity {
     }
 
     public boolean checkTotalAndValue() {
-
-        String tempPrice = priceTxtView.getText().toString();
 
         if (currentAmount < amount + 1) {
             return false;
