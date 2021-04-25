@@ -125,7 +125,7 @@ public class BuyCryptoActivity extends AppCompatActivity {
         total = coinValue * price;
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
-        format.setMaximumFractionDigits(0);
+        format.setMaximumFractionDigits(3);
 
         format.setCurrency(Currency.getInstance("USD"));
 
@@ -146,13 +146,8 @@ public class BuyCryptoActivity extends AppCompatActivity {
     private void buyCrypto() {
         String _type = "buy";
 
-        String tempCoinValue = editTextQuantity.getText().toString();
-        double price = getIntent().getDoubleExtra(EXTRA_PRICE, 0.0);
-        int coinValue = Integer.parseInt(tempCoinValue);
-        Log.w("coin value", coinValue+"");
-        total = coinValue * price;
-
         String _coin = txtViewCrypto.getText().toString();
+        double price = getIntent().getDoubleExtra(EXTRA_PRICE, 0.0);
         int _id = Integer.parseInt(getIntent().getExtras().getString(MarketListAdapter.EXTRA_ID));
         int _amount = Integer.parseInt(editTextQuantity.getText().toString());
         double _price = price;

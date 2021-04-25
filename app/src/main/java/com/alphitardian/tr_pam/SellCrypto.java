@@ -51,7 +51,7 @@ public class SellCrypto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_crypto);
 
-        format.setMaximumFractionDigits(0);
+        format.setMaximumFractionDigits(3);
         format.setCurrency(Currency.getInstance("USD"));
         pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
         txtViewCrypto = findViewById(R.id.txtViewCrypto);
@@ -124,7 +124,7 @@ public class SellCrypto extends AppCompatActivity {
         total = coinValue * price;
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
-        format.setMaximumFractionDigits(0);
+        format.setMaximumFractionDigits(3);
 
         format.setCurrency(Currency.getInstance("USD"));
 

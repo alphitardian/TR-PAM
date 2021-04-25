@@ -91,7 +91,6 @@ public class CryptoDetailActivity extends AppCompatActivity {
 
         getCryptoDetail();
         getAsset();
-        createGraph(values);
     }
 
     @Override
