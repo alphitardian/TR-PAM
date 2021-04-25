@@ -178,7 +178,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, SellCrypto.class);
         intent.putExtra(EXTRA_NAME, getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
-        intent.putExtra(EXTRA_PRICE, getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
+        intent.putExtra(EXTRA_PRICE, getIntent().getDoubleExtra(MarketListAdapter.EXTRA_PRICE, 0));
         intent.putExtra(EXTRA_ID, getIntent().getStringExtra(MarketListAdapter.EXTRA_ID));
 
         startActivityForResult(intent, SELL_CRYPTO);

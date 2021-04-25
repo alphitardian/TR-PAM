@@ -58,7 +58,7 @@ public class SellCrypto extends AppCompatActivity {
         btnBuyCrypto = findViewById(R.id.btnBuyCrypto);
 
         txtViewCrypto.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
-        priceTxtView.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
+        priceTxtView.setText(String.format("%.3f", getIntent().getDoubleExtra(MarketListAdapter.EXTRA_PRICE, 0)));
         editTextQuantity.setText("0");
         totalPrice.setText("$0");
 
