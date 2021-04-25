@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="close_app_alert_confirm_button">Tutup</string>
+    <string name="close_app_alert_content">Apakah anda ingin menutup aplikasi?</string>
+</resources>
