@@ -1,0 +1,111 @@
+<resources>
+    <string name="app_name">TR_PAM</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Login String -->
+    <string name="welcome_back_textview">Selamat datang,</string>
+    <string name="login_text">Masuk</string>
+    <string name="login_username_edittext">Nama pengguna</string>
+    <string name="login_password_edittext">Kata sandi</string>
+    <string name="login_forgot_pass">Lupa password?</string>
+    <string name="login_report">Tap here for report</string>
+    <string name="login_sign_method">or sign in with</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Kata sandi</string>
+    <string name="confirm_password">Konfirmasi sandi</string>
+    <string name="login_button">MASUK</string>
+    <string name="login_register">Daftar</string>
+    <string name="don_t_have_an_account_textview">Tidak punya akun ?</string>
+    <string name="sign_up_button">Daftar</string>
+    <string name="blank_form_toast">Isi semua form!</string>
+    <string name="wrong_username_password_toast">Nama pengguna atau sandi salah</string>
+
+    <!-- Register -->
+    <string name="create_new_account_textview">Buat akun baru</string>
+    <string name="sign_up_failed_toast">Pendaftaran gagal</string>
+    <string name="register_fullname">Nama panjang</string>
+    <string name="register_address">Alamat</string>
+
+    <!-- Pin Login -->
+    <string name="pin_login_textview">Pin Masuk</string>
+    <string name="enter_pin_hint_edittext">Masukan Pin</string>
+    <string name="empty_pin_toast">Pin kosong!</string>
+    <string name="wrong_pin_toast">Pin salah!</string>
+    <string name="pin_login_button">Masuk</string>
+
+    <!-- Home Fragment -->
+    <string name="balance_textview">Saldo</string>
+    <string name="top_up_button">Isi Ulang</string>
+    <string name="total_buy_textview">Total Beli</string>
+    <string name="total_sell_textview">Total Jual</string>
+
+    <!-- Market Fragment -->
+    <string name="search_hint_edittext">Cari..</string>
+    <string name="response_failed_toast">Respon Gagal!</string>
+
+    <!-- Profile Fragment -->
+    <string name="profile_textview">Profile</string>
+    <string name="full_name_textview">Nama Lengkap</string>
+    <string name="sign_out_alert_title">Apakah anda yakin?</string>
+    <string name="sign_out_alert_content">Apakah anda yakin ingin keluar?</string>
+    <string name="sign_out_alert_confirm_button">Keluar</string>
+    <string name="cancel_alert_button">Batal</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_textview">Sunting Profil</string>
+    <string name="change_photo_button">Ganti Foto</string>
+    <string name="new_fullname_hint_edittext">Nama lengkap baru</string>
+    <string name="new_username_hint_edittext">Nama pengguna baru</string>
+    <string name="new_email_hint_edittext">Email baru</string>
+    <string name="new_address_hint_edittext">Alamat baru</string>
+    <string name="save_button">simpan</string>
+    <string name="image_upload_toast">Gambar berhasil diunggah!</string>
+
+    <!-- Maps -->
+    <string name="search_location_textview">Cari Lokasi</string>
+    <string name="use_location_button">Gunakan Lokasi</string>
+    <string name="failed_get_location_toast">Gagal mendapatkan lokasi, coba lagi!</string>
+
+    <!-- Crypto Detail -->
+    <string name="current_price_textview">Harga Terkini</string>
+    <string name="my_assets_textview">Aset Saya</string>
+    <string name="total_coin_textview">Total Koin</string>
+    <string name="total_buy_price_textview">Total Beli</string>
+    <string name="avg_buy_price_textview">Rerata Beli</string>
+    <string name="return_textview">Return</string>
+    <string name="sell_button">Jual</string>
+    <string name="buy_button">Beli</string>
+
+    <!-- Sell Crypto -->
+    <string name="dont_have_coin_toast">Anda tidak memiliki cukup koin</string>
+    <string name="price_textview">Harga</string>
+    <string name="quantity_textview">Jumlah</string>
+    <string name="total_textview">Total</string>
+    <string name="success_alert_title">Berhasil</string>
+    <string name="success_sell_alert_content">transaksi berhasil, koin dalam dompet sudah berkurang</string>
+    <string name="error_alert_title">Error</string>
+    <string name="error_alert_content">Transaksi gagal, coba lagi nanti</string>
+    <string name="transaction_alert_confirm_button">Ok</string>
+
+    <!-- Buy Crypto -->
+    <string name="current_balance_textview">Saldo Terkini</string>
+    <string name="dont_have_balance_toast">Saldo kurang</string>
+    <string name="success_buy_alert_content">transaksi berhasil, koin dalam dompet bertambah</string>
+
+    <!-- Transaction Detail -->
+    <string name="transaction_detail_textview">Detail Transaksi</string>
+    <string name="purchase_amount_textview">Jumlah Beli</string>
+    <string name="purchase_date_textview">Tanggal Beli</string>
+
+    <!-- Wallet -->
+    <string name="wallet_textview">Dompet</string>
+    <string name="your_balance_textview">Saldo Anda</string>
+    <string name="withdraw_textview">Tarik</string>
+    <string name="crypto_list_textview">Daftar Kripto</string>
+
+    <!-- Top Up & Withdraw -->
+    <string name="nominal_textview">Nominal</string>
+    <string name="success_transaction_alert_content">transaksi berhasil, wallet telah dipebarui</string>
+
+</resources>
