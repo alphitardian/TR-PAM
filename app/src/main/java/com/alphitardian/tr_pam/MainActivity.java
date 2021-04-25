@@ -113,9 +113,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } else {
 
             new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Are you sure?")
-                    .setContentText("Do you want to close the application?")
-                    .setConfirmText("Close")
+                    .setTitleText(getString(R.string.sign_out_alert_title))
+                    .setContentText(getString(R.string.close_app_alert_content))
+                    .setConfirmText(getString(R.string.close_app_alert_confirm_button))
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             MainActivity.super.onBackPressed();
                         }
                     })
-                    .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                    .setCancelButton(getString(R.string.cancel_alert_button), new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sDialog) {
                             sDialog.dismissWithAnimation();

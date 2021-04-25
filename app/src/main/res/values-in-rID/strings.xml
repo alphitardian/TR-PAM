@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="close_app_alert_confirm_button">Tutup</string>
+    <string name="close_app_alert_content">Apakah anda ingin menutup aplikasi?</string>
+    <string name="transaction_nav">Transaksi</string>
+    <string name="profile_nav">Profile</string>
+    <string name="market_nav">Pasar</string>
+    <string name="home_nav">Beranda</string>
+    <string name="create_new_pin_textview">Buat Pin Baru</string>
+</resources>

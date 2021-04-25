@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_home"
-        android:title="Home"
+        android:title="@string/home_nav"
         android:icon="@drawable/ic_baseline_home_24"/>
 
     <item
         android:id="@+id/action_market"
-        android:title="Market"
+        android:title="@string/market_nav"
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
 
     <item
@@ -16,11 +16,11 @@
 
     <item
         android:id="@+id/action_transaction"
-        android:title="Transaction"
+        android:title="@string/transaction_nav"
         android:icon="@drawable/ic_baseline_compare_arrows_24"/>
 
     <item
         android:id="@+id/action_profile"
-        android:title="Profile"
+        android:title="@string/profile_nav"
         android:icon="@drawable/ic_baseline_person_24"/>
 </menu>
