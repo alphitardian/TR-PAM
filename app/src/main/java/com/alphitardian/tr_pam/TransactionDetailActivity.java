@@ -9,11 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alphitardian.tr_pam.adapters.TransactionListAdapter;
 import com.google.android.material.card.MaterialCardView;
 
+import java.util.Locale;
+
 public class TransactionDetailActivity extends AppCompatActivity {
 
     private TextView cryptoNameTextView, purchaseAmountTextView, currentStatusTextView, purchaseDateTextView;
     private ImageView cryptoImage;
     private MaterialCardView materialCardView;
+    private String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,19 @@ public class TransactionDetailActivity extends AppCompatActivity {
             materialCardView.setCardBackgroundColor(getResources().getColor(R.color.downtrend));
         }
 
+        if (Locale.getDefault() != Locale.ENGLISH) {
+            if (getIntent().getStringExtra(TransactionListAdapter.EXTRA_STATUS).equals("buy")) {
+                status = getString(R.string.buy_button);
+            } else {
+                status = getString(R.string.sell_button);
+            }
+        } else {
+            status = getIntent().getStringExtra(TransactionListAdapter.EXTRA_STATUS).toUpperCase();
+        }
+
         cryptoNameTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_NAME));
         purchaseAmountTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_PRICE));
-        currentStatusTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_STATUS).toUpperCase());
+        currentStatusTextView.setText(status);
         purchaseDateTextView.setText(getIntent().getStringExtra(TransactionListAdapter.EXTRA_DATE));
         cryptoImage.setImageResource(getIntent().getIntExtra(TransactionListAdapter.EXTRA_ICON, 0));
     }
