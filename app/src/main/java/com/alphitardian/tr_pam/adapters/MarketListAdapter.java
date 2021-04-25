@@ -70,7 +70,7 @@ public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.Li
                 intent.putExtra(EXTRA_ID, data.getId());
                 intent.putExtra(EXTRA_NAME, data.getName());
                 intent.putExtra(EXTRA_SYMBOL, data.getSymbol());
-                intent.putExtra(EXTRA_PRICE, String.format("%.3f", data.getPrice().getCurrent()));
+                intent.putExtra(EXTRA_PRICE, data.getPrice().getCurrent());
                 intent.putExtra(EXTRA_ICON, getCryptoIcon(data.getSymbol()));
 
                 CryptoPrice cryptoPrice = new CryptoPrice(

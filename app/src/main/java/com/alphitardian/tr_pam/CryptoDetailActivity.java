@@ -76,7 +76,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
         pref = getSharedPreferences("USER_DATA", MODE_PRIVATE);
 
         cryptoNameTextView.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_NAME));
-        currentPriceTextView.setText(getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
+        currentPriceTextView.setText(String.format("%.3f", getIntent().getDoubleExtra(MarketListAdapter.EXTRA_PRICE, 0)));
         cryptoImage.setImageResource(getIntent().getIntExtra(MarketListAdapter.EXTRA_ICON, 0));
 
         webViewButton.setOnClickListener(new View.OnClickListener() {
@@ -213,7 +213,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
                     AssetsInSingle assetsInSingle = response.body();
                     AssetsInSingleData data = assetsInSingle.getData();
 
-                    Double currentPrice = Double.parseDouble(getIntent().getStringExtra(MarketListAdapter.EXTRA_PRICE));
+                    Double currentPrice = getIntent().getDoubleExtra(MarketListAdapter.EXTRA_PRICE, 0);
 
                     Double avgBuy = 0.0;
 

@@ -50,10 +50,10 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         holder.cryptoNameTextView.setText(data.getCoin() + "");
         holder.priceTextView.setText("$" + String.format("%.3f", data.getPrice()));
         if(data.getType().equals("buy")){
-            holder.transferConfirmationTextView.setText("BUY");
+            holder.transferConfirmationTextView.setText((R.string.buy_button));
             holder.transferConfirmationTextView.setTextColor(Color.parseColor("#388E3C"));
         }else{
-            holder.transferConfirmationTextView.setText("SELL");
+            holder.transferConfirmationTextView.setText(R.string.sell_button);
             holder.transferConfirmationTextView.setTextColor(Color.parseColor("#D32F2F"));
         }
         holder.dateTextView.setText(FbDateFormat.getDate(data.getDate().getSeconds(), data.getDate().getNanoseconds()));
