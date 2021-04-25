@@ -98,6 +98,10 @@
     <string name="purchase_amount_textview">Purchase Amount</string>
     <string name="purchase_date_textview">Purchase Date</string>
 
+    <!-- Transaction Item -->
+    <string name="transaction_list_buy">BUY</string>
+    <string name="transaction_list_sell">SELL</string>
+
     <!-- Wallet -->
     <string name="wallet_textview">Wallet</string>
     <string name="your_balance_textview">Your Balance</string>

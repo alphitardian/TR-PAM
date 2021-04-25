@@ -98,6 +98,10 @@
     <string name="purchase_amount_textview">Jumlah Beli</string>
     <string name="purchase_date_textview">Tanggal Beli</string>
 
+    <!-- Transaction Item -->
+    <string name="transaction_list_buy">BELI</string>
+    <string name="transaction_list_sell">JUAL</string>
+
     <!-- Wallet -->
     <string name="wallet_textview">Dompet</string>
     <string name="your_balance_textview">Saldo Anda</string>
