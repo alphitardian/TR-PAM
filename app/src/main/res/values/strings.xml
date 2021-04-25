@@ -118,5 +118,6 @@
     <string name="market_nav">Market</string>
     <string name="home_nav">Home</string>
     <string name="create_new_pin_textview">Create New Pin</string>
+    <string name="register_success">Registration success, please login</string>
 
 </resources>

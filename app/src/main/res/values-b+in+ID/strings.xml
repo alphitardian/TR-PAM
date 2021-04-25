@@ -26,6 +26,7 @@
     <string name="sign_up_failed_toast">Pendaftaran gagal</string>
     <string name="register_fullname">Nama panjang</string>
     <string name="register_address">Alamat</string>
+    <string name="register_success">Registrasi Berhasil, silahkan login</string>
 
     <!-- Pin Login -->
     <string name="pin_login_textview">Pin Masuk</string>

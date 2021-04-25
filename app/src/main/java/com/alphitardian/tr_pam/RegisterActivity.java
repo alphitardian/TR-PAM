@@ -79,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             SweetAlertDialog pDialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE);
                             pDialog.setTitleText(getString(R.string.success_alert_title));
-                            pDialog.setContentText(getString(R.string.success_buy_alert_content));
+                            pDialog.setContentText(getString(R.string.register_success));
                             pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 pDialog.dismiss();

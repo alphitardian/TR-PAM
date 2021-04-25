@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                             });
 
                         } else {
+                            loading.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this, getResources().getText(R.string.wrong_username_password_toast),
                                     Toast.LENGTH_SHORT).show();
                         }
