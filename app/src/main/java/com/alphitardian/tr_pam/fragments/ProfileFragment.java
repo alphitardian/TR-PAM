@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment {
         StorageReference ref = storageReference.child(pref.getString("photo_path", "default"));
 
         Glide.with(getContext())
-                .load(ref).placeholder(R.drawable.loading)
+                .load(ref).placeholder(R.drawable.ic_baseline_person_24)
                 .override(500, 500)
                 .into(profileImage);
 
