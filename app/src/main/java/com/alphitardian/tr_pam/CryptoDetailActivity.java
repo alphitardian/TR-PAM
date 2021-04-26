@@ -190,7 +190,7 @@ public class CryptoDetailActivity extends AppCompatActivity {
                     AssetsInSingle assetsInSingle = response.body();
                     AssetsInSingleData data = assetsInSingle.getData();
 
-                    Double currentPrice = getIntent().getDoubleExtra(MarketListAdapter.EXTRA_PRICE, 0);
+                    //Double currentPrice = getIntent().getDoubleExtra(MarketListAdapter.EXTRA_PRICE, 0);
 
                     Double avgBuy = 0.0;
 
@@ -262,4 +262,13 @@ public class CryptoDetailActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if(getIntent().getIntExtra("status", 0) == 1){
+            startActivity(new Intent(CryptoDetailActivity.this, WalletActivity.class));
+            finish();
+        }else{
+            super.onBackPressed();
+        }
+    }
 }

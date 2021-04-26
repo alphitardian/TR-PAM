@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment {
         StorageReference ref = storageReference.child(pref.getString("photo_path", "default"));
 
         Glide.with(getContext())
-                .load(ref)
+                .load(ref).placeholder(R.drawable.loading)
                 .override(500, 500)
                 .into(profileImage);
 
@@ -114,21 +114,16 @@ public class ProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == EDITPROFILE_ACTIVITY_REQ_CODE) {
-            if (resultCode == RESULT_OK) {
-                fullNameTextView.setText(pref.getString("fullName", "fullName"));
-                usernameTextView.setText(pref.getString("username", "Username"));
-                emailTextView.setText(pref.getString("email", "Email"));
-                addressTextView.setText(pref.getString("address", "Address"));
-                StorageReference ref = storageReference.child(pref.getString("photo_path", "default"));
-                Glide.with(getContext())
-                        .load(ref)
-                        .override(500, 500)
-                        .into(profileImage);
-
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
+            fullNameTextView.setText(pref.getString("fullName", "fullName"));
+            usernameTextView.setText(pref.getString("username", "Username"));
+            emailTextView.setText(pref.getString("email", "Email"));
+            addressTextView.setText(pref.getString("address", "Address"));
+            StorageReference ref = storageReference.child(pref.getString("photo_path", "default"));
+            Glide.with(getContext())
+                    .load(ref)
+                    .placeholder(R.drawable.ic_baseline_person_24)
+                    .override(500, 500)
+                    .into(profileImage);
         }
     }
 }

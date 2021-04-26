@@ -60,44 +60,60 @@ public class TopUpActivity extends AppCompatActivity {
 
     private void topUpProcess() {
 
-        double amount = Double.parseDouble(nominalEditText.getText().toString());
+        String value = nominalEditText.getText().toString();
 
-        Balance balance = new Balance(amount, "Direct", "topup");
+        if(!value.isEmpty()){
 
-        ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
-        Call<BalanceResponse> call = apiList.topUpBalance(pref.getString("userId", ""), balance);
+            double amount = Double.parseDouble(value);
 
-        call.enqueue(new Callback<BalanceResponse>() {
-            @Override
-            public void onResponse(Call<BalanceResponse> call, Response<BalanceResponse> response) {
-                BalanceResponse balanceResponse = response.body();
+            Balance balance = new Balance(amount, "Direct", "topup");
 
-                if (balanceResponse.getStatus().equals("success")) {
-                    SweetAlertDialog pDialog = new SweetAlertDialog(TopUpActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                    pDialog.setTitleText(getString(R.string.success_alert_title));
-                    pDialog.setContentText(getString(R.string.success_transaction_alert_content));
-                    pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
-                        pDialog.dismissWithAnimation();
-                        startActivity(new Intent(TopUpActivity.this, WalletActivity.class));
-                        finish();
-                    });
-                    pDialog.show();
-                } else {
-                    SweetAlertDialog pDialog = new SweetAlertDialog(TopUpActivity.this, SweetAlertDialog.ERROR_TYPE);
-                    pDialog.setTitleText(getString(R.string.error_alert_title));
-                    pDialog.setContentText(getString(R.string.error_alert_content));
-                    pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
-                        pDialog.dismissWithAnimation();
-                    });
-                    pDialog.show();
+            ApiList apiList = RetrofitClient.getRetrofitClient().create(ApiList.class);
+            Call<BalanceResponse> call = apiList.topUpBalance(pref.getString("userId", ""), balance);
+
+            call.enqueue(new Callback<BalanceResponse>() {
+                @Override
+                public void onResponse(Call<BalanceResponse> call, Response<BalanceResponse> response) {
+                    BalanceResponse balanceResponse = response.body();
+
+                    if (balanceResponse.getStatus().equals("success")) {
+                        SweetAlertDialog pDialog = new SweetAlertDialog(TopUpActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                        pDialog.setTitleText(getString(R.string.success_alert_title));
+                        pDialog.setContentText(getString(R.string.success_transaction_alert_content));
+                        pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                            pDialog.dismissWithAnimation();
+                            Intent intent = new Intent(TopUpActivity.this, WalletActivity.class);
+                            intent.putExtra("status", getIntent().getIntExtra("status", 0));
+                            startActivity(intent);
+                            finish();
+                        });
+                        pDialog.show();
+
+                    } else {
+                        SweetAlertDialog pDialog = new SweetAlertDialog(TopUpActivity.this, SweetAlertDialog.ERROR_TYPE);
+                        pDialog.setTitleText(getString(R.string.error_alert_title));
+                        pDialog.setContentText(getString(R.string.error_alert_content));
+                        pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                            pDialog.dismissWithAnimation();
+                        });
+                        pDialog.show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<BalanceResponse> call, Throwable t) {
+                @Override
+                public void onFailure(Call<BalanceResponse> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }else {
+            SweetAlertDialog pDialog = new SweetAlertDialog(TopUpActivity.this, SweetAlertDialog.ERROR_TYPE);
+            pDialog.setTitleText(getString(R.string.error_alert_title));
+            pDialog.setContentText(getString(R.string.error_alert_content));
+            pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                pDialog.dismissWithAnimation();
+            });
+            pDialog.show();
+        }
 
     }
 
@@ -131,6 +147,15 @@ public class TopUpActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getIntent().getIntExtra("status", 0) == 1){
+            startActivity(new Intent(TopUpActivity.this, MainActivity.class));
+        }else{
+            super.onBackPressed();
+        }
     }
 
     @Override

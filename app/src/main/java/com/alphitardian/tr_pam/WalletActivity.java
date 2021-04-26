@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -124,12 +125,14 @@ public class WalletActivity extends AppCompatActivity {
                     List<AssetsListCoin> assets = data.getData().getCoin();
 
                     for (int i = 0; i < assets.size(); i++) {
-                        AssetsListCoin itemData = new AssetsListCoin(
-                                assets.get(i).getId(),
-                                assets.get(i).getCoin(),
-                                assets.get(i).getTotal()
-                        );
-                        assetsListsCoin.add(itemData);
+                        if(assets.get(i).getTotal() != 0){
+                            AssetsListCoin itemData = new AssetsListCoin(
+                                    assets.get(i).getId(),
+                                    assets.get(i).getCoin(),
+                                    assets.get(i).getTotal()
+                            );
+                            assetsListsCoin.add(itemData);
+                        }
                     }
 
                     showRecyclerList();
@@ -152,6 +155,16 @@ public class WalletActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         CryptoWalletGridAdapter listAdapter = new CryptoWalletGridAdapter(assetsListsCoin);
         recyclerView.setAdapter(listAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getIntent().getIntExtra("status", 0) == 1){
+            finish();
+            startActivity(new Intent(WalletActivity.this, MainActivity.class));
+        }else{
+            super.onBackPressed();
+        }
     }
 
     @Override

@@ -99,7 +99,19 @@ public class SellCrypto extends AppCompatActivity {
         btnBuyCrypto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sellCrypto();
+
+                String value = editTextQuantity.getText().toString();
+                if(!value.equals("0")){
+                    sellCrypto();
+                }else{
+                    SweetAlertDialog pDialog = new SweetAlertDialog(SellCrypto.this, SweetAlertDialog.ERROR_TYPE);
+                    pDialog.setTitleText(getString(R.string.error_alert_title));
+                    pDialog.setContentText(getString(R.string.error_alert_content));
+                    pDialog.setConfirmButton(getString(R.string.transaction_alert_confirm_button), sweetAlertDialog -> {
+                        pDialog.dismissWithAnimation();
+                    });
+                    pDialog.show();
+                }
             }
         });
 

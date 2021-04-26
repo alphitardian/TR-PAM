@@ -13,9 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alphitardian.tr_pam.models.UserDetail;
@@ -25,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -35,6 +38,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private final int MAPACTIVITY_REQ_CODE = 1;
     private final int PICK_IMAGE_REQUEST = 22;
+
+    LinearLayout loading;
 
     private Uri filePath;
 
@@ -65,6 +70,7 @@ public class EditProfileActivity extends AppCompatActivity {
         _btnSaveProfile = findViewById(R.id.btnSaveProfile);
         _btnLocation = findViewById(R.id.location_button);
         editProfileImage = findViewById(R.id.editProfileImage);
+        loading = findViewById(R.id.loading);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -74,7 +80,7 @@ public class EditProfileActivity extends AppCompatActivity {
         StorageReference ref = storageReference.child(preferences.getString("photo_path", "default"));
 
         Glide.with(getApplicationContext())
-                .load(ref)
+                .load(ref).placeholder(R.drawable.ic_baseline_person_24)
                 .override(500, 500)
                 .into(editProfileImage);
 
@@ -83,6 +89,8 @@ public class EditProfileActivity extends AppCompatActivity {
         uName.setText(preferences.getString("username", ""));
         email.setText(preferences.getString("email", ""));
         address.setText(preferences.getString("address", ""));
+
+        loading.setVisibility(View.GONE);
 
         _btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,9 +174,6 @@ public class EditProfileActivity extends AppCompatActivity {
         } else {
 
             saveProfile(_email, _password, _fName, _uName, _address);
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            setResult(RESULT_OK, intent);
-            finish();
         }
     }
 
@@ -184,6 +189,14 @@ public class EditProfileActivity extends AppCompatActivity {
                     String path = taskSnapshot.getMetadata().getPath();
                     String photoPath = path;
 
+
+                    editor.putString("fullName", _fName);
+                    editor.putString("username", _uName);
+                    editor.putString("email", _email);
+                    editor.putString("address", _address);
+                    editor.putString("photo_path", photoPath);
+                    editor.apply();
+
                     user.updateEmail(email);
                     String uid = user.getUid();
 
@@ -194,12 +207,14 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     Toast.makeText(EditProfileActivity.this, getString(R.string.image_upload_toast), Toast.LENGTH_SHORT).show();
 
-                    editor.putString("fullName", _fName);
-                    editor.putString("username", _uName);
-                    editor.putString("email", _email);
-                    editor.putString("address", _address);
-                    editor.putString("photo_path", photoPath);
-                    editor.apply();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                    loading.setVisibility(View.VISIBLE);
                 }
             });
 

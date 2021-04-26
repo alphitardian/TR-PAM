@@ -66,7 +66,10 @@ public class HomeFragment extends Fragment {
         goToTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), TopUpActivity.class));
+                Intent intent = new Intent(getActivity(), TopUpActivity.class);
+                intent.putExtra("status", 1);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
     }

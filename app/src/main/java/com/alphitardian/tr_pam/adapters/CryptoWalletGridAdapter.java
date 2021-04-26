@@ -1,5 +1,6 @@
 package com.alphitardian.tr_pam.adapters;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
@@ -56,7 +57,9 @@ public class CryptoWalletGridAdapter extends RecyclerView.Adapter<CryptoWalletGr
                 Intent intent = new Intent(holder.itemView.getContext(), CryptoDetailActivity.class);
                 intent.putExtra(EXTRA_ID, data.getId()+"");
                 intent.putExtra(EXTRA_ICON, getCryptoIcon(data.getCoin()));
+                intent.putExtra("status", 1);
                 holder.itemView.getContext().startActivity(intent);
+                ((Activity)holder.itemView.getContext()).finish();
             }
         });
     }
