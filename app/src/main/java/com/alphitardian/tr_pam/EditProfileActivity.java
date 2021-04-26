@@ -235,6 +235,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
             Log.w("photo path", userDetail.getPhoto_path() + "");
             db.collection("users").document(uid).set(userDetail);
+
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            setResult(RESULT_OK, intent);
+            finish();
         }
 
     }
